@@ -1,0 +1,31 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="houseFourmId">
+
+            <input type="hidden" id="merchantId" value="${merchantId}">
+
+            <div class="row">
+            <div class="col-sm-4">
+                    <#TextareaCon id="searchProductCode" name="商品编码" /> 
+                </div>
+            <div class="col-sm-4">
+                    <#input id="searchProductName" name="商品名称" underline="true"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="searchOriginalCode" name="关联编码" underline="true"/>
+                </div>
+                <#button btnCss="info" name="查询"  icon="fa-check" clickFun="MdProduct.search()"/>
+            </div>
+             <div class="col-sm-10">
+                    <#button btnCss="info" name="添加" id="ensure" icon="fa-check" clickFun="addProduct()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MdProductInfoDlg.close()"/>
+                </div>
+			<#table id="MdProductTable"/>
+        </div>
+		
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/mdComboProduct/secrchProduct.js"></script>
+<!-- <script src="${ctxPath}/static/modular/business/mdComboProduct/mProduct.js"></script> -->
+@}

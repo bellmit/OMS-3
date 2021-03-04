@@ -1,0 +1,72 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="shopInfoForm">
+
+            <input type="hidden" id="id" value="${shop.id}">
+            <input type="hidden" id="isOnlineValue" value="${shop.isOnline}">
+            <input type="hidden" id="syncCancelOrderValue" value="${shop.syncCancelOrder}">
+            <input type="hidden" id="syncExpressValue" value="${shop.syncExpress}">
+            <input type="hidden" id="isDeletedValue" value="${shop.isDeleted}">
+            <input type="hidden" id="merchantIdValue" value="${shop.merchantId}">
+            <input type="hidden" id="platformIdValue" value="${shop.platformId}">
+            <input type="hidden" id="syncOrderValue" value="${shop.syncOrder}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                    <#input id="name" name="名称" value="${shop.name}" underline="true"/>
+                    <#input id="code" name="编码" value="${shop.code}" underline="true"/>
+                    <#select id="merchantId" name="商家" underline="true">
+                        @for(mdMerchant in mdMerchantList){
+                        <option value="${mdMerchant.id}">${mdMerchant.merchantName}</option>
+                        @}
+                    </#select>
+                    <#input id="url" name="店铺网址" value="${shop.url}" underline="true"/>
+                    <#input id="appKey" name="appKey" value="${shop.appKey}" underline="true"/>
+                    <#input id="mobile" name="店铺手机" value="${shop.mobile}" underline="true"/>
+                    <#select id="isDeleted" name="启用店铺" underline="true">
+                        <option value="1">不可用</option>
+                        <option value="0">可用</option>
+                    </#select>
+                    <#select id="syncOrder" name="订单下载" underline="true">
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </#select>
+                    <#select id="syncExpress" name="同步物流" underline="true">
+                        <option value="1">开启</option>
+                        <option value="0">关闭</option>
+                    </#select>
+                </div>
+
+                <div class="col-sm-6">
+                    <#input id="nickName" name="别名" value="${shop.nickName}" underline="true"/>
+                    <#select id="isOnline" name="类型" underline="true">
+                        <option value="1">线下</option>
+                        <option value="2">线上</option>
+                    </#select>
+                    <#select id="platformId" name="平台" underline="true" underline="true">
+                        @for(platform in platformList){
+                        <option value="${platform.id}">${platform.platformName}</option>
+                        @}
+                    </#select>
+                    <#input id="telephone" name="店铺电话" value="${shop.telephone}" underline="true"/>
+                    <#input id="appSecret" name="appSecret" value="${shop.appSecret}" underline="true"/>
+                    <#select id="syncCancelOrder" name="取消订单通知平台" underline="true">
+                        <option value="1" >是</option>
+                        <option value="0" >否</option>
+                    </#select>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ShopInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ShopInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/shop/shop_info.js"></script>
+@}

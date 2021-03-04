@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.SDElectronicPort.dao.SdOrderpushrecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.SDElectronicPort.model.SdOrderpushrecord">
+        <id column="id" property="id"/>
+        <result column="type" property="type"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="move_status" property="moveStatus"/>
+        <result column="return_status" property="returnStatus"/>
+        <result column="xml_file_name" property="xmlFileName"/>
+        <result column="xml_file_len" property="xmlFileLen"/>
+        <result column="xml_file_url" property="xmlFileUrl"/>
+        <result column="guid" property="guid"/>
+        <result column="order_no" property="orderNo"/>
+        <result column="sd_fld1" property="sdFld1"/>
+        <result column="sd_fld2" property="sdFld2"/>
+        <result column="sd_fld3" property="sdFld3"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, type, create_time AS createTime, update_time AS updateTime, move_status AS moveStatus, return_status AS returnStatus, xml_file_name AS xmlFileName, xml_file_len AS xmlFileLen, xml_file_url AS xmlFileUrl,guid AS guid,order_no AS orderNo, sd_fld1 AS sdFld1, sd_fld2 AS sdFld2, sd_fld3 AS sdFld3
+    </sql>
+    <select id="getFileListOneM" parameterType="com.baiyang.oms.modular.SDElectronicPort.model.SdOrderpushrecord"
+            resultType="com.baiyang.oms.modular.SDElectronicPort.model.SdOrderpushrecord">
+        select
+        <include refid="Base_Column_List"/>
+        from sd_orderpushrecord
+        <where>
+            <if test="moveStatus!=null">
+                and move_status = #{moveStatus}
+            </if>
+        </where>
+        ORDER BY create_time desc
+        <if test="pageSize != null and pageSize != 0">
+            limit #{pageSize}
+        </if>
+        <if test="pageSize == null or pageSize ==0">
+            limit 5
+        </if>
+    </select>
+    <select id="getByXmlFileName" resultType="com.baiyang.oms.modular.SDElectronicPort.model.SdOrderpushrecord">
+        select
+        <include refid="Base_Column_List"/>
+        from sd_orderpushrecord
+        <where>
+            <if test="fileName!=null">
+                and xml_file_name = #{fileName}
+            </if>
+        </where>
+    </select>
+    <select id="selectByVo" resultType="com.baiyang.oms.modular.SDElectronicPort.model.SdOrderpushrecord">
+        select
+        <include refid="Base_Column_List"/>
+        from sd_orderpushrecord
+        <where>
+            <if test="so.fileName!=null and so.fileName != ''">
+                and xml_file_name = #{so.fileName}
+            </if>
+            <if test="so.id!=null">
+                and id = #{so.id}
+            </if>
+            <if test="so.type!=null and so.type !='' ">
+                and so.type = #{so.so.type}
+            </if>
+            <if test="so.orderNo!=null and so.orderNo !='' ">
+                and order_no = #{so.orderNo}
+            </if>
+        </where>
+    </select>
+</mapper>

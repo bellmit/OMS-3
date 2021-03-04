@@ -1,0 +1,73 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" value="${item.id}" underline="true"/>
+                            <#input id="createTime" name="创立日期" value="${item.createTime}" underline="true"/>
+                            <#input id="updateTime" name="修改日期" value="${item.updateTime}" underline="true"/>
+                            <#input id="createdBy" name="制单人ID （创建人）" value="${item.createdBy}" underline="true"/>
+                            <#input id="updatedBy" name="修改人ID" value="${item.updatedBy}" underline="true"/>
+                            <#input id="refOrderId" name="" value="${item.refOrderId}" underline="true"/>
+                            <#input id="refOrderCode" name="" value="${item.refOrderCode}" underline="true"/>
+                            <#input id="poId" name="采购单ID" value="${item.poId}" underline="true"/>
+                            <#input id="poCode" name="采购单编码" value="${item.poCode}" underline="true"/>
+                            <#input id="warehouseId" name="仓库号" value="${item.warehouseId}" underline="true"/>
+                            <#input id="merchantId" name="商家id" value="${item.merchantId}" underline="true"/>
+                            <#input id="supplierId" name="供应商id" value="${item.supplierId}" underline="true"/>
+                            <#input id="asnCode" name="ASN单据号" value="${item.asnCode}" underline="true"/>
+                            <#input id="asnType" name="1：正品 2：寄售 3：DO退货 4：赠品 5：调入 6：聚单 7：门店退货8，换货do失败退货9，it返库，11：退换货虚转实 20：供应商直送" value="${item.asnType}" underline="true"/>
+                            <#input id="status" name="ASN单状态 10:货未到,20:已打印,30:收货中,40:收货完成,50:审核完成,60:重新打开,70:已取消" value="${item.status}" underline="true"/>
+                            <#input id="verifiedReceiveTime" name="确认收货时间" value="${item.verifiedReceiveTime}" underline="true"/>
+                            <#input id="startReceiveTime" name="开始收货时间" value="${item.startReceiveTime}" underline="true"/>
+                            <#input id="finishReceiveTime" name="完成收货时间" value="${item.finishReceiveTime}" underline="true"/>
+                            <#input id="expectedValidNum" name="预计发货数量" value="${item.expectedValidNum}" underline="true"/>
+                            <#input id="receivedNum" name="实收数量" value="${item.receivedNum}" underline="true"/>
+                            <#input id="exptArriveTime" name="预计到货日期" value="${item.exptArriveTime}" underline="true"/>
+                            <#input id="prodState" name="产品状态：1.自有 2.寄售" value="${item.prodState}" underline="true"/>
+                            <#input id="deliveryType" name="配货类型 1：本地直发 2：异地直发 3：DO调拨 4：TO调拨或PO采购" value="${item.deliveryType}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="periodValid" name="PO产品效期类型：1：正常；2：特批；null：不需要效期控制" value="${item.periodValid}" underline="true"/>
+                            <#input id="reserveCode" name="预约号" value="${item.reserveCode}" underline="true"/>
+                            <#input id="reserveDate" name="预约日期" value="${item.reserveDate}" underline="true"/>
+                            <#input id="validDate" name="订单过期日" value="${item.validDate}" underline="true"/>
+                            <#input id="businessType" name="1-直采,2-代理直采,3-跨境通,4-国内采购,5-调拨" value="${item.businessType}" underline="true"/>
+                            <#input id="remark" name="备注信息" value="${item.remark}" underline="true"/>
+                            <#input id="isSent" name="v3接口是否已同步到wms:[1:已同步 0:未同步]" value="${item.isSent}" underline="true"/>
+                            <#input id="rewriteFlag" name="回写标记" value="${item.rewriteFlag}" underline="true"/>
+                            <#input id="isDeleted" name="是否删除 1：是 0：否" value="${item.isDeleted}" underline="true"/>
+                            <#input id="grfCode" name="退换货单编码" value="${item.grfCode}" underline="true"/>
+                            <#input id="grfType" name="类型:0退货 1 换货" value="${item.grfType}" underline="true"/>
+                            <#input id="soCode" name="订单号" value="${item.soCode}" underline="true"/>
+                            <#input id="doCode" name="发货单编码" value="${item.doCode}" underline="true"/>
+                            <#input id="toId" name="调拨单ID" value="${item.toId}" underline="true"/>
+                            <#input id="fromWarehouseId" name="调出仓库" value="${item.fromWarehouseId}" underline="true"/>
+                            <#input id="damageQuality" name="实收坏品数" value="${item.damageQuality}" underline="true"/>
+                            <#input id="normalQuality" name="实收好品数" value="${item.normalQuality}" underline="true"/>
+                            <#input id="tenantId" name="" value="${item.tenantId}" underline="true"/>
+                            <#input id="isDeal" name="定时任务处理状态（0：未处理 1：处理成功 6：处理失败）" value="${item.isDeal}" underline="true"/>
+                            <#input id="outerOrderCode" name="外部发货单号" value="${item.outerOrderCode}" underline="true"/>
+                            <#input id="outerOrderType" name="外部订单类型" value="${item.outerOrderType}" underline="true"/>
+                            <#input id="platformId" name="平台ID" value="${item.platformId}" underline="true"/>
+                            <#input id="subType" name="asn入库子类型（其他入库）" value="${item.subType}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="AsnInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="AsnInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/asn/asn_info.js"></script>
+@}

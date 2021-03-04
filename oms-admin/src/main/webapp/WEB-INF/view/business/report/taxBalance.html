@@ -1,0 +1,67 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>平台管理</h5>
+                <#FormSlideToggle searchFormId="searchForm"/>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div id="searchForm">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="platformOrderCode" name="平台单号" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="pmInfoId" name="运单号" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="warehouseName" name="仓库" >
+                                <option value="">请选择</option>
+                                @for(ware in wareHouseMap){
+                                <option value="${ware.warehouseName}">${ware.warehouseName}</option>
+                                @}
+                            </#SelectCon>
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12" style="text-align: center;padding-top: 20px">
+                                <#button name="搜索" icon="fa-search" clickFun="TaxBalance.search()"/>
+                                <#button name="重置" icon="fa-repeat" clickFun="TaxBalance.resetSearch()" space="true"/>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="hidden-xs" style="margin-top: 0px" id="TaxBalanceToolbar" role="group">
+                            <#button id="importOrder" name="导入" bootStrapIconClass="glyphicon glyphicon-import" clickFun="openExcelIn()"/>
+                            <#button name="导出" bootStrapIconClass="glyphicon glyphicon-export" clickFun="TaxBalance.exportOrder()" space="true"/>
+                            <br/>
+                        </div>
+                        <#table id="taxBalanceTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/report/taxBalance.js"></script>
+<style>
+    .row-tip {
+        font-size: 12px;
+        color: red;
+        margin-top: 20px;
+        margin-left: 2px;
+        padding-top: 10px
+    }
+
+    .a-download-modal {
+        width: 60px;
+        margin-left: 280px;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        position: absolute
+    }
+</style>
+@}

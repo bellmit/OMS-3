@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.SoItemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.SoItem">
+        <id column="id" property="id" />
+        <result column="end_user_id" property="endUserId" />
+        <result column="order_id" property="orderId" />
+        <result column="platform_order_code" property="platformOrderCode" />
+        <result column="platform_sku_id" property="platformSkuId" />
+        <result column="platform_sku_code" property="platformSkuCode" />
+        <result column="platform_sku_name" property="platformSkuName" />
+        <result column="product_id" property="productId" />
+        <result column="product_code" property="productCode" />
+        <result column="cost" property="cost" />
+        <result column="main_product_code" property="mainProductCode" />
+        <result column="merchant_id" property="merchantId" />
+        <result column="order_item_amount" property="orderItemAmount" />
+        <result column="order_item_price" property="orderItemPrice" />
+        <result column="order_item_num" property="orderItemNum" />
+        <result column="frozen_stock_num" property="frozenStockNum" />
+        <result column="product_cname" property="productCname" />
+        <result column="is_gift" property="isGift" />
+        <result column="product_sale_type" property="productSaleType" />
+        <result column="parent_so_item_id" property="parentSoItemId" />
+        <result column="is_item_leaf" property="isItemLeaf" />
+        <result column="warehouse_id" property="warehouseId" />
+        <result column="virtual_stock_status" property="virtualStockStatus" />
+        <result column="update_time" property="updateTime" />
+        <result column="product_type" property="productType" />
+        <result column="product_pic_path" property="productPicPath" />
+        <result column="promotion_amount" property="promotionAmount" />
+        <result column="delivery_fee_amount" property="deliveryFeeAmount" />
+        <result column="settlement_price" property="settlementPrice" />
+        <result column="create_time" property="createTime" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="gross_weight" property="grossWeight" />
+        <result column="merchant_discount" property="merchantDiscount" />
+        <result column="platform_discount" property="platformDiscount" />
+        <result column="prescription" property="prescription" />
+        <result column="specification" property="specification" />
+        <result column="instea_price" property="insteaPrice" />
+        <result column="agent_operate" property="agentOperate" />
+        <result column="ralation_tenant_id" property="ralationTenantId" />
+        <result column="tenant_id" property="tenantId" />
+        <result column="actual_qty" property="actualQty" />
+        <result column="std_pack_qty" property="stdPackQty" />
+        <result column="remark" property="remark" />
+        <result column="sales_method" property="salesMethod" />
+        <result column="gnum" property="gnum" />
+        <result column="item_estimate_fcy" property="itemEstimateFcy" />
+        <result column="item_tax_fcy" property="itemTaxFcy" />
+        <result column="item_actual_fcy" property="itemActualFcy" />
+        <result column="actual_price" property="actualPrice" />
+        <result column="office_name" property="officeName" />
+        <result column="lot_no" property="lotNo" />
+        <result column="expire_time" property="expireTime" />
+        <result column="production_time" property="productionTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, end_user_id AS endUserId, order_id AS orderId, platform_order_code AS platformOrderCode, platform_sku_id AS platformSkuId, 
+        platform_sku_code AS platformSkuCode, platform_sku_name AS platformSkuName, product_id AS productId, product_code AS productCode, 
+        cost, main_product_code AS mainProductCode, merchant_id AS merchantId, order_item_amount AS orderItemAmount, 
+        order_item_price AS orderItemPrice, order_item_num AS orderItemNum, frozen_stock_num AS frozenStockNum, product_cname AS productCname, 
+        is_gift AS isGift, product_sale_type AS productSaleType, parent_so_item_id AS parentSoItemId, is_item_leaf AS isItemLeaf,
+         warehouse_id AS warehouseId, virtual_stock_status AS virtualStockStatus, update_time AS updateTime, product_type AS productType, 
+         product_pic_path AS productPicPath, promotion_amount AS promotionAmount, delivery_fee_amount AS deliveryFeeAmount,
+          settlement_price AS settlementPrice, create_time AS createTime, is_deleted AS isDeleted, gross_weight AS grossWeight,
+           merchant_discount AS merchantDiscount, platform_discount AS platformDiscount, prescription, specification, instea_price AS insteaPrice, 
+           agent_operate AS agentOperate, ralation_tenant_id AS ralationTenantId, tenant_id AS tenantId, actual_qty AS actualQty, 
+           std_pack_qty AS stdPackQty, remark, sales_method AS salesMethod, gnum, item_estimate_fcy AS itemEstimateFcy, item_tax_fcy AS itemTaxFcy,
+            item_actual_fcy AS itemActualFcy, actual_price AS actualPrice, office_name AS officeName, lot_no AS lotNo, expire_time AS expireTime,
+             production_time AS productionTime
+    </sql>
+
+    <select id="getSoItemBySoId" resultType="com.baiyang.oms.modular.business.model.SoItem" parameterType="java.lang.Long">
+    	select id, platform_order_code AS platformOrderCode, product_id AS productId,platform_sku_id AS platformSkuId,product_cname AS productCname, product_code AS productCode, 
+    	 order_item_price AS orderItemPrice,order_item_amount AS orderItemAmount,platform_sku_name AS platformSkuName,
+    	order_item_num AS orderItemNum,merchant_id AS merchantId,is_item_leaf AS isItemLeaf,prescription,specification,warehouse_id AS warehouseId,
+    	settlement_price AS settlementPrice,actual_price AS actualPrice,gnum,sales_method AS salesMethod, instea_price AS insteaPrice,platform_sku_code AS platformSkuCode ,
+    	gross_weight AS grossWeight
+    	from so_item where order_id =#{soId}
+    </select>
+    
+    <select id="getSoItemBySoIdAndGift" resultType="com.baiyang.oms.modular.business.model.SoItem">
+    	select id, platform_order_code AS platformOrderCode, product_id AS productId,platform_sku_id AS platformSkuId,product_cname AS productCname, product_code AS productCode, 
+    	 order_item_price AS orderItemPrice,order_item_amount AS orderItemAmount,platform_sku_name AS platformSkuName,
+    	order_item_num AS orderItemNum,merchant_id AS merchantId,is_item_leaf AS isItemLeaf,prescription,specification,warehouse_id AS warehouseId,
+    	settlement_price AS settlementPrice,actual_price AS actualPrice,gnum,sales_method AS salesMethod, instea_price AS insteaPrice,platform_sku_code AS platformSkuCode 
+    	from so_item where order_id =#{soId} and is_gift = #{gift}
+    </select>
+    
+    <select id="getSoItemByList" resultType="map">
+    	select id, platform_order_code AS platformOrderCode, product_id AS productId,platform_sku_id AS platformSkuId,product_cname AS productCname, product_code AS productCode,
+    	 order_item_price AS orderItemPrice,order_item_amount AS orderItemAmount,platform_sku_name AS platformSkuName,
+    	order_item_num AS orderItemNum,merchant_id AS merchantId,is_item_leaf AS isItemLeaf,prescription,specification,warehouse_id AS warehouseId,
+    	settlement_price AS settlementPrice,actual_price AS actualPrice,gnum,sales_method AS salesMethod, instea_price AS insteaPrice,platform_sku_code AS platformSkuCode
+    	from so_item where order_id =#{soId}
+    </select>
+    <update id="updateInsteaPriceByParm" parameterType="com.baiyang.oms.modular.business.model.SoItem">
+    UPDATE so_item
+    	<trim prefix="SET" suffixOverrides=",">
+			<if test="insteaPrice != null">
+				   instea_price = #{insteaPrice},
+			</if>
+        </trim>
+        <trim prefix="WHERE" prefixOverrides="AND">
+			  <if test="orderId != null">
+                 AND order_id = #{orderId}
+              </if>
+               <if test="productCode != null">
+                 AND product_code = #{productCode}
+              </if>
+        </trim>
+    </update>
+
+</mapper>

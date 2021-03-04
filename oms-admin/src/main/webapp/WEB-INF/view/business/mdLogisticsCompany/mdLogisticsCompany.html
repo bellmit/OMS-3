@@ -1,0 +1,38 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>快递公司设置管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="condition" name="名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="MdLogisticsCompany.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="MdLogisticsCompanyTableToolbar" role="group">
+                            @if(shiro.hasPermission("/mdLogisticsCompany/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="MdLogisticsCompany.openAddMdLogisticsCompany()"/>
+                            @}
+                            @if(shiro.hasPermission("/mdLogisticsCompany/update")){
+                                <#button name="修改" icon="fa-edit" clickFun="MdLogisticsCompany.openMdLogisticsCompanyDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/mdLogisticsCompany/delete")){
+                                <#button name="删除" icon="fa-remove" clickFun="MdLogisticsCompany.delete()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="MdLogisticsCompanyTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/mdLogisticsCompany/mdLogisticsCompany.js"></script>
+@}

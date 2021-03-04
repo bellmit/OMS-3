@@ -1,0 +1,80 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" value="${item.id}" underline="true"/>
+                            <#input id="endUserId" name="用户id" value="${item.endUserId}" underline="true"/>
+                            <#input id="orderId" name="订单id" value="${item.orderId}" underline="true"/>
+                            <#input id="platformOrderCode" name="平台单号" value="${item.platformOrderCode}" underline="true"/>
+                            <#input id="platformSkuId" name="平台规格品id" value="${item.platformSkuId}" underline="true"/>
+                            <#input id="platformSkuCode" name="平台规格品编码" value="${item.platformSkuCode}" underline="true"/>
+                            <#input id="platformSkuName" name="平台规格名称" value="${item.platformSkuName}" underline="true"/>
+                            <#input id="productId" name="产品id" value="${item.productId}" underline="true"/>
+                            <#input id="productCode" name="产品编码" value="${item.productCode}" underline="true"/>
+                            <#input id="cost" name="成本价" value="${item.cost}" underline="true"/>
+                            <#input id="mainProductCode" name="套餐码" value="${item.mainProductCode}" underline="true"/>
+                            <#input id="merchantId" name="商家id" value="${item.merchantId}" underline="true"/>
+                            <#input id="orderItemAmount" name="商品总金额" value="${item.orderItemAmount}" underline="true"/>
+                            <#input id="orderItemPrice" name="商品单价" value="${item.orderItemPrice}" underline="true"/>
+                            <#input id="orderItemNum" name="商品购买数量" value="${item.orderItemNum}" underline="true"/>
+                            <#input id="frozenStockNum" name="库存冻结数量" value="${item.frozenStockNum}" underline="true"/>
+                            <#input id="productCname" name="产品中文名称" value="${item.productCname}" underline="true"/>
+                            <#input id="isGift" name="是否赠品 0:否 1:是 2:送赠品，换购赠品 3:landingpage的商品" value="${item.isGift}" underline="true"/>
+                            <#input id="productSaleType" name="商品销售类型 1:备货 2: 寄售 3:预定 4:代售 5:聚单 6:赠品 7:新聚单" value="${item.productSaleType}" underline="true"/>
+                            <#input id="parentSoItemId" name="父订单明细id" value="${item.parentSoItemId}" underline="true"/>
+                            <#input id="isItemLeaf" name="是否叶子节点 1:是 2:否" value="${item.isItemLeaf}" underline="true"/>
+                            <#input id="warehouseId" name="仓库id" value="${item.warehouseId}" underline="true"/>
+                            <#input id="virtualStockStatus" name="是否需要等货 0:不需要 1:需要" value="${item.virtualStockStatus}" underline="true"/>
+                            <#input id="updateTime" name="更新时间" value="${item.updateTime}" underline="true"/>
+                            <#input id="productType" name="产品类型 0:普通产品 1:主系列产品 2:子系列产品 3:捆绑产品 4:实物礼品卡 5:虚拟商品 7:电子礼品卡" value="${item.productType}" underline="true"/>
+                            <#input id="productPicPath" name="下单时的产品图片url" value="${item.productPicPath}" underline="true"/>
+                            <#input id="promotionAmount" name="分摊到此soitem的促销优惠金额" value="${item.promotionAmount}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="deliveryFeeAmount" name="分摊到此so_item的运费金额" value="${item.deliveryFeeAmount}" underline="true"/>
+                            <#input id="settlementPrice" name="结算价" value="${item.settlementPrice}" underline="true"/>
+                            <#input id="createTime" name="创建时间" value="${item.createTime}" underline="true"/>
+                            <#input id="isDeleted" name="删除状态 0：未删除" value="${item.isDeleted}" underline="true"/>
+                            <#input id="grossWeight" name="产品毛重" value="${item.grossWeight}" underline="true"/>
+                            <#input id="merchantDiscount" name="商家优惠金额" value="${item.merchantDiscount}" underline="true"/>
+                            <#input id="platformDiscount" name="平台优惠金额" value="${item.platformDiscount}" underline="true"/>
+                            <#input id="prescription" name="是否处方药标记 0：否 1：是" value="${item.prescription}" underline="true"/>
+                            <#input id="specification" name="药品规格" value="${item.specification}" underline="true"/>
+                            <#input id="insteaPrice" name="代发价格" value="${item.insteaPrice}" underline="true"/>
+                            <#input id="agentOperate" name="是否代运营 0 否 1 是" value="${item.agentOperate}" underline="true"/>
+                            <#input id="ralationTenantId" name="分销商/供销商租户id" value="${item.ralationTenantId}" underline="true"/>
+                            <#input id="tenantId" name="" value="${item.tenantId}" underline="true"/>
+                            <#input id="actualQty" name="实发数量" value="${item.actualQty}" underline="true"/>
+                            <#input id="stdPackQty" name="包装数" value="${item.stdPackQty}" underline="true"/>
+                            <#input id="remark" name="备注" value="${item.remark}" underline="true"/>
+                            <#input id="salesMethod" name="商品销售方式1 直接销售10 上门换货11淘宝补发12淘宝换货13配件2搭销3赠品4补发5换货6对寄7退转换8检修9原件返" value="${item.salesMethod}" underline="true"/>
+                            <#input id="gnum" name="序号,单据行号" value="${item.gnum}" underline="true"/>
+                            <#input id="itemEstimateFcy" name="明细预估税金" value="${item.itemEstimateFcy}" underline="true"/>
+                            <#input id="itemTaxFcy" name="税费-买家支付税金" value="${item.itemTaxFcy}" underline="true"/>
+                            <#input id="itemActualFcy" name="实际海关收取税金" value="${item.itemActualFcy}" underline="true"/>
+                            <#input id="actualPrice" name="实际成交价" value="${item.actualPrice}" underline="true"/>
+                            <#input id="officeName" name="分办名称--百洋" value="${item.officeName}" underline="true"/>
+                            <#input id="lotNo" name="批号" value="${item.lotNo}" underline="true"/>
+                            <#input id="expireTime" name="失效日期" value="${item.expireTime}" underline="true"/>
+                            <#input id="productionTime" name="生产日期" value="${item.productionTime}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="SoItemInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="SoItemInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/soItem/soItem_info.js"></script>
+@}

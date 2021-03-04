@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.MdSkuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.MdSku">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="name" property="name" />
+        <result column="product_sale_type" property="productSaleType" />
+        <result column="product_list_price" property="productListPrice" />
+        <result column="category_responsible" property="categoryResponsible" />
+        <result column="mfid" property="mfid" />
+        <result column="package_length" property="packageLength" />
+        <result column="package_width" property="packageWidth" />
+        <result column="package_height" property="packageHeight" />
+        <result column="package_volume" property="packageVolume" />
+        <result column="package_weight" property="packageWeight" />
+        <result column="package_num" property="packageNum" />
+        <result column="avg_package_volume" property="avgPackageVolume" />
+        <result column="volume" property="volume" />
+        <result column="product_type" property="productType" />
+        <result column="product_tax_rate" property="productTaxRate" />
+        <result column="weight_with_material" property="weightWithMaterial" />
+        <result column="category_search_name" property="categorySearchName" />
+        <result column="need_batch_control" property="needBatchControl" />
+        <result column="is_must_invoice" property="isMustInvoice" />
+        <result column="special_type" property="specialType" />
+        <result column="product_sname" property="productSname" />
+        <result column="tax_category_code" property="taxCategoryCode" />
+        <result column="sales_tax" property="salesTax" />
+        <result column="is_large" property="isLarge" />
+        <result column="product_label" property="productLabel" />
+        <result column="product_label2" property="productLabel2" />
+        <result column="expand1" property="expand1" />
+        <result column="expand2" property="expand2" />
+        <result column="expand3" property="expand3" />
+        <result column="expand4" property="expand4" />
+        <result column="expand5" property="expand5" />
+        <result column="expand6" property="expand6" />
+        <result column="custom_tax_rate" property="customTaxRate" />
+        <result column="origin_country" property="originCountry" />
+        <result column="code_hs" property="codeHs" />
+        <result column="first_qty" property="firstQty" />
+        <result column="first_unit" property="firstUnit" />
+        <result column="item_unit" property="itemUnit" />
+        <result column="type" property="type" />
+        <result column="specification" property="specification" />
+        <result column="ean13" property="ean13" />
+        <result column="length" property="length" />
+        <result column="width" property="width" />
+        <result column="height" property="height" />
+        <result column="weight" property="weight" />
+        <result column="gross_weight" property="grossWeight" />
+        <result column="category_id" property="categoryId" />
+        <result column="need_sn_control" property="needSnControl" />
+        <result column="keep_temperature" property="keepTemperature" />
+        <result column="keep_humidity" property="keepHumidity" />
+        <result column="product_quality_assurance_day" property="productQualityAssuranceDay" />
+        <result column="unit" property="unit" />
+        <result column="std_pack_qty" property="stdPackQty" />
+        <result column="use_expire_control" property="useExpireControl" />
+        <result column="product_is_gift" property="productIsGift" />
+        <result column="register_no" property="registerNo" />
+        <result column="place_of_origin" property="placeOfOrigin" />
+        <result column="color" property="color" />
+        <result column="product_size" property="productSize" />
+        <result column="original_code" property="originalCode" />
+        <result column="storage_condition" property="storageCondition" />
+        <result column="is_sent" property="isSent" />
+        <result column="create_time" property="createTime" />
+        <result column="created_by" property="createdBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="tenant_id" property="tenantId" />
+        <result column="product_brand_id" property="productBrandId" />
+        <result column="dosage_form" property="dosageForm" />
+        <result column="is_special_drug" property="isSpecialDrug" />
+        <result column="product_forbidden_sell_day" property="productForbiddenSellDay" />
+        <result column="product_forbidden_collect_day" property="productForbiddenCollectDay" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, name, product_sale_type AS productSaleType, product_list_price AS productListPrice, category_responsible AS categoryResponsible, mfid, package_length AS packageLength, package_width AS packageWidth, package_height AS packageHeight, package_volume AS packageVolume, package_weight AS packageWeight, package_num AS packageNum, avg_package_volume AS avgPackageVolume, volume, product_type AS productType, product_tax_rate AS productTaxRate, weight_with_material AS weightWithMaterial, category_search_name AS categorySearchName, need_batch_control AS needBatchControl, is_must_invoice AS isMustInvoice, special_type AS specialType, product_sname AS productSname, tax_category_code AS taxCategoryCode, sales_tax AS salesTax, is_large AS isLarge, product_label AS productLabel, product_label2 AS productLabel2, expand1, expand2, expand3, expand4, expand5, expand6, custom_tax_rate AS customTaxRate, origin_country AS originCountry, code_hs AS codeHs, first_qty AS firstQty, first_unit AS firstUnit, item_unit AS itemUnit, type, specification, ean13, length, width, height, weight, gross_weight AS grossWeight, category_id AS categoryId, need_sn_control AS needSnControl, keep_temperature AS keepTemperature, keep_humidity AS keepHumidity, product_quality_assurance_day AS productQualityAssuranceDay, unit, std_pack_qty AS stdPackQty, use_expire_control AS useExpireControl, product_is_gift AS productIsGift, register_no AS registerNo, place_of_origin AS placeOfOrigin, color, product_size AS productSize, original_code AS originalCode, storage_condition AS storageCondition, is_sent AS isSent, create_time AS createTime, created_by AS createdBy, update_time AS updateTime, updated_by AS updatedBy, is_deleted AS isDeleted, tenant_id AS tenantId, product_brand_id AS productBrandId, dosage_form AS dosageForm, is_special_drug AS isSpecialDrug, product_forbidden_sell_day AS productForbiddenSellDay, product_forbidden_collect_day AS productForbiddenCollectDay
+    </sql>
+    
+    <select id="getMdSkuByCode" resultType="com.baiyang.oms.modular.business.model.MdSku" parameterType="string">
+    select id,code, name,specification,gross_weight as grossWeight, product_is_gift AS productIsGift from md_sku where code = #{productCode}
+    </select>
+    <select id="getProductCodeById" resultType="java.lang.String" parameterType="java.lang.Long">
+    select code AS productCode  from md_sku where id = #{id}
+    </select>
+     <select id="getProductMapById" resultType="map" parameterType="java.lang.Long">
+   		select name AS productName,specification,original_code as originalCode,ean13 as ean,
+   		std_pack_qty as stdPackQty   from md_sku where id = #{id}
+    </select>
+    
+</mapper>

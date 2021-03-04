@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.RefundOrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.RefundOrder">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="grf_code" property="grfCode" />
+        <result column="so_code" property="soCode" />
+        <result column="original_code" property="originalCode" />
+        <result column="type" property="type" />
+        <result column="refund_reason" property="refundReason" />
+        <result column="refund_method" property="refundMethod" />
+        <result column="refund_amount" property="refundAmount" />
+        <result column="account_bank" property="accountBank" />
+        <result column="back_carrier_ship_code" property="backCarrierShipCode" />
+        <result column="refund_account" property="refundAccount" />
+        <result column="state" property="state" />
+        <result column="remark" property="remark" />
+        <result column="shop_id" property="shopId" />
+        <result column="end_user_id" property="endUserId" />
+        <result column="end_user_name" property="endUserName" />
+        <result column="buyer_nick" property="buyerNick" />
+        <result column="shipment_no" property="shipmentNo" />
+        <result column="confirm_time" property="confirmTime" />
+        <result column="confirm_user_name" property="confirmUserName" />
+        <result column="responsible_person" property="responsiblePerson" />
+        <result column="check_by" property="checkBy" />
+        <result column="create_time" property="createTime" />
+        <result column="created_by" property="createdBy" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="tenant_id" property="tenantId" />
+        <result column="refund_name" property="refundName" />
+        <result column="reason_type" property="reasonType" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, grf_code AS grfCode, so_code AS soCode, original_code AS originalCode, type, refund_reason AS refundReason, refund_method AS refundMethod, refund_amount AS refundAmount, account_bank AS accountBank, back_carrier_ship_code AS backCarrierShipCode, refund_account AS refundAccount, state, remark, shop_id AS shopId, end_user_id AS endUserId, end_user_name AS endUserName, buyer_nick AS buyerNick, shipment_no AS shipmentNo, confirm_time AS confirmTime, confirm_user_name AS confirmUserName, responsible_person AS responsiblePerson, check_by AS checkBy, create_time AS createTime, created_by AS createdBy, updated_by AS updatedBy, update_time AS updateTime, tenant_id AS tenantId, refund_name AS refundName, reason_type AS reasonType
+    </sql>
+
+
+    <update id="updateByCode" parameterType="com.baiyang.oms.modular.business.model.RefundOrder">
+        UPDATE refund_order
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="state != null">
+                state = #{state},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </trim>
+        where code = #{code}
+    </update>
+
+
+    <select id="selectRefoundListPage" resultType="map"
+            parameterType="com.baiyang.oms.modular.electronPort.model.pojo.orderInfo.RefoundOrderPojo">
+
+        SELECT
+            ro.code as code,
+            grf_code as grfCode,
+            ro.original_code as originalCode,
+            p.platform_name as platformName,
+            mm.merchant_name as merchantName,
+            ts.shop_name as shopName,
+            ro.type as type,
+            refund_reason as refundReason,
+            refund_method as refundMethod,
+            refund_amount as refundAmount,
+            ro.buyer_nick as buyerNick,
+            account_bank as accountBank,
+            refund_account as refundAccount,
+            back_carrier_ship_code as backCarrierShipCode,
+            remark as remark,
+            confirm_time as confirmTime,
+            responsible_person as responsiblePerson,
+            ro.create_time as createTime
+        FROM
+            refund_order ro
+        LEFT JOIN temp_so ts ON ro.original_code = ts.platform_order_code
+        left join platform p on p.id = ts.platform_id
+        left join md_merchant mm on mm.id = ts.merchant_id
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="code != null and code != ''">
+                AND ro.code = #{code}
+            </if>
+            <if test="platformId != null and platformId != ''">
+                and ts.platform_id = #{platformId}
+            </if>
+            <if test="merchantId != null and merchantId != ''">
+                and ts.merchant_id = #{merchantId}
+            </if>
+            <if test="shopId != null and shopId != ''">
+                and ts.shop_id = #{shopId}
+            </if>
+            <if test="grfCode != null and grfCode != ''">
+                and ro.grf_code = #{grfCode}
+            </if>
+            <if test="refundAmount != null and refundAmount != ''">
+                and ro.refund_amount = #{refundAmount}
+            </if>
+            <if test="refundAccount != null and refundAccount != ''">
+                and ro.refund_account = #{refundAccount}
+            </if>
+            <if test="accountBank != null and accountBank != ''">
+                and ro.account_bank = #{accountBank}
+            </if>
+            <if test="originalCode != null and originalCode != ''">
+                and ro.original_code = #{originalCode}
+            </if>
+            <if test="buyerNick != null and buyerNick != ''">
+                and ro.buyer_nick = #{buyerNick}
+            </if>
+            <if test="createTimeBegin != null and createTimeBegin != ''">
+                AND  <![CDATA[ro.create_time >=  #{createTimeBegin}]]>
+            </if>
+            <if test="createTimeEnd != null and createTimeEnd != ''">
+                AND  <![CDATA[ro.create_time <=  #{createTimeEnd}]]>
+            </if>
+
+        </trim>
+        ORDER BY
+          ro.create_time DESC
+
+    </select>
+
+
+</mapper>

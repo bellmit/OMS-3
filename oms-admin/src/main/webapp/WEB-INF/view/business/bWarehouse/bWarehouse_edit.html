@@ -1,0 +1,108 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="houseFourmId">
+
+            <input type="hidden" id="id" value="${item.id}">
+            
+            <input type="hidden" id="typeValue" value="${item.warehouseType}">
+            
+            <input type="hidden" id="storageClassValue" value="${item.storageType}">
+            <input type="hidden" id="functionTypeValue" value="${item.functionType}">
+            <input type="hidden" id="isEntityLibraryValue" value="${item.isRealWarehouse}">
+            <input type="hidden" id="patternTradeValue" value="${item.tradeType}">
+            <input type="hidden" id="shippingModeValue" value="${item.shippingMode}">
+            
+            <input type="hidden" id="provinceValue" value="${item.provinceId}">
+            <input type="hidden" id="cityValue" value="${item.cityId}">
+            <input type="hidden" id="districtValue" value="${item.countyId}">
+            
+            <div class="row">
+                <div class="col-sm-4">
+                            
+                            <#input id="warehouseName" name="仓库名称" value="${item.warehouseName}" underline="true"/>
+                            <#select id="provinceId" name="省" underline="true">
+                            <option value=''>请选择省</option>
+						      @for(value in provinceList!){
+                                   <option  value="${value.id}">${value.name}</option>
+                               @}
+							</#select>
+							
+							<#select id="warehouseType" name="类型" underline="true">
+								<option value="0">仓库</option>
+								<option value="1">门店</option>
+							</#select>
+                            
+                             <#select id="isRealWarehouse" name="是否实体库" underline="true">
+								<option value="1">是</option>
+								<option value="0">否</option>
+							</#select>
+                            
+							<#input id="phone" name="联系电话" value="${item.phone}" underline="true"/>
+							
+							<#input id="addressName" name="仓库地址" value="${item.addressName}" underline="true"/>
+                             
+                </div>
+
+                <div class="col-sm-4">
+                			<#input id="code" name="外部编码"  value="${item.code}" underline="true"/>
+                			
+                			<#select id="cityId" name="市" underline="true">
+							 @for(value in cityList!){
+                                   <option  value="${value.id}">${value.name}</option>
+                               @}
+							</#select>
+                            
+                            <#select id="storageType" name="存储类型" underline="true">
+								<option value="0">常温</option>
+								<option value="1">冷藏</option>
+								<option value="2">冷冻</option>
+							</#select>
+                            
+                            <#select id="shippingMode" name="发货平台" underline="true">
+								<option value="1">erp</option>
+								<option value="2">wms</option>
+							</#select>
+							
+							<#input id="mobile" name="手机" value="${item.mobile}" underline="true"/>
+							
+							<#select id="returnWarehouseId" name="退换货仓" underline="true">
+							</#select>
+							
+                </div>
+                
+                 <div class="col-sm-4">
+                			 <#select id="carrierId" name="配送商" underline="true">
+							</#select>
+							 <#select id="countyId" name="区" underline="true">
+								@for(value in districtList!){
+                                   <option  value="${value.id}">${value.name}</option>
+                               @}
+							</#select>
+							<#select id="functionType" name="功能类型" underline="true">
+								<option value="0">存储+销售</option>
+								<option value="1">存储不销售</option>
+							</#select>
+                            <#input id="contactor" name="负责人" value="${item.contactor}" underline="true"/>
+                           
+                             <#select id="tradeType" name="贸易类型" underline="true">
+								<option value="0">普通仓</option>
+								<option value="1">保税仓</option>
+							</#select>
+							<#input id="areaCode" value="${item.areaCode}"  name="关区编码"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="BWarehouseInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="BWarehouseInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/bWarehouse/bWarehouse_info.js"></script>
+<script src="${ctxPath}/static/js/common/area-ajax.js"></script>
+@}

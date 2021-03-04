@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:jaxws="http://cxf.apache.org/jaxws" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd                 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd                 
+	http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd                 
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+	<!-- cxf3以后，只需要引入这个配置文件即可，其他两个废弃掉了 -->
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	
+	<!-- 显示cxf 调用日志 -->
+	<bean id="inMessageInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor">
+		<constructor-arg value="receive" />
+	</bean>
+	<bean id="outLoggingInterceptor" class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+	
+	<!-- 
+		生产接口地址：address="https://edi1500.sditds.com:7701/service_1501_webservice/ws/edi/EnteTransportSendFiles?wsdl"
+	 -->
+	<jaxws:client id="clientSend"
+		serviceClass="com.baiyang.oms.rest.wsdl.xml.client.IEnteTransportSendFilesService"
+		address="https://testedi1500.sditds.com:7705/service_1501_webservice/ws/edi/EnteTransportSendFiles?wsdl">
+		<jaxws:inInterceptors>
+			<ref bean="inMessageInterceptor" />
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<ref bean="outLoggingInterceptor" />
+		</jaxws:outInterceptors>
+	</jaxws:client>
+
+	<!-- 
+		生产接口地址：address="https://edi1500.sditds.com:7702/service_1501_webservice/ws/edi/EnteTransportRecvFiles?wsdl"
+	-->
+	<jaxws:client id="clientRecv"
+		serviceClass="com.baiyang.oms.rest.wsdl.xml.client.IEnteTransportRecvFilesService"
+		address="https://testedi1500.sditds.com:7705/service_1501_webservice/ws/edi/EnteTransportRecvFiles?wsdl">
+		<jaxws:inInterceptors>
+			<ref bean="inMessageInterceptor" />
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<ref bean="outLoggingInterceptor" />
+		</jaxws:outInterceptors>
+	</jaxws:client>
+</beans>

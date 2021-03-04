@@ -1,0 +1,54 @@
+.box-card {
+  border-radius: 0;
+  .panel-heading {
+    display: flex;
+    text-align: left;
+    width: 100%;
+    border-bottom: 1px solid #eeeff1;
+    padding: 15px;
+    font-weight: bold;
+    img {
+      margin-right: 15px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      transition: all 0.8s;
+    }
+    .title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .name {
+        color: #367fa9;
+        font-size: 18px;
+      }
+      .role {
+        color: #99a9c0;
+      }
+    }
+  }
+  .panel-body {
+    color: #3c8dbc;
+    ul {
+      li {
+        border-bottom: 1px solid #eeeff1;
+        padding: 0 15px;
+        height: 45px;
+        line-height: 45px;
+      }
+    }
+  }
+}
+
+.box-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #495060;
+}
+
+.box-edit-icon {
+  font-size: 28px;
+  position: absolute;
+  right: 31px;
+  cursor: pointer;
+}

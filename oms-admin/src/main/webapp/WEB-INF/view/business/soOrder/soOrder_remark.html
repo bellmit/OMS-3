@@ -1,0 +1,28 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="col-sm-12">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button data-toggle="dropdown" style="border: 0px;width: 100px;text-align: left;font-weight: bold;font-size: 12px;text-align: center" class="btn btn-white dropdown-toggle"
+                                        type="button">备注
+                                </button>
+                            </div>
+                            <input id="orderCodeId" type="hidden" value="${orderCode}"/>
+                            <textarea style="height: 140px"  placeholder="备注信息最多200字" maxlength="200" class="form-control" id="remarkContent" >${orderCsRemark}</textarea>
+                        </div>
+                 </div>
+            </div>
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12" style="text-align: center">
+                    <#button btnCss="info" name="确定" id="ensure" icon="fa-check" clickFun="soOrderRemark.submit()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/soOrder/soOrder_remark.js"></script>
+@}

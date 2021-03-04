@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.DoLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.DoLog">
+        <id column="id" property="id" />
+        <result column="do_no" property="doNo" />
+        <result column="state" property="state" />
+        <result column="operator" property="operator" />
+        <result column="operate_time" property="operateTime" />
+        <result column="remark" property="remark" />
+        <result column="create_time" property="createTime" />
+        <result column="is_dealt" property="isDealt" />
+        <result column="logistics_no" property="logisticsNo" />
+        <result column="log_code" property="logCode" />
+        <result column="source" property="source" />
+        <result column="is_syn_oms" property="isSynOms" />
+        <result column="tenant_id" property="tenantId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, do_no AS doNo, state, operator, operate_time AS operateTime, remark, create_time AS createTime, is_dealt AS isDealt, logistics_no AS logisticsNo, log_code AS logCode, source, is_syn_oms AS isSynOms, tenant_id AS tenantId
+    </sql>
+
+</mapper>

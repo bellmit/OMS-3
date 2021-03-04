@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.MdRegionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.MdRegion">
+        <id column="ID" property="id" />
+        <result column="CODE" property="code" />
+        <result column="NAME" property="name" />
+        <result column="TYPE" property="type" />
+        <result column="PARENT_NAME" property="parentName" />
+        <result column="PARENT_CODE" property="parentCode" />
+        <result column="PARENT_ID" property="parentId" />
+        <result column="fullname" property="fullname" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="created_by" property="createdBy" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="enabled" property="enabled" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="is_sent" property="isSent" />
+        <result column="data_exchange_flag" property="dataExchangeFlag" />
+        <result column="alias_name" property="aliasName" />
+        <result column="tenant_id" property="tenantId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID AS id, CODE AS code, NAME AS name, TYPE AS type, PARENT_NAME AS parentName, PARENT_CODE AS parentCode, PARENT_ID AS parentId, fullname, create_time AS createTime, update_time AS updateTime, created_by AS createdBy, updated_by AS updatedBy, enabled, is_deleted AS isDeleted, is_sent AS isSent, data_exchange_flag AS dataExchangeFlag, alias_name AS aliasName, tenant_id AS tenantId
+    </sql>
+    
+     <select id="getAreaByType" parameterType="java.lang.Integer" resultType="com.baiyang.oms.modular.business.model.MdRegion">
+    	select ID AS id,NAME AS name from md_region
+   		 <trim prefix="WHERE" prefixOverrides="AND">
+			  <if test="type != null">
+                 AND TYPE = #{type}
+              </if>	
+         </trim>
+  	</select>
+  	
+  	<select id="getAreaByParentId" parameterType="java.lang.Integer" resultType="com.baiyang.oms.modular.business.model.MdRegion">
+    	select ID AS id,NAME AS name from md_region
+   		 <trim prefix="WHERE" prefixOverrides="AND">
+			  <if test="pid != null">
+                 AND PARENT_ID = #{pid}
+              </if>	
+         </trim>
+  	</select>
+  	
+  	<select id="selectAreaNameById" parameterType="java.lang.Integer" resultType="string">
+    	select NAME AS name from md_region
+   		  <if test=" id != 0"  >
+         	where ID = #{id,jdbcType=INTEGER}
+      	 </if>
+  </select>
+  
+     <select id="getProvinceIdByName" parameterType="string" resultType="java.lang.Integer">
+    	SELECT ID AS id  FROM md_region WHERE alias_name LIKE  CONCAT(CONCAT('%',#{name},'%')) and TYPE =1 and is_deleted =0
+  </select>
+  
+  <select id="getCityIdByName" parameterType="map" resultType="java.lang.Integer">
+    	SELECT id  FROM md_region  WHERE alias_name LIKE  CONCAT(CONCAT('%',#{cityName},'%')) and PARENT_ID = 
+    	(SELECT ID AS id  FROM md_region WHERE alias_name LIKE  CONCAT(CONCAT('%',#{provinceName},'%')) and TYPE =1 and is_deleted =0 ) and TYPE =2 and is_deleted =0
+  </select>
+  
+  <select id="getCountyIdListByName" parameterType="map" resultType="java.lang.Integer">
+    	SELECT id  FROM md_region WHERE alias_name LIKE  CONCAT(CONCAT('%',#{countyName},'%')) and PARENT_ID =
+    	(SELECT id  FROM md_region  WHERE alias_name LIKE  CONCAT(CONCAT('%',#{cityName},'%')) and PARENT_ID = 
+    	(SELECT ID AS id  FROM md_region WHERE alias_name LIKE  CONCAT(CONCAT('%',#{provinceName},'%')) and TYPE =1 and is_deleted =0 ) and TYPE =2 and is_deleted =0 )
+    	 and type = 3 and is_deleted =0
+  </select>
+
+</mapper>

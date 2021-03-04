@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.system.dao.DataPermissionGroupMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.system.model.DataPermissionGroup">
+        <id column="id" property="id"/>
+        <result column="group_name" property="groupName"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="tenant_id" property="tenantId"/>
+        <result column="description" property="description"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, group_name AS groupName, created_by AS createdBy, create_time AS createTime, updated_by AS updatedBy, update_time AS updateTime, tenant_id AS tenantId, description
+    </sql>
+
+
+    <select id="selectByGroupName" resultType="map"
+            parameterType="com.baiyang.oms.modular.system.model.DataPermissionGroup">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_data_permission_group
+        <if test="data.groupName != null and data.groupName != ''">
+            where group_name = #{data.groupName}
+        </if>
+
+
+    </select>
+
+    <select id="pageGrape" resultMap="BaseResultMap">
+        select
+        *
+        from sys_data_permission_group where 1=1
+        <if test="groupName != null and groupName != ''">
+            and group_name like CONCAT('%',#{groupName},'%')
+        </if>
+        <if test="description != null and description != ''">
+            and description like CONCAT('%',#{description},'%')
+        </if>
+        <if test="keyword != null and keyword != ''">
+            and (
+            group_name like CONCAT('%',#{keyword},'%')
+            or description like CONCAT('%',#{keyword},'%')
+            )
+        </if>
+
+    </select>
+
+
+</mapper>

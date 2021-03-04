@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.TempSoItemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.TempSoItem">
+        <id column="id" property="id"/>
+        <result column="platform_order_code" property="platformOrderCode"/>
+        <result column="merchant_id" property="merchantId"/>
+        <result column="platform_main_sku_id" property="platformMainSkuId"/>
+        <result column="platform_main_sku_code" property="platformMainSkuCode"/>
+        <result column="platform_sku_id" property="platformSkuId"/>
+        <result column="main_sku_id" property="mainSkuId"/>
+        <result column="sku_id" property="skuId"/>
+        <result column="sku_code" property="skuCode"/>
+        <result column="sku_name" property="skuName"/>
+        <result column="pm_info_id" property="pmInfoId"/>
+        <result column="item_amount" property="itemAmount"/>
+        <result column="item_price" property="itemPrice"/>
+        <result column="item_num" property="itemNum"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="merchant_discount" property="merchantDiscount"/>
+        <result column="platform_discount" property="platformDiscount"/>
+        <result column="platform_id" property="platformId"/>
+        <result column="prescription" property="prescription"/>
+        <result column="specification" property="specification"/>
+        <result column="agent_operate" property="agentOperate"/>
+        <result column="is_instea" property="isInstea"/>
+        <result column="is_oos" property="isOos"/>
+        <result column="oos_num" property="oosNum"/>
+        <result column="edit_type" property="editType"/>
+        <result column="remark" property="remark"/>
+        <result column="picture_url" property="pictureUrl"/>
+        <result column="tenant_id" property="tenantId"/>
+        <result column="sales_method" property="salesMethod"/>
+        <result column="gnum" property="gnum"/>
+        <result column="actual_price" property="actualPrice"/>
+        <result column="office_name" property="officeName"/>
+        <result column="tax_fcy" property="taxFcy"/>
+        <result column="item_seller_discount" property="itemSellerDiscount"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, platform_order_code AS platformOrderCode, merchant_id AS merchantId, platform_main_sku_id AS platformMainSkuId, platform_main_sku_code AS platformMainSkuCode, platform_sku_id AS platformSkuId, main_sku_id AS mainSkuId, sku_id AS skuId, sku_code AS skuCode, sku_name AS skuName, pm_info_id AS pmInfoId, item_amount AS itemAmount, item_price AS itemPrice, item_num AS itemNum, create_time AS createTime, update_time AS updateTime, merchant_discount AS merchantDiscount, platform_discount AS platformDiscount, platform_id AS platformId, prescription, specification, agent_operate AS agentOperate, is_instea AS isInstea, is_oos AS isOos, oos_num AS oosNum, edit_type AS editType, remark, picture_url AS pictureUrl, tenant_id AS tenantId, sales_method AS salesMethod, gnum, actual_price AS actualPrice, office_name AS officeName, 
+        tax_fcy AS taxFcy,item_seller_discount as itemSellerDiscount
+    </sql>
+
+    <sql id="TemSoItem_List">
+          platform_sku_id AS platformSkuId,  sku_code AS skuCode, sku_name AS skuName,
+           item_amount AS itemAmount, item_price AS itemPrice, item_num AS itemNum, is_instea AS isInstea
+    </sql>
+
+    <select id="getTemSoItemListByOrderCode" resultType="com.baiyang.oms.modular.business.model.TempSoItem"
+            parameterType="string">
+        select
+        <include refid="Base_Column_List"/>
+        from temp_so_item where platform_order_code =#{orderCode}
+    </select>
+    <select id="getTemSoItemListByOrderCodeList" resultType="com.baiyang.oms.modular.business.model.TempSoItem">
+        select
+        <include refid="Base_Column_List"/>
+        from temp_so_item where platform_order_code =#{orderCode}
+    </select>
+
+    <insert id="saveTempSoItemBatch" parameterType="java.util.List">
+        insert into temp_so_item
+        (
+        id, platform_order_code, merchant_id,
+        platform_sku_id,
+        sku_id,
+        sku_code, sku_name,
+        item_amount, item_price, item_num,
+        create_time, update_time,
+        platform_id,
+        tenant_id,gnum,
+        actual_price,
+        office_name, tax_fcy,
+        item_seller_discount
+        )
+        VALUES
+        <foreach collection="list" index="index" item="item" separator=",">
+            (
+            #{item.id,jdbcType=BIGINT}, #{item.platformOrderCode,jdbcType=VARCHAR}, #{item.merchantId,jdbcType=BIGINT},
+            #{item.platformSkuId,jdbcType=VARCHAR},
+            #{item.skuId,jdbcType=VARCHAR},
+            #{item.skuCode,jdbcType=VARCHAR}, #{item.skuName,jdbcType=VARCHAR},
+            #{item.itemAmount,jdbcType=DOUBLE}, #{item.itemPrice,jdbcType=DOUBLE}, #{item.itemNum,jdbcType=INTEGER},
+            #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP},
+            #{item.platformId,jdbcType=INTEGER},
+            #{item.tenantId,jdbcType=INTEGER},#{item.gnum,jdbcType=INTEGER},
+            #{item.actualPrice,jdbcType=DECIMAL},
+            #{item.officeName,jdbcType=VARCHAR}, #{item.taxFcy,jdbcType=DECIMAL},
+            #{item.itemSellerDiscount,jdbcType=DOUBLE}
+            )
+        </foreach>
+    </insert>
+    <select id="selectTemSoItemListByOrderCode" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from temp_so_item where platform_order_code =#{orderCode} AND tenant_id = #{tenantId}
+    </select>
+
+    <update id="updateTempSoItemCodeById">
+        update temp_so_item
+        set platform_sku_id = #{localCode}, sku_code = #{localCode}, update_time=now()
+        where id = #{id}
+    </update>
+
+    <update id="updateTempSoItemOfficeNameAndisDt" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update temp_so_item
+            <set>
+                office_name = #{item.officeName},
+                sales_method = #{item.salesMethod},
+                update_time = now()
+            </set>
+            where platform_order_code = #{item.platformOrderCode,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+
+    <update id="updateTempSoItemBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update temp_so_item
+            <set>
+                platform_order_code = #{item.platformOrderCode,jdbcType=VARCHAR}, merchant_id =
+                #{item.merchantId,jdbcType=BIGINT},
+                platform_sku_id = #{item.platformSkuId,jdbcType=VARCHAR},
+                sku_id = #{item.skuId,jdbcType=VARCHAR},
+                sku_code = #{item.skuCode,jdbcType=VARCHAR}, sku_name = #{item.skuName,jdbcType=VARCHAR},
+                item_amount = #{item.itemAmount,jdbcType=DOUBLE}, item_price = #{item.itemPrice,jdbcType=DOUBLE},
+                item_num = #{item.itemNum,jdbcType=INTEGER},
+                update_time = #{item.updateTime,jdbcType=TIMESTAMP},
+                platform_id = #{item.platformId,jdbcType=INTEGER},
+                tenant_id = #{item.tenantId,jdbcType=INTEGER},gnum = #{item.gnum,jdbcType=INTEGER},
+                actual_price = #{item.actualPrice,jdbcType=DECIMAL},
+                office_name = #{item.officeName,jdbcType=VARCHAR}, tax_fcy = #{item.taxFcy,jdbcType=DECIMAL},
+                item_seller_discount = #{item.itemSellerDiscount,jdbcType=DOUBLE}
+            </set>
+            where id = #{item.id,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+
+</mapper>

@@ -1,0 +1,297 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id!}">
+            <div class="row" style="margin-bottom: 10px">
+                <div class="col-sm-12">
+                    <h3>退款单基本信息:</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="退款单号" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="平台单号" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="订单号" value="" underline="false"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="渠道" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="商家" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="店铺" value="" underline="false"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="订单来源" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="买家账号" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="买家ID" value="" underline="false"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="下单时间" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="订单状态" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="清关状态" value="" underline="false"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="实付金额" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="商品金额" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="整单优化金额" value="" underline="false"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="商品明细优惠合计" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="平台优惠" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="税费" value="" underline="false"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="运费" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="确认时间" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="结束时间" value="" underline="false"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="退款原因类型" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="退货单号" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="创建时间" value="" underline="false"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="退款状态" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="退货商品种类数" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="退货商品数" value="" underline="false"/>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="审核人" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button data-toggle="dropdown"
+                                    style="border: 0px;width: 100px;text-align: left;font-weight: bold;font-size: 12px;"
+                                    class="btn btn-white dropdown-toggle"
+                                    type="button">买家描述
+                            </button>
+                        </div>
+                        <input readonly="readonly" value="" class="form-control" id="description"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button data-toggle="dropdown"
+                                    style="border: 0px;width: 100px;text-align: left;font-weight: bold;font-size: 12px;"
+                                    class="btn btn-white dropdown-toggle"
+                                    type="button">退款原因
+                            </button>
+                        </div>
+                        <input readonly="readonly" value="" class="form-control" id=""/>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button data-toggle="dropdown"
+                                    style="border: 0px;width: 100px;text-align: left;font-weight: bold;font-size: 12px;"
+                                    class="btn btn-white dropdown-toggle"
+                                    type="button">退换货原因说明(卖家)
+                            </button>
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <input readonly="readonly" value="" class="form-control" id="saleRemark"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 10px">
+                <div class="col-sm-12">
+                    <h3>退回商品信息:</h3>
+                </div>
+            </div>
+            <#table id="refundGoodsTable"/>
+            <!--退款金额-->
+            <div class="row" style="margin-top: 10px">
+                <div class="col-sm-12">
+                    <h3>退款信息:</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="退款金额" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="是否退运费" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="运费" value="" underline="false"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="是否退税费" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="税费" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="退款类型" value="" underline="false"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="退款方式" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="税费" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="买家开户行" value="" underline="false"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="买家退款账号" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="退款状态" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="确认退款时间" value="" underline="false"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="确认退款人" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="税费" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                 </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button data-toggle="dropdown"
+                                    style="border: 0px;width: 100px;text-align: left;font-weight: bold;font-size: 12px;"
+                                    class="btn btn-white dropdown-toggle"
+                                    type="button">退货金额调整备注
+                            </button>
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <input readonly="readonly" value="" class="form-control" id="saleRemark"/>
+                    </div>
+                </div>
+            </div>
+        <div class="row" style="margin-top: 10px">
+            <div class="col-sm-12">
+                <h3>备注信息:</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <button data-toggle="dropdown"
+                                style="border: 0px;width: 100px;text-align: left;font-weight: bold;font-size: 12px;"
+                                class="btn btn-white dropdown-toggle"
+                                type="button">卖家备注
+                        </button>
+                    </div>
+                    <input readonly="readonly" value="" class="form-control" id="customerRemark"/>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <button data-toggle="dropdown"
+                                style="border: 0px;width: 100px;text-align: left;font-weight: bold;font-size: 12px;"
+                                class="btn btn-white dropdown-toggle"
+                                type="button">取消备注
+                        </button>
+                    </div>
+                    <input readonly="readonly" value="" class="form-control" id="saleRemark"/>
+                </div>
+            </div>
+            注：取消备注为买家取消退货申请
+        </div>
+        <div class="row btn-group-m-t">
+            <div class="col-sm-10">
+                <#button btnCss="info" name="提交" id="ensure" icon="fa-check"
+                clickFun="RefundOrderInfoDlg.editSubmit()"/>
+                <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser"
+                clickFun="RefundOrderInfoDlg.close()"/>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<script src="${ctxPath}/static/modular/business/refundOrder/refundOrder_info.js"></script>
+@}

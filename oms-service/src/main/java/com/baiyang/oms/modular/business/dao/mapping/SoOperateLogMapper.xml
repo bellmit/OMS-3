@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.SoOperateLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.SoOperateLog">
+        <id column="id" property="id"/>
+        <result column="so_code" property="soCode"/>
+        <result column="operator" property="operator"/>
+        <result column="operator_id" property="operatorId"/>
+        <result column="operation_time" property="operationTime"/>
+        <result column="operate_type" property="operateType"/>
+        <result column="remark" property="remark"/>
+        <result column="tenant_id" property="tenantId"/>
+        <result column="platform_order_code" property="platformOrderCode"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, so_code AS soCode, operator, operator_id AS operatorId, operation_time AS operationTime, operate_type AS operateType, remark, tenant_id AS tenantId, platform_order_code AS platformOrderCode
+    </sql>
+
+    <select id="getSoOrderListBySoCode" resultType="map" parameterType="string">
+        select
+        <include refid="Base_Column_List"/>
+        from so_operate_log where so_code = #{soCode} order by operation_time desc
+
+    </select>
+    <select id="getSoOrderList" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from so_operate_log where so_code = #{soCode} order by operation_time desc
+    </select>
+
+</mapper>

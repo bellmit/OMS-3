@@ -1,0 +1,124 @@
+rest:
+  auth-open: false #jwt鉴权机制是否开启(true或者false)
+  sign-open: true #签名机制是否开启(true或false)
+
+jwt:
+  header: Authorization   #http请求头所需要的字段
+  secret: mySecret        #jwt秘钥
+  expiration: 604800      #7天 单位:秒
+  auth-path: auth         #认证请求的路径
+  md5-key: randomKey      #md5加密混淆key
+
+###################  guns配置  ###################
+guns:
+  swagger-open: true #是否开启swagger (true/false)
+  kaptcha-open: false #是否开启登录时验证码 (true/false)
+  #file-upload-path: d:/tmp
+  #文件上传目录(不配置的话为java.io.tmpdir目录)
+  muti-datasource-open: false #是否开启多数据源(true/false)
+  spring-session-open: false #是否开启spring session,如果是多机环境需要开启(true/false)
+  session-invalidate-time: 1800 #session失效时间(只在单机环境下生效，多机环境在SpringSessionConfig类中配置) 单位：秒
+  session-validation-interval: 9000 #多久检测一次失效的session(只在单机环境下生效) 单位：秒
+
+
+###################  spring配置  ###################
+
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    password:
+  profiles:
+    active: dev
+  rabbitmq:
+    host: 172.17.30.30
+    port: 5672
+    username: admin
+    password: password
+
+server:
+  port: 8888 #项目端口
+
+mybatis-plus:
+  mapper-locations: classpath*:com/baiyang/oms/**/mapping/*.xml
+  typeAliasesPackage: com.baiyang.oms.modular.system.model
+  global-config:
+    id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+    db-column-underline: false
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: false
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+
+---
+
+##########################################################
+###################  开发环境的profile  ###################
+##########################################################
+spring:
+  profiles: dev
+  datasource:
+      url: jdbc:mysql://172.17.30.42:3306/oms?useUnicode=true&characterEncoding=UTF-8&useUnicode=true&useSSL=false&allowMultiQueries=true
+      username: hiveuser
+      password: hivepassword
+      db-name: oms
+      #filters: log4j,wall,mergeStat
+      driver-class-name: com.mysql.jdbc.Driver
+      platform: mysql
+      type: com.alibaba.druid.pool.DruidDataSource
+      # 下面为连接池的补充设置，应用到上面所有数据源中
+      # 初始化大小，最小，最大
+      initialSize: 1
+      minIdle: 3
+      maxActive: 20
+      # 配置获取连接等待超时的时间
+      maxWait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 30000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filters: stat,wall,slf4j
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      #connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 合并多个DruidDataSource的监控数据
+      #useGlobalDataSourceStat: true
+
+
+logging:
+  level.root: info
+  level.com.baiyang: debug
+  path: logs/
+  file: oms-rest.log
+
+---
+
+##########################################################
+###################  正式环境的profile  ###################
+##########################################################
+spring:
+  profiles: produce
+  datasource:
+      url: jdbc:mysql://47.94.141.215:3306/oms?useUnicode=true&characterEncoding=UTF-8&useUnicode=true&useSSL=false&allowMultiQueries=true
+      username: root
+      password: 961106
+      db-name: oms
+      filters: log4j,wall,mergeStat
+
+logging:
+  level.root: info
+  level.com.baiyang: debug
+  path: /home/hadoop/oms/logs/
+  file: oms-rest.log
+
+

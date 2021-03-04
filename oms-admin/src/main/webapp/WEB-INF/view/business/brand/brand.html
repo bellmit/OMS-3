@@ -1,0 +1,53 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>品牌管理管理</h5>
+                <#FormSlideToggle searchFormId="searchForm"/>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div id="searchForm">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <#NameCon id="brandName" name="品牌名" />
+                                </div>
+                                <div class="col-sm-3">
+                                    <#NameCon id="brandCompanyName" name="品牌公司名" />
+                                </div>
+                                <div class="col-sm-3">
+                                    <#NameCon id="brandAlias" name="品牌别名" />
+                                </div>
+                                <div class="col-sm-3">
+                                    <#NameCon id="code" name="编码" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12" style="text-align: center;padding-top: 20px">
+                                    <#button name="搜索" icon="fa-search" clickFun="Brand.search()"/>
+                                    <#button name="重置" icon="fa-repeat" clickFun="Brand.reset()" space="true"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="BrandTableToolbar" role="group">
+                            @if(shiro.hasPermission("/brand/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="Brand.openAddBrand()"/>
+                            @}
+                            @if(shiro.hasPermission("/brand/update")){
+                                <#button name="修改" icon="fa-edit" clickFun="Brand.openBrandDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/brand/delete")){
+                                <#button name="删除" icon="fa-trash" clickFun="Brand.delete()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="BrandTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/brand/brand.js"></script>
+@}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.MdCustomsCarryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.MdCustomsCarry">
+        <id column="id" property="id" />
+        <result column="logistics_code" property="logisticsCode" />
+        <result column="logis_company_name" property="logisCompanyName" />
+        <result column="logis_company_code" property="logisCompanyCode" />
+        <result column="tenant_id" property="tenantId" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_by" property="createBy" />
+        <result column="update_by" property="updateBy" />
+        <result column="is_delete" property="isDelete" />
+        <result column="werehoue_code" property="werehoueCode" />
+        <result column="carrier_id" property="carrierId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, logistics_code AS logisticsCode, logis_company_name AS logisCompanyName, logis_company_code AS logisCompanyCode, 
+        tenant_id AS tenantId, create_time AS createTime, update_time AS updateTime, create_by AS createBy, update_by AS updateBy, 
+        is_delete AS isDelete, werehoue_code AS werehoueCode, carrier_id AS carrierId
+    </sql>
+    
+    <select id="getMdCustomsCarryByHouseCode" resultType="com.baiyang.oms.modular.business.model.MdCustomsCarry">
+    SELECT mdc.id,mdc.name as logisCompanyName
+		from md_customs_carry mc, md_carrier mdc 
+		where  mc.carrier_id = mdc.id and mc.is_delete=1 
+		 and mc.werehoue_code=#{arg0} and mc.tenant_id=#{arg1}
+    
+    </select>
+    <select id="getMdCustomsCarryByCarryIdAndWereCode" resultType="com.baiyang.oms.modular.business.model.MdCustomsCarry">
+    select id, logistics_code AS logisticsCode, logis_company_name AS logisCompanyName, logis_company_code AS logisCompanyCode from md_customs_carry
+    where werehoue_code =#{arg0} and carrier_id =#{arg1} and tenant_id=#{arg2}
+    </select>
+    <select id="getMdCustomsCarryIdByWereCodeAndlogisCode" resultType="com.baiyang.oms.modular.business.model.MdCustomsCarry">
+    select id, carrier_id AS carrierId from md_customs_carry
+    where werehoue_code =#{arg0} and logistics_code =#{arg1} and tenant_id=#{arg2}
+    </select>
+
+</mapper>

@@ -1,0 +1,39 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" value="${item.id}" underline="true"/>
+                            <#input id="logisticsCode" name="保税仓 物流公司编码" value="${item.logisticsCode}" underline="true"/>
+                            <#input id="logisCompanyName" name="物流企业备案名称" value="${item.logisCompanyName}" underline="true"/>
+                            <#input id="logisCompanyCode" name="物流企业海关备案编码" value="${item.logisCompanyCode}" underline="true"/>
+                            <#input id="tenantId" name="" value="${item.tenantId}" underline="true"/>
+                            <#input id="createTime" name="" value="${item.createTime}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="updateTime" name="" value="${item.updateTime}" underline="true"/>
+                            <#input id="createBy" name="" value="${item.createBy}" underline="true"/>
+                            <#input id="updateBy" name="" value="${item.updateBy}" underline="true"/>
+                            <#input id="isDelete" name="是否停用 0停用 1使用" value="${item.isDelete}" underline="true"/>
+                            <#input id="werehoueCode" name="保税仓编码" value="${item.werehoueCode}" underline="true"/>
+                            <#input id="carrierId" name="" value="${item.carrierId}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="MdCustomsCarryInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MdCustomsCarryInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/mdCustomsCarry/mdCustomsCarry_info.js"></script>
+@}

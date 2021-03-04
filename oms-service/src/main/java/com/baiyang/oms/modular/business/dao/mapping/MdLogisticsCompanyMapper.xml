@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.MdLogisticsCompanyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.MdLogisticsCompany">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="name" property="name"/>
+        <result column="create_time" property="createTime"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="tenant_id" property="tenantId"/>
+        <result column="logistics_code_rule" property="logisticsCodeRule"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, name, create_time AS createTime, created_by AS createdBy, update_time AS updateTime, updated_by AS updatedBy, is_deleted AS isDeleted, tenant_id AS tenantId, logistics_code_rule AS logisticsCodeRule
+    </sql>
+
+    <select id="pageGrade" resultMap="BaseResultMap">
+        select * from md_logistics_company where 1=1
+        <if test="keyword != null and keyword != ''">
+            and (code like CONCAT('%',#{keyword},'%') or
+            name like CONCAT('%',#{keyword},'%')
+            )
+        </if>
+    </select>
+</mapper>

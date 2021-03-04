@@ -1,0 +1,180 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>平台管理</h5>
+                <#FormSlideToggle searchFormId="searchForm"/>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div id="searchForm">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#TextareaCon id="platformOrderCodeSearch" name="平台单号" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="platformIdSearch" name="渠道" >
+                                <option value="">请选择</option>
+                                @for(platform in platformList){
+                                <option value="${platform.id}">${platform.platformName}</option>
+                                @}
+                            </#SelectCon>
+                           </div>
+                           <div class="col-sm-3">
+                                <#SelectCon id="merchantIdSearch" name="商家" >
+                                <option value="">请选择</option>
+                                @for(mdMerchant in mdMerchantList){
+                                <option value="${mdMerchant.id}">${mdMerchant.merchantName}</option>
+                                @}
+                            </#SelectCon>
+                           </div>
+                           <div class="col-sm-3">
+                                <#SelectCon id="shopIdSearch" name="店铺" >
+                                    <option value="">请选择</option>
+                                    @for(shop in shopList){
+                                    <option value="${shop.id}">${shop.name}</option>
+                                    @}
+                                </#SelectCon>
+                           </div>
+                        </div>
+                        <div class="row">
+                            <!--<div class="col-sm-3">-->
+                                <!--<#NameCon id="" name="买家id" />-->
+                            <!--</div>-->
+                            <div class="col-sm-3">
+                                <#NameCon id="buyerNickSearch" name="买家id" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="statusSearch" name="处理状态" >
+                                <option value="">请选择</option>
+                                <option value="0">待处理订单</option>
+                                <option value="1">已生成订单</option>
+                                <option value="2">处理失败</option>
+                                <!--<option value="3">错误订单</option>-->
+                                <!--<option value="4">地址解析失败</option>-->
+                                </#SelectCon>
+                             </div>
+                             <div class="col-sm-3">
+                                    <#NameCon id="errReasonSearch" name="错误原因" />
+                             </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="" name="支付渠道" >
+                                    <option value="">请选择</option>
+                                    <option value="0">支付宝</option>
+                                    <option value="1">微信</option>
+                                    <option value="2">银行卡</option>
+                                </#SelectCon>
+                            </div>
+                        </div>
+
+                         <div class="row">
+                             <div class="col-sm-3">
+                                 <#SelectCon id="orderStatusSearch" name="订单状态" >
+                                 <option value="">请选择</option>
+                                 <option value="0">已下单</option>
+                                 <option value="1">已付款</option>
+                                 <option value="2">已发货</option>
+                                 <option value="3">完成</option>
+                                 <option value="4">关闭</option>
+                             </#SelectCon>
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="sourceSearch" name="订单来源" >
+                                <option value="">请选择</option>
+                                <option value="pc">pc</option>
+                                <option value="wap">wap</option>
+                                <option value="weixin">weixin</option>
+                                <option value="ios">ios</option>
+                                <option value="android">android</option>
+                            </#SelectCon>
+                           </div>
+                           <div class="col-sm-3">
+                                <#SelectCon id="payTypeSearch" name="支付方式" >
+                                <option value="">请选择</option>
+                                <option value="1">在线支付</option>
+                                <option value="2">货到付款</option>
+                               </#SelectCon>
+                           </div>
+                             <div class="col-sm-3">
+                                 <#NameCon id="orderPaymentSearch" name="实付金额" />
+                             </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-3">
+                                <#TimeCon id="createTimeSearchBegin" name="下单开始时间" isTime="true" pattern="YYYY-MM-DD hh:mm:ss" />
+                            </div>
+                            <div class="col-lg-3 col-sm-3">
+                                <#TimeCon id="createTimeSearchEnd" name="下单结束时间" isTime="true" pattern="YYYY-MM-DD hh:mm:ss"/>
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="receiverNameSearch" name="收货人姓名" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="customerRemarkSearch" name="买家备注" />
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#SelectCon id="provinceId" name="收货地址_省" >
+                                    <option value=''>请选择省</option>
+                                    @for(value in areas!){
+                                    <option  value="${value.id}">${value.name}</option>
+                                    @}
+                                </#SelectCon>
+                                <!--<#NameCon id="platformProvinceSearch" name="收货地址_省" />-->
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="cityId" name="收货地址_市" >
+                                </#SelectCon>
+                                <!--<#NameCon id="platformCitySearch" name="收货地址_市" />-->
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="countyId" name="收货地址_区" >
+                                </#SelectCon>
+                                <!--<#NameCon id="platformCountySearch" name="收货地址_区" />-->
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="csRemarkSearch" name="卖家备注" />
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-lg-3 col-sm-3">
+                                <#TimeCon id="paidTimeSearchBegin" name="付款开始时间" isTime="true" pattern="YYYY-MM-DD hh:mm:ss" />
+                            </div>
+                            <div class="col-lg-3 col-sm-3">
+                                <#TimeCon id="paidTimeSearchEnd" name="付款结束时间" isTime="true" pattern="YYYY-MM-DD hh:mm:ss"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12" style="text-align: center;padding-top: 20px">
+                                <#button name="搜索" icon="fa-search" clickFun="TempSo.search()"/>
+                                <#button name="重置" icon="fa-repeat" clickFun="TempSo.resetSearch()" space="true"/>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="hidden-xs" style="margin-top: 0px" id="TempSoTableToolbar" role="group">
+                            <#button name="订单下载" icon="fa-download" clickFun="TempSo.downloadOrder()"/>
+                            <#button name="生成订单" icon="fa-align-left" clickFun="TempSo.generateOrder()" space="true"/>
+                            <#button name="导出" bootStrapIconClass="glyphicon glyphicon-export" clickFun="TempSo.exportOrder()" space="true"/>
+                            <br/>
+                            <ul class="nav nav-tabs" id="tempSole-nav">
+                                <li><a href="#" name="全部">全部</a></li>
+                                <li><a href="#" name="正常订单">正常订单</a></li>
+                                <li><a href="#" name="问题订单">问题订单</a></li>
+                            </ul>
+                        </div>
+                        <#table id="TempSoTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/tempSo/tempSo.js"></script>
+@}

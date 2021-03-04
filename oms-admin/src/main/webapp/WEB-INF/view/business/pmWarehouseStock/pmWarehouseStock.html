@@ -1,0 +1,44 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>管理</h5>
+                <#FormSlideToggle searchFormId="searchForm"/>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div id="searchForm">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <#NameCon id="productCodeId" name="商品编码" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12" style="text-align: center;padding-top: 20px">
+                                    <#button name="搜索" icon="fa-search" clickFun="PmWarehouseStock.search()"/>
+                                    <#button name="重置" icon="fa-repeat" clickFun="PmWarehouseStock.reset()" space="true"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="PmWarehouseStockTableToolbar" role="group">
+                            @if(shiro.hasPermission("/pmWarehouseStock/add")){
+                                <#button name="初始化商品库存" icon="fa-plus" clickFun="PmWarehouseStock.openAddPmWarehouseStock()"/>
+                            @}
+                            @if(shiro.hasPermission("/pmWarehouseStock/update")){
+                                <#button name="调整库存" icon="fa-edit" clickFun="PmWarehouseStock.openPmWarehouseStockDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/pmWarehouseStock/delete")){
+                                <#button name="删除" icon="fa-remove" clickFun="PmWarehouseStock.delete()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="PmWarehouseStockTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/pmWarehouseStock/pmWarehouseStock.js"></script>
+@}

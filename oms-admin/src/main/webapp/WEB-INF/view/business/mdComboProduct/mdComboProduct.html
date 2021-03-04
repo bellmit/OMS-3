@@ -1,0 +1,58 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>商品管理</h5>
+                <#FormSlideToggle searchFormId="searchForm"/>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                      <div class="col-sm-12" align="center">
+                       <div id="searchForm">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="productCode" name="商品编码" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="merchantId" name="商家" >
+                                    <option value="">请选择</option>
+                                    @for(mdMerchant in mdMerchantList){
+                                        <option value="${mdMerchant.id}">${mdMerchant.merchantName}</option>
+                                    @}
+                                </#SelectCon>
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="productCname" name="组合商品名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="productCname" name="品类负责人" />
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-12" style="text-align: center;padding-top: 20px">
+                                <#button name="搜索" icon="fa-search" clickFun="MdProduct.search()"/>
+                                <#button name="重置" icon="fa-repeat" clickFun="MdProduct.reset()" space="true"/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="hidden-xs" id="MdProductTableToolbar" role="group">
+                            @if(shiro.hasPermission("/mdProduct/add")){
+                                <#button name="新增" icon="fa-plus" clickFun="MdProduct.openAddMdProduct()"/>
+                            @}
+                            @if(shiro.hasPermission("/mdProduct/update")){
+                                <#button name="编辑" icon="fa-edit" clickFun="MdProduct.openMdProductDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/mdProduct/delete")){
+                                <#button name="商品作废" icon="fa-trash" clickFun="MdProduct.delete()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="MdProductTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/mdComboProduct/mdComboProduct.js"></script>
+@}

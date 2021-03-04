@@ -1,0 +1,57 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="houseFourmId">
+
+			<input type="hidden" id="provinceValue" value="${provinceId}">
+            <input type="hidden" id="cityValue" value="${cityId}">
+            <input type="hidden" id="districtValue" value="${countyId}">
+            
+            <input type="hidden" id="soOrderId" value="${soOrderId}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="goodReceiverName" name="收货人" value="${goodReceiverName}" underline="true"/>
+                            <#select id="provinceId" name="省" underline="true">
+                                <option value=''>请选择省</option>
+                                @for(value in provinceList!){
+                                       <option  value="${value.id}">${value.name}</option>
+                                   @}
+                                </#select>
+                                <#select id="cityId" name="市" underline="true">
+                                 @for(value in cityList!){
+                                       <option  value="${value.id}">${value.name}</option>
+                                   @}
+                                </#select>
+                                <#select id="countyId" name="区" underline="true">
+                                    @for(value in districtList!){
+                                       <option  value="${value.id}">${value.name}</option>
+                                   @}
+							</#select>
+                            <#input id="addressName" name="详细地址" value="${goodReceiverAddress}" underline="true"/>
+                            <#input id="goodReceiverMobile" name="联系电话" value="${goodReceiverMobile}" underline="true"/>
+                            <div style="text-align: center;">
+			                    <#button btnCss="info" name="提交收货人信息" id="ensure" icon="fa-check" clickFun="SoOrderInfoDlg.editUserSubmit()"/>
+			                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="SoOrderInfoDlg.close()"/>
+                			</div>
+                </div>
+                <div class="col-sm-6 b-r">
+                    <#input id="payName" name="支付人姓名" value="${payName}" underline="true"/>
+                    <#input id="idCard" name="支付人身份证号" value="${receiveNo}" underline="true"/>
+                    <#input id="payPhone" name="支付人手机号" value="${payPhone}" underline="true"/>
+                    <div style="text-align: center;">
+                    <#button btnCss="info" name="提交支付人信息" id="ensure" icon="fa-check" clickFun="SoOrderInfoDlg.editPayUserSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="SoOrderInfoDlg.close()"/>
+                </div>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/soOrder/soOrder_user_info.js"></script>
+<script src="${ctxPath}/static/js/common/area-ajax.js"></script>
+@}

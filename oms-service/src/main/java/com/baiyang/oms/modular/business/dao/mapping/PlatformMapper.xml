@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.PlatformMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.Platform">
+        <id column="id" property="id" />
+        <result column="platform_name" property="platformName" />
+        <result column="platform_code" property="platformCode" />
+        <result column="created_by" property="createdBy" />
+        <result column="created_name" property="createdName" />
+        <result column="create_time" property="createTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_name" property="updateName" />
+        <result column="auth_code_url" property="authCodeUrl" />
+        <result column="access_token_url" property="accessTokenUrl" />
+        <result column="invoker_url" property="invokerUrl" />
+        <result column="return_url" property="returnUrl" />
+        <result column="update_time" property="updateTime" />
+        <result column="tenant_id" property="tenantId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, platform_name AS platformName, platform_code AS platformCode, created_by AS createdBy, created_name AS createdName, create_time AS createTime, update_by AS updateBy, update_name AS updateName, auth_code_url AS authCodeUrl, access_token_url AS accessTokenUrl, invoker_url AS invokerUrl, return_url AS returnUrl, update_time AS updateTime, tenant_id AS tenantId
+    </sql>
+    <select id="selectAllPlatform" resultType="com.baiyang.oms.modular.business.model.Platform">
+        SELECT <include refid="Base_Column_List"/>
+        FROM platform
+    </select>
+</mapper>

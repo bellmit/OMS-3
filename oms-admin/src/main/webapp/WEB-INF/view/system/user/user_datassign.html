@@ -1,0 +1,37 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>绑定数据权限</h5>
+                <input type="hidden" id="userId" value="${userId}">
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div id="searchForm">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <#NameCon id="groupName" name="分组名称" />
+                                </div>
+                                <div class="col-sm-3">
+                                    <#button name="搜索" icon="fa-search" clickFun="UserDataAssign.search()"/>
+                                    <#button name="重置" icon="fa-repeat" clickFun="UserDataAssign.reset()" space="true"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="dataTableToolbar" role="group">
+                            <#button name="绑定" icon="fa-plus" clickFun="UserDataAssign.bindingGroup()"/>
+                            <#button name="解除绑定" icon="fa-edit" clickFun="UserDataAssign.delBindingGroup()" space="true"/>
+                        </div>
+                        <#table id="UserDataAssignTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="${ctxPath}/static/modular/system/user/user_datassign.js"></script>
+@}

@@ -1,0 +1,104 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" underline="true"/>
+                            <#input id="code" name="退换货单号" underline="true"/>
+                            <#input id="soCode" name="So单号" underline="true"/>
+                            <#input id="asnCode" name="入库单号" underline="true"/>
+                            <#input id="platformGrfCode" name="对应的平台退换货单号" underline="true"/>
+                            <#input id="merchantId" name="商家" underline="true"/>
+                            <#input id="originalCode" name="平台原始单号" underline="true"/>
+                            <#input id="refOriginalCode" name="" underline="true"/>
+                            <#input id="warehouseId" name="仓库" underline="true"/>
+                            <#input id="type" name="退换货类型 0退货 1换货" underline="true"/>
+                            <#input id="returnType" name="退货类型 1－拒签，2-已签收" underline="true"/>
+                            <#input id="endUserDesc" name="买家描述" underline="true"/>
+                            <#input id="endUserApplyReson" name="申请原因" underline="true"/>
+                            <#input id="isRefund" name="是否退运费" underline="true"/>
+                            <#input id="deliveryFee" name="配送费" underline="true"/>
+                            <#input id="isOtherFee" name="是否收手续费" underline="true"/>
+                            <#input id="fee" name="调整金额" underline="true"/>
+                            <#input id="adjustRemark" name="退货调整备注" underline="true"/>
+                            <#input id="returnReasonCode" name="退换货原因（代码）" underline="true"/>
+                            <#input id="codPayStatus" name="cod订单付款退款状态" underline="true"/>
+                            <#input id="returnReasonDesc" name="退换货原因说明" underline="true"/>
+                            <#input id="checker" name="" underline="true"/>
+                            <#input id="checkBy" name="审核人" underline="true"/>
+                            <#input id="state" name="状态 10初始化，30审核通过，40审核不通过，50 取消,55，到貨确认60完成" underline="true"/>
+                            <#input id="checkRemark" name="审核备注" underline="true"/>
+                            <#input id="cancelRemark" name="取消备注" underline="true"/>
+                            <#input id="arriveRemark" name="到货备注" underline="true"/>
+                            <#input id="arriveTime" name="到货时间" underline="true"/>
+                            <#input id="source" name="平台" underline="true"/>
+                            <#input id="creator" name="" underline="true"/>
+                            <#input id="createdBy" name="创建人id" underline="true"/>
+                            <#input id="createTime" name="创建时间" underline="true"/>
+                            <#input id="updatedBy" name="修改人id" underline="true"/>
+                            <#input id="updateTime" name="最后修改时间" underline="true"/>
+                            <#input id="totalAmount" name="申请退款总额" underline="true"/>
+                            <#input id="billCode1" name="原DOCODE" underline="true"/>
+                            <#input id="billCode2" name="换货DOCODE" underline="true"/>
+                            <#input id="billCode3" name="平台退货单号" underline="true"/>
+                            <#input id="backCarrierName" name="退回物流公司名"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="backCarrierShipCode" name="退回物流单号" underline="true"/>
+                            <#input id="shopId" name="店铺" underline="true"/>
+                            <#input id="fetchAddress" name="取件地址" underline="true"/>
+                            <#input id="goodReceiverName" name="收货人" underline="true"/>
+                            <#input id="goodReceiverTel" name="收货人电话" underline="true"/>
+                            <#input id="refundAccount" name="退款账号" underline="true"/>
+                            <#input id="refundReasonType" name="" underline="true"/>
+                            <#input id="attachment1" name="附件路径1" underline="true"/>
+                            <#input id="attachment2" name="附件路径2" underline="true"/>
+                            <#input id="attachment3" name="附件路径3" underline="true"/>
+                            <#input id="attachment4" name="附件路径4" underline="true"/>
+                            <#input id="tenantId" name="" underline="true"/>
+                            <#input id="needChangeOrder" name="是否需要生成换货单" underline="true"/>
+                            <#input id="changeReceiverTel" name="" underline="true"/>
+                            <#input id="changeReceiverProvince" name="" underline="true"/>
+                            <#input id="changeReceiverCity" name="" underline="true"/>
+                            <#input id="changeReceiverCounty" name="" underline="true"/>
+                            <#input id="changeReceiverAddress" name="" underline="true"/>
+                            <#input id="changeReceiverName" name="" underline="true"/>
+                            <#input id="changeReceiverProvinceId" name="" underline="true"/>
+                            <#input id="changeReceiverCityId" name="" underline="true"/>
+                            <#input id="changeReceiverCountyId" name="" underline="true"/>
+                            <#input id="checkTime" name="创建时间" underline="true"/>
+                            <#input id="customerId" name="商户Id" underline="true"/>
+                            <#input id="businessType" name="退货类型，1:2C单子；2:2B单子" underline="true"/>
+                            <#input id="skuQty" name="退货商品种类数" underline="true"/>
+                            <#input id="unitsQty" name="退货商品数" underline="true"/>
+                            <#input id="refundAmount" name="线下打款金额" underline="true"/>
+                            <#input id="refundName" name="线下打款人名字" underline="true"/>
+                            <#input id="syncCount" name="" underline="true"/>
+                            <#input id="isSync" name="是否同步" underline="true"/>
+                            <#input id="isDamage" name="是否有坏品0:否;1:是" underline="true"/>
+                            <#input id="syncState" name="同步平安平台状态，审核信息：10同步成功，20同步失败，收货质检：30同步成功，40失败" underline="true"/>
+                            <#input id="transTime" name="退换货转换时间" underline="true"/>
+                            <#input id="transType" name="退换货转换类型，1退货单，2换货单，3退转换，4换转退" underline="true"/>
+                            <#input id="refundMethod" name="退款方式" underline="true"/>
+                            <#input id="isForceReturn" name="是否强退订单 0否，1是" underline="true"/>
+                            <#input id="wmsRewriteDate" name="出入库回写时间" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="GrfHeaderInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="GrfHeaderInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/grfHeader/grfHeader_info.js"></script>
+@}

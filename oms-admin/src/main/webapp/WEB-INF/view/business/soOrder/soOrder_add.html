@@ -1,0 +1,157 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" underline="true"/>
+                            <#input id="endUserId" name="用户id" underline="true"/>
+                            <#input id="orderAmount" name="订单总金额(=产品总额+运费-满立减)" underline="true"/>
+                            <#input id="orderCode" name="订单编号" underline="true"/>
+                            <#input id="originalCode" name="" underline="true"/>
+                            <#input id="grfCode" name="grf单号" underline="true"/>
+                            <#input id="shopId" name="店铺id" underline="true"/>
+                            <#input id="shopName" name="店铺名称" underline="true"/>
+                            <#input id="orderStatus" name="订单状态： 3，已下单，货款未全收 4，货款已经全收 20，订单已经出库  24，用户已经收货 34，订单已经取消 35，订单已经完成 36，订单待审核（银行转账订单会有这种状态） 37，送货失败 38，订单已经转do',  39 已发送物流 12 用户要求退货   	13 用户要求换货  14 同意退货 15 同意换货  26 退货中 27 退货完成" underline="true"/>
+                            <#input id="reasonFailure" name="取消订单原因id，详见user_data2.cancel_reason_remark" underline="true"/>
+                            <#input id="orderType" name="订单类型:1:普通; 2:换货; 3:分销订单; 4:供销订单; 6:b2b订单" underline="true"/>
+                            <#input id="orderAttr" name="订单属性: 1:正常发货订单，2:快递丢失补发, 3:售后补偿订单" underline="true"/>
+                            <#input id="orderFulfillmentType" name="订单配货类型：1：本地直发、2：厂家代发、3：虚拟发货" underline="true"/>
+                            <#input id="orderRemark" name="订单备注（用户或客服填写）" underline="true"/>
+                            <#input id="orderDeliveryFee" name="运费" underline="true"/>
+                            <#input id="orderSource" name="订单来源：0:网站 1:电话下单 2:门店购买 3:qq网购 4:tmall订单 5:掌上医院订单 10:天猫 11:一号店 12:京东 13:国美 14:360JK 15:代客下单" underline="true"/>
+                            <#input id="orderPaymentConfirmDate" name="付款确认日期（全额付款，gos写入，其他为付款时支付回写）" underline="true"/>
+                            <#input id="orderCreateTime" name="订单创建时间" underline="true"/>
+                            <#input id="orderToLogisticsTime" name="订单到物流日期" underline="true"/>
+                            <#input id="orderOutOfInventoryStatus" name="出库状态，0:未出库 1:已出库" underline="true"/>
+                            <#input id="orderNeedInvoice" name="发票类型  0:不开发票，1：普通发票，2：增值税发票" underline="true"/>
+                            <#input id="parentSoId" name="父订单id" underline="true"/>
+                            <#input id="deliveryDate" name="实际发货时间" underline="true"/>
+                            <#input id="receiveDate" name="实际收货时间" underline="true"/>
+                            <#input id="accountPayable" name="已付金额" underline="true"/>
+                            <#input id="productAmount" name="产品总金额(各个订单明细的金额总和)" underline="true"/>
+                            <#input id="goodReceiverName" name="收货人姓名" underline="true"/>
+                            <#input id="goodReceiverAddress" name="收货人地址" underline="true"/>
+                            <#input id="goodReceiverProvince" name="收货人省份" underline="true"/>
+                            <#input id="goodReceiverCity" name="收货人城市" underline="true"/>
+                            <#input id="goodReceiverCounty" name="收货人地区" underline="true"/>
+                            <#input id="goodReceiverPhone" name="收货人电话" underline="true"/>
+                            <#input id="cancelDate" name="订单取消日期" underline="true"/>
+                            <#input id="isLeaf" name="是否为叶子订单：1:是 0:否" underline="true"/>
+                            <#input id="orderCsRemark" name="客服备注" underline="true"/>
+                            <#input id="toLogisticFlag" name="是否已发送物流标志位　０：未发送　１：已发送" underline="true"/>
+                            <#input id="goodReceiverMobile" name="收货人手机" underline="true"/>
+                            <#input id="specProcFlag" name="特殊处理标记 0:普通订单，不需要特殊处理  1: 需要财审处理," underline="true"/>
+                            <#input id="goodReceiverCityId" name="收货人城市id" underline="true"/>
+                            <#input id="goodReceiverCountyId" name="收货人区县id" underline="true"/>
+                            <#input id="goodReceiverProvinceId" name="收货人省份id" underline="true"/>
+                            <#input id="warehouseId" name="仓库id" underline="true"/>
+                            <#input id="warehouseIds" name="仓库ids" underline="true"/>
+                            <#input id="merchantExpressNbr" name="" underline="true"/>
+                            <#input id="virtualStockStatus" name="是否需要等货 0：不需要 1：需要" underline="true"/>
+                            <#input id="updateTime" name="更新时间" underline="true"/>
+                            <#input id="orderCsReason" name="订单审核失败原因" underline="true"/>
+                            <#input id="orderPromotionDiscount" name="满立减金额" underline="true"/>
+                            <#input id="deliveryMethodType" name="" underline="true"/>
+                            <#input id="payServiceType" name="用户选择的支付服务类型 0.账户支付 1: 网上支付 2. 货到付款3 邮局汇款4 银行转账 5:pos机   7:分期付款 8:合同账期 9:货到转账 10:货到付支票" underline="true"/>
+                            <#input id="orderWeight" name="订单重量" underline="true"/>
+                            <#input id="grossWeight" name="产品毛重" underline="true"/>
+                            <#input id="collectOnDeliveryAmount" name="货到应收金额" underline="true"/>
+                            <#input id="merchantId" name="商家id" underline="true"/>
+                            <#input id="version" name="乐观锁" underline="true"/>
+                            <#input id="isDeleted" name="删除状态 0：未删除" underline="true"/>
+                            <#input id="createTime" name="" underline="true"/>
+                            <#input id="merchantDiscount" name="商家优惠金额" underline="true"/>
+                            <#input id="platformDiscount" name="平台优惠金额" underline="true"/>
+                            <#input id="prescription" name="是否处方药标记 0：否 1：是" underline="true"/>
+                            <#input id="deliverySupplierId" name="配送商ID" underline="true"/>
+                            <#input id="agentOperate" name="是否代运营 0:否,1:是  " underline="true"/>
+                            <#input id="isSplit" name="是否拆单 0:否,1:是" underline="true"/>
+                            <#input id="orderCsBy" name="审单人" underline="true"/>
+                            <#input id="orderCsTime" name="审单时间"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="isCpm" name="是否已刷单 1: 已刷单,0:未刷单" underline="true"/>
+                            <#input id="generateWaveTime" name="生成波次时间" underline="true"/>
+                            <#input id="wmsIsLock" name="订单锁定标识：1 锁定 0 释放" underline="true"/>
+                            <#input id="wmsLockCode" name="锁定原因代码" underline="true"/>
+                            <#input id="insteaStatus" name="厂商代发状态: 1 厂商代发" underline="true"/>
+                            <#input id="insteaSupplier" name="代发供应商" underline="true"/>
+                            <#input id="orderFinishedTime" name="订单完成时间" underline="true"/>
+                            <#input id="orderEndTime" name="" underline="true"/>
+                            <#input id="invoiceType" name="0:纸质发票,1:电子发票" underline="true"/>
+                            <#input id="invoiceTitle" name="发票抬头" underline="true"/>
+                            <#input id="orderVolume" name="订单体积" underline="true"/>
+                            <#input id="deliveryFeature" name="配送属性  delivery_feature.code以,隔开" underline="true"/>
+                            <#input id="orderCreateType" name="0线上抓取 1代课下单 2 文件导入" underline="true"/>
+                            <#input id="exceptionCode" name="异常原因编码 0:正常; 1:铺货异常; 2:收货信息异常; 3:订单金额出错; 4:缺货异常; 5:用户已申请退款; 6:等待合并订单; 7:财务审核转异常; 8:修改订单; 9:转到待审核; 10:其它ERP已发货; 11:刷单; 12:黑名单; 13:仓库分配异常; 14:平台订单取消; 15:其它;" underline="true"/>
+                            <#input id="exceptionRemark" name="异常原因描述" underline="true"/>
+                            <#input id="mergeOrderCode" name="合单单号" underline="true"/>
+                            <#input id="carrierDistributeFailedReason" name="配送商解析失败原因" underline="true"/>
+                            <#input id="isCarrierDistribute" name="是否进行过配送商解析 0：否 。1：解析配送商成功。 2：解析配送商失败" underline="true"/>
+                            <#input id="carrierDistributeFailed" name="配送商解析失败次数" underline="true"/>
+                            <#input id="tenantId" name="" underline="true"/>
+                            <#input id="freight" name="预估运费" underline="true"/>
+                            <#input id="freightAdjust" name="预估代收快递费用" underline="true"/>
+                            <#input id="ralationTenantId" name="分销商/供销商租户id" underline="true"/>
+                            <#input id="buyerNick" name="买家昵称" underline="true"/>
+                            <#input id="isSync" name="是否已同步分销商/供销商" underline="true"/>
+                            <#input id="logisticsStatus" name="物流状态" underline="true"/>
+                            <#input id="auditFail" name="审核失败次数" underline="true"/>
+                            <#input id="receiptTime" name="用户签收时间" underline="true"/>
+                            <#input id="goodReceiverTown" name="收货人街道/镇" underline="true"/>
+                            <#input id="goodReceiverTownId" name="收货人街道/镇id" underline="true"/>
+                            <#input id="collectionStatus" name="收款状态1未核销，2已核销 3已退款,4部分核销" underline="true"/>
+                            <#input id="collectionDate" name="" underline="true"/>
+                            <#input id="businessType" name="" underline="true"/>
+                            <#input id="orderFlag" name="订单标签" underline="true"/>
+                            <#input id="orderMergeFlag" name="需要合并在一起的so，保存 original_code" underline="true"/>
+                            <#input id="unfreezeTime" name="解冻时间" underline="true"/>
+                            <#input id="deliverymanId" name="配送人员id" underline="true"/>
+                            <#input id="invoiceTaxNo" name="发票税号" underline="true"/>
+                            <#input id="saleType" name="订单属性: 1:正常发货订单，2:快递丢失补发, 3:售后补偿订单" underline="true"/>
+                            <#input id="parentPlatformOrderCode" name="父平台单号" underline="true"/>
+                            <#input id="crossBorder" name="跨境方式 0 非跨境；1 邮关；2 bc直邮；3 bbc保税；4 个人物品；5 一般贸易" underline="true"/>
+                            <#input id="freightFcode" name="运费币制（固定值：CNY）" underline="true"/>
+                            <#input id="taxFcy" name="税费-买家支付税金" underline="true"/>
+                            <#input id="actualFcy" name="实际海关收取税金" underline="true"/>
+                            <#input id="estimateFcy" name="预估税金" underline="true"/>
+                            <#input id="currCode" name="成交币制" underline="true"/>
+                            <#input id="insuranceAmount" name="保费" underline="true"/>
+                            <#input id="receiveType" name="收件人证件类型：1：身份证，2：护照，3:军官证" underline="true"/>
+                            <#input id="receiveNo" name="收件人证件号" underline="true"/>
+                            <#input id="payCompanyCode" name="支付企业备案编码 " underline="true"/>
+                            <#input id="thirdPartyPayNo" name="第三方支付企业支付流水" underline="true"/>
+                            <#input id="payOrderNo" name="支付单号" underline="true"/>
+                            <#input id="companyName" name="电商平台备案名称 " underline="true"/>
+                            <#input id="companyCode" name="电商平台备案编码 " underline="true"/>
+                            <#input id="eCommerceCode" name="电商企业备案编码" underline="true"/>
+                            <#input id="eCommerceName" name="电商企业备案名称" underline="true"/>
+                            <#input id="outerOrderCode" name="外部发货单号-奇门" underline="true"/>
+                            <#input id="outerOrderType" name="外部订单类型JYCK=一般交易出库单, HHCK=换货出库单, BFCK=补发出库单，QTCK=其他出库单" underline="true"/>
+                            <#input id="customsCompletedTime" name="清关完成时间" underline="true"/>
+                            <#input id="prescriptionUrl" name="" underline="true"/>
+                            <#input id="source" name="订单来源" underline="true"/>
+                            <#input id="createdBy" name="创建人" underline="true"/>
+                            <#input id="wmsRewriteDate" name="回写时间" underline="true"/>
+                            <#input id="taxCollectionDate" name="税费核销时间" underline="true"/>
+                            <#input id="paymentRemark" name="支付备注" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="SoOrderInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="SoOrderInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/soOrder/soOrder_info.js"></script>
+@}

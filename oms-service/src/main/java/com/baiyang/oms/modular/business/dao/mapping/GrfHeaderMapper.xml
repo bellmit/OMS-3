@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.GrfHeaderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.GrfHeader">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="so_code" property="soCode" />
+        <result column="asn_code" property="asnCode" />
+        <result column="platform_grf_code" property="platformGrfCode" />
+        <result column="merchant_id" property="merchantId" />
+        <result column="original_code" property="originalCode" />
+        <result column="ref_original_code" property="refOriginalCode" />
+        <result column="warehouse_id" property="warehouseId" />
+        <result column="type" property="type" />
+        <result column="return_type" property="returnType" />
+        <result column="end_user_desc" property="endUserDesc" />
+        <result column="end_user_apply_reson" property="endUserApplyReson" />
+        <result column="is_refund" property="isRefund" />
+        <result column="delivery_fee" property="deliveryFee" />
+        <result column="is_other_fee" property="isOtherFee" />
+        <result column="fee" property="fee" />
+        <result column="adjust_remark" property="adjustRemark" />
+        <result column="return_reason_code" property="returnReasonCode" />
+        <result column="cod_pay_status" property="codPayStatus" />
+        <result column="return_reason_desc" property="returnReasonDesc" />
+        <result column="checker" property="checker" />
+        <result column="check_by" property="checkBy" />
+        <result column="state" property="state" />
+        <result column="check_remark" property="checkRemark" />
+        <result column="cancel_remark" property="cancelRemark" />
+        <result column="arrive_remark" property="arriveRemark" />
+        <result column="arrive_time" property="arriveTime" />
+        <result column="source" property="source" />
+        <result column="creator" property="creator" />
+        <result column="created_by" property="createdBy" />
+        <result column="create_time" property="createTime" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="total_amount" property="totalAmount" />
+        <result column="bill_code_1" property="billCode1" />
+        <result column="bill_code_2" property="billCode2" />
+        <result column="bill_code_3" property="billCode3" />
+        <result column="back_carrier_name" property="backCarrierName" />
+        <result column="back_carrier_ship_code" property="backCarrierShipCode" />
+        <result column="shop_id" property="shopId" />
+        <result column="fetch_address" property="fetchAddress" />
+        <result column="good_receiver_name" property="goodReceiverName" />
+        <result column="good_receiver_tel" property="goodReceiverTel" />
+        <result column="refund_account" property="refundAccount" />
+        <result column="refund_reason_type" property="refundReasonType" />
+        <result column="attachment1" property="attachment1" />
+        <result column="attachment2" property="attachment2" />
+        <result column="attachment3" property="attachment3" />
+        <result column="attachment4" property="attachment4" />
+        <result column="tenant_id" property="tenantId" />
+        <result column="need_change_order" property="needChangeOrder" />
+        <result column="change_receiver_tel" property="changeReceiverTel" />
+        <result column="change_receiver_province" property="changeReceiverProvince" />
+        <result column="change_receiver_city" property="changeReceiverCity" />
+        <result column="change_receiver_county" property="changeReceiverCounty" />
+        <result column="change_receiver_address" property="changeReceiverAddress" />
+        <result column="change_receiver_name" property="changeReceiverName" />
+        <result column="change_receiver_province_id" property="changeReceiverProvinceId" />
+        <result column="change_receiver_city_id" property="changeReceiverCityId" />
+        <result column="change_receiver_county_id" property="changeReceiverCountyId" />
+        <result column="check_time" property="checkTime" />
+        <result column="customer_id" property="customerId" />
+        <result column="business_type" property="businessType" />
+        <result column="sku_qty" property="skuQty" />
+        <result column="units_qty" property="unitsQty" />
+        <result column="refund_amount" property="refundAmount" />
+        <result column="refund_name" property="refundName" />
+        <result column="sync_count" property="syncCount" />
+        <result column="is_sync" property="isSync" />
+        <result column="is_damage" property="isDamage" />
+        <result column="sync_state" property="syncState" />
+        <result column="trans_time" property="transTime" />
+        <result column="trans_type" property="transType" />
+        <result column="refund_method" property="refundMethod" />
+        <result column="is_force_return" property="isForceReturn" />
+        <result column="wms_rewrite_date" property="wmsRewriteDate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, so_code AS soCode, asn_code AS asnCode, platform_grf_code AS platformGrfCode, merchant_id AS merchantId, original_code AS originalCode, ref_original_code AS refOriginalCode, warehouse_id AS warehouseId, type, return_type AS returnType, end_user_desc AS endUserDesc, end_user_apply_reson AS endUserApplyReson, is_refund AS isRefund, delivery_fee AS deliveryFee, is_other_fee AS isOtherFee, fee, adjust_remark AS adjustRemark, return_reason_code AS returnReasonCode, cod_pay_status AS codPayStatus, return_reason_desc AS returnReasonDesc, checker, check_by AS checkBy, state, check_remark AS checkRemark, cancel_remark AS cancelRemark, arrive_remark AS arriveRemark, arrive_time AS arriveTime, source, creator, created_by AS createdBy, create_time AS createTime, updated_by AS updatedBy, update_time AS updateTime, total_amount AS totalAmount, bill_code_1 AS billCode1, bill_code_2 AS billCode2, bill_code_3 AS billCode3, back_carrier_name AS backCarrierName, back_carrier_ship_code AS backCarrierShipCode, shop_id AS shopId, fetch_address AS fetchAddress, good_receiver_name AS goodReceiverName, good_receiver_tel AS goodReceiverTel, refund_account AS refundAccount, refund_reason_type AS refundReasonType, attachment1, attachment2, attachment3, attachment4, tenant_id AS tenantId, need_change_order AS needChangeOrder, change_receiver_tel AS changeReceiverTel, change_receiver_province AS changeReceiverProvince, change_receiver_city AS changeReceiverCity, change_receiver_county AS changeReceiverCounty, change_receiver_address AS changeReceiverAddress, change_receiver_name AS changeReceiverName, change_receiver_province_id AS changeReceiverProvinceId, change_receiver_city_id AS changeReceiverCityId, change_receiver_county_id AS changeReceiverCountyId, check_time AS checkTime, customer_id AS customerId, business_type AS businessType, sku_qty AS skuQty, units_qty AS unitsQty, refund_amount AS refundAmount, refund_name AS refundName, sync_count AS syncCount, is_sync AS isSync, is_damage AS isDamage, sync_state AS syncState, trans_time AS transTime, trans_type AS transType, refund_method AS refundMethod, is_force_return AS isForceReturn, wms_rewrite_date AS wmsRewriteDate
+    </sql>
+
+
+    <select id="selectSoOrderInfo" parameterType="string" resultType="com.baiyang.oms.modular.business.model.pojo.GrfOrderPojo">
+        SELECT
+            so.order_code as orderCode,
+            so.merchant_id as merchantId,
+            so.source as platformName,
+            gh.id as grfId,
+            reo.id as refId,
+            reo.state as refStatus,
+            gh.state as grfStatus
+        FROM
+            so_order so
+        LEFT JOIN
+            grf_header gh on so.order_code = gh.`code`
+        LEFT JOIN
+            refund_order reo on so.order_code = reo.so_code
+        WHERE
+          so.original_code = #{originalCode}
+    </select>
+
+
+    <select id="selectGrfListPage" resultType="map"
+            parameterType="com.baiyang.oms.modular.business.model.pojo.GrfOrderPojo">
+
+        SELECT
+        gh.id AS id,
+        gh. code AS code,
+        mm.merchant_name AS merchantName,
+        so_code AS soCode,
+        original_code AS originalCode,
+        ref_original_code AS refOriginalCode,
+        end_user_desc AS endUserDesc,
+        gh.create_time AS createTime,
+        refund_amount AS refundAmount,
+        ts.platform_name AS platformName,
+        ts.shop_name AS shopName,
+        ts.buyer_name AS buyerName,
+        ts.buyer_nick AS buyerNick
+        FROM
+        grf_header gh
+        LEFT JOIN temp_so ts ON gh.original_code = ts.platform_order_code
+        LEFT JOIN md_merchant mm ON ts.merchant_id = mm.id
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="originalCode != null and originalCode != ''">
+                AND original_code = #{originalCode}
+            </if>
+            <if test="shopId != null and shopId != ''">
+                AND ts.shop_id = #{shopId}
+            </if>
+            <if test="merchantId != null and merchantId != ''">
+                AND gh.merchant_id = #{merchantId}
+            </if>
+            <if test="code != null and code != ''">
+                AND ref_original_code = #{code}
+            </if>
+        </trim>
+
+        ORDER BY
+        gh.create_time DESC
+
+    </select>
+
+    <insert id="insertGrfOrder" useGeneratedKeys="true" keyProperty="id" parameterType="com.baiyang.oms.modular.business.model.GrfHeader">
+        insert into grf_header
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null and code != ''">
+                code,
+            </if>
+            <if test="soCode != null and soCode != ''">
+                so_code,
+            </if>
+            <if test="platformGrfCode != null and platformGrfCode != ''">
+                platform_grf_code,
+            </if>
+            <if test="originalCode != null and originalCode != ''">
+                original_code,
+            </if>
+            <if test="refOriginalCode != null and refOriginalCode != ''">
+                ref_original_code,
+            </if>
+            <if test="endUserDesc != null and endUserDesc != ''">
+                end_user_desc,
+            </if>
+            <if test="state != null and state != ''">
+                state,
+            </if>
+            <if test="businessType != null and businessType != ''">
+                business_type,
+            </if>
+            <if test="refundAmount != null and refundAmount != ''">
+                refund_amount,
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                created_by,
+            </if>
+            <if test="updatedBy != null and updatedBy != ''">
+                updated_by,
+            </if>
+            create_time,
+            update_time
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null and code != ''">
+                #{code, jdbcType=VARCHAR},
+            </if>
+            <if test="soCode != null and soCode != ''">
+                #{soCode, jdbcType=VARCHAR},
+            </if>
+            <if test="platformGrfCode != null and platformGrfCode != ''">
+                #{platformGrfCode, jdbcType=VARCHAR},
+            </if>
+            <if test="originalCode != null and originalCode != ''">
+                #{originalCode, jdbcType=VARCHAR},
+            </if>
+            <if test="refOriginalCode != null and refOriginalCode != ''">
+                #{refOriginalCode, jdbcType=VARCHAR},
+            </if>
+            <if test="endUserDesc != null and endUserDesc != ''">
+                #{endUserDesc, jdbcType=VARCHAR},
+            </if>
+            <if test="state != null and state != ''">
+                #{state, jdbcType=INTEGER},
+            </if>
+            <if test="businessType != null and businessType != ''">
+                #{businessType, jdbcType=INTEGER},
+            </if>
+            <if test="refundAmount != null and refundAmount != ''">
+                #{refundAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                #{createdBy, jdbcType=BIGINT},
+            </if>
+            <if test="updatedBy != null and updatedBy != ''">
+                #{updatedBy, jdbcType=BIGINT},
+            </if>
+            NOW(),
+            NOW()
+        </trim>
+    </insert>
+
+
+</mapper>

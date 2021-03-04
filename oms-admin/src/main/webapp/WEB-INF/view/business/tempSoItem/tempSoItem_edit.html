@@ -1,0 +1,61 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" value="${item.id}" underline="true"/>
+                            <#input id="platformOrderCode" name="平台订单id" value="${item.platformOrderCode}" underline="true"/>
+                            <#input id="merchantId" name="商家id" value="${item.merchantId}" underline="true"/>
+                            <#input id="platformMainSkuId" name="平台的主品，如果是普通品为NULL,如果是系列品，则为主品id" value="${item.platformMainSkuId}" underline="true"/>
+                            <#input id="platformMainSkuCode" name="平台主商品CODE" value="${item.platformMainSkuCode}" underline="true"/>
+                            <#input id="platformSkuId" name="平台skid" value="${item.platformSkuId}" underline="true"/>
+                            <#input id="mainSkuId" name="如果是普通品为NULL,如果是系列品，则为主品id" value="${item.mainSkuId}" underline="true"/>
+                            <#input id="skuId" name="" value="${item.skuId}" underline="true"/>
+                            <#input id="skuCode" name="" value="${item.skuCode}" underline="true"/>
+                            <#input id="skuName" name="产品中文名称" value="${item.skuName}" underline="true"/>
+                            <#input id="pmInfoId" name="商家商品id（pminfoid）" value="${item.pmInfoId}" underline="true"/>
+                            <#input id="itemAmount" name="商品总金额" value="${item.itemAmount}" underline="true"/>
+                            <#input id="itemPrice" name="商品单价" value="${item.itemPrice}" underline="true"/>
+                            <#input id="itemNum" name="商品购买数量" value="${item.itemNum}" underline="true"/>
+                            <#input id="createTime" name="创建时间" value="${item.createTime}" underline="true"/>
+                            <#input id="updateTime" name="更新时间" value="${item.updateTime}" underline="true"/>
+                            <#input id="merchantDiscount" name="" value="${item.merchantDiscount}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="platformDiscount" name="" value="${item.platformDiscount}" underline="true"/>
+                            <#input id="platformId" name="" value="${item.platformId}" underline="true"/>
+                            <#input id="prescription" name="是否处方药标记 0：否 1：是" value="${item.prescription}" underline="true"/>
+                            <#input id="specification" name="药品规格" value="${item.specification}" underline="true"/>
+                            <#input id="agentOperate" name="是否代运营 0 否 1 是" value="${item.agentOperate}" underline="true"/>
+                            <#input id="isInstea" name="厂家代发标识 1 代发打标" value="${item.isInstea}" underline="true"/>
+                            <#input id="isOos" name="是否缺货" value="${item.isOos}" underline="true"/>
+                            <#input id="oosNum" name="缺货数量" value="${item.oosNum}" underline="true"/>
+                            <#input id="editType" name="编辑标记(0:原有产品 1：新替换的产品 2 促销，添加赠品)" value="${item.editType}" underline="true"/>
+                            <#input id="remark" name="编辑替换备注" value="${item.remark}" underline="true"/>
+                            <#input id="pictureUrl" name="" value="${item.pictureUrl}" underline="true"/>
+                            <#input id="tenantId" name="" value="${item.tenantId}" underline="true"/>
+                            <#input id="salesMethod" name="商品销售方式1 直接销售10 上门换货11淘宝补发12淘宝换货13配件2搭销3赠品4补发5换货6对寄7退转换8检修9原件返" value="${item.salesMethod}" underline="true"/>
+                            <#input id="gnum" name="序号,单据行号" value="${item.gnum}" underline="true"/>
+                            <#input id="actualPrice" name="实际成交价" value="${item.actualPrice}" underline="true"/>
+                            <#input id="officeName" name="分办名称--百洋" value="${item.officeName}" underline="true"/>
+                            <#input id="taxFcy" name="明细税费" value="${item.taxFcy}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="TempSoItemInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="TempSoItemInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/tempSoItem/tempSoItem_info.js"></script>
+@}

@@ -1,0 +1,84 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" value="${item.id}" underline="true"/>
+                            <#input id="code" name="代码" value="${item.code}" underline="true"/>
+                            <#input id="name" name="名称" value="${item.name}" underline="true"/>
+                            <#input id="abbr" name="简称" value="${item.abbr}" underline="true"/>
+                            <#input id="isNon3pl" name="自有配送公司自有配送公司(0：3PL,1:自配送)" value="${item.isNon3pl}" underline="true"/>
+                            <#input id="contacter" name="联系人" value="${item.contacter}" underline="true"/>
+                            <#input id="email" name="邮件" value="${item.email}" underline="true"/>
+                            <#input id="telephone" name="电话" value="${item.telephone}" underline="true"/>
+                            <#input id="address" name="地址" value="${item.address}" underline="true"/>
+                            <#input id="domainId" name="平台ID" value="${item.domainId}" underline="true"/>
+                            <#input id="companyId" name="公司ID" value="${item.companyId}" underline="true"/>
+                            <#input id="isDeleted" name="是否删除" value="${item.isDeleted}" underline="true"/>
+                            <#input id="remark" name="备注" value="${item.remark}" underline="true"/>
+                            <#input id="paymentService" name="支付服务支持" value="${item.paymentService}" underline="true"/>
+                            <#input id="deliveryFeature" name="支持配送属性" value="${item.deliveryFeature}" underline="true"/>
+                            <#input id="createTime" name="创建时间" value="${item.createTime}" underline="true"/>
+                            <#input id="createdBy" name="创建人姓名" value="${item.createdBy}" underline="true"/>
+                            <#input id="updateTime" name="最后修改时间" value="${item.updateTime}" underline="true"/>
+                            <#input id="updatedBy" name="修改人姓名" value="${item.updatedBy}" underline="true"/>
+                            <#input id="printConfig" name="打印配置" value="${item.printConfig}" underline="true"/>
+                            <#input id="isWeight" name="是否需要称重" value="${item.isWeight}" underline="true"/>
+                            <#input id="dcZoneCode" name="环号/库区" value="${item.dcZoneCode}" underline="true"/>
+                            <#input id="lineCode" name="滑道号/线路" value="${item.lineCode}" underline="true"/>
+                            <#input id="codeForBill" name="面单编号" value="${item.codeForBill}" underline="true"/>
+                            <#input id="logSysCode" name="日志系统承运商代码" value="${item.logSysCode}" underline="true"/>
+                            <#input id="type" name="类型" value="${item.type}" underline="true"/>
+                            <#input id="shippingPeriod" name="发车时段" value="${item.shippingPeriod}" underline="true"/>
+                            <#input id="website" name="网站" value="${item.website}" underline="true"/>
+                            <#input id="isNeedPrint" name="是否打印面单" value="${item.isNeedPrint}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="tenantId" name="" value="${item.tenantId}" underline="true"/>
+                            <#input id="appKey" name="配送商认证key" value="${item.appKey}" underline="true"/>
+                            <#input id="appSecret" name="配送商认证密匙" value="${item.appSecret}" underline="true"/>
+                            <#input id="appToken" name="配送商认证token" value="${item.appToken}" underline="true"/>
+                            <#input id="contentUrl" name="配送商认证URL" value="${item.contentUrl}" underline="true"/>
+                            <#input id="backupUrl" name="配送商认证备份URL" value="${item.backupUrl}" underline="true"/>
+                            <#input id="ext1" name="扩展字段1" value="${item.ext1}" underline="true"/>
+                            <#input id="ext2" name="扩展字段2" value="${item.ext2}" underline="true"/>
+                            <#input id="ext3" name="扩展字段3" value="${item.ext3}" underline="true"/>
+                            <#input id="ext4" name="扩展字段4" value="${item.ext4}" underline="true"/>
+                            <#input id="ext5" name="扩展字段5" value="${item.ext5}" underline="true"/>
+                            <#input id="logisticsCompanyId" name="物流公司id" value="${item.logisticsCompanyId}" underline="true"/>
+                            <#input id="warehouseId" name="仓库id" value="${item.warehouseId}" underline="true"/>
+                            <#input id="logisticsCompanyCode" name="物流公司编码" value="${item.logisticsCompanyCode}" underline="true"/>
+                            <#input id="shopId" name="店铺" value="${item.shopId}" underline="true"/>
+                            <#input id="productCodes" name="排除编码" value="${item.productCodes}" underline="true"/>
+                            <#input id="province" name="" value="${item.province}" underline="true"/>
+                            <#input id="city" name="" value="${item.city}" underline="true"/>
+                            <#input id="county" name="" value="${item.county}" underline="true"/>
+                            <#input id="expressStationName" name="网点名称" value="${item.expressStationName}" underline="true"/>
+                            <#input id="monthlyAccount" name="月结账号" value="${item.monthlyAccount}" underline="true"/>
+                            <#input id="zipCode" name="邮编" value="${item.zipCode}" underline="true"/>
+                            <#input id="platformCode" name="" value="${item.platformCode}" underline="true"/>
+                            <#input id="carrierChargeType" name="快递计费方式1:按单计费;2:按箱计费" value="${item.carrierChargeType}" underline="true"/>
+                            <#input id="isSyncWms" name="同步至WMS 0-未同步，1-已同步" value="${item.isSyncWms}" underline="true"/>
+                            <#input id="waybillType" name="" value="${item.waybillType}" underline="true"/>
+                            <#input id="isByCarton" name="是否按单交接" value="${item.isByCarton}" underline="true"/>
+                            <#input id="mobile" name="手机" value="${item.mobile}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="MdCarrierInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MdCarrierInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/bussiness/mdCarrier/mdCarrier_info.js"></script>
+@}

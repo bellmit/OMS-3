@@ -1,0 +1,41 @@
+@layout("/common/_container.html"){
+<span id="failId" style="color: red;font-size: 20px"></span>
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="houseFourmId">
+
+            <input type="hidden" id="id" value="">
+		
+            <div class="row">
+            
+            <div class="col-sm-4">
+                    <#input id="productName" name="组合品名称" underline="true"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="productCode" name="组合商品编码" underline="true" placeholder="可以不填 不填时自动生成商品编码"/>
+                </div>
+                 
+                 <div class="col-sm-4">
+                    <#select id="merchantId" name="商家" underline="true">
+                        <option value="">请选择</option>
+                        @for(mdMerchant in mdMerchantList){
+                            <option value="${mdMerchant.id}">${mdMerchant.merchantName}</option>
+                        @}
+                    </#select>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="categoryResponsible" name="品类负责人" underline="true" value="${cateName}" disabled="disabled"/>
+                </div>
+                 <#button btnCss="info" name="添加商品"  icon="fa-check" clickFun="MdProductAdd.openProductEil()"/>  
+                 <!-- <#button btnCss="info" name="添加商品"  icon="fa-check" clickFun="xx()"/>  -->
+            </div>
+            <div class="col-sm-10">
+                    <#button btnCss="info" name="保存" id="ensure" icon="fa-check" clickFun="ajaxAddSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MdProductInfoDlg.close()"/>
+                </div>
+			<#table id="addMdProductTable"/>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/mdComboProduct/mProduct.js"></script>
+@}

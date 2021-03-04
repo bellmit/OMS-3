@@ -1,0 +1,158 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id}">
+			<input type="hidden" id="condition" value="${orderCode}">
+            <div class="row" style="margin-bottom: 10px">
+                <div class="col-sm-12">
+                    <h3>订单基本信息:</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="platformOrderCode" readonly="readonly" name="平台订单" value="${item.platformOrderCode}" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformName" readonly="readonly" name="渠道" value="${item.platformName}" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="merchantName" readonly="readonly" name="商家" value="${merchantName}" underline="false"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="shopName" readonly="readonly" name="店铺" value="${item.shopName}" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="source" readonly="readonly" name="订单来源" value="${item.source}" underline="false"/>
+                </div>
+                <!--<div class="col-sm-4">-->
+                    <!--<#input id="" readonly="readonly" name="买家ID" value="" underline="false"/>-->
+                <!--</div>-->
+                <div class="col-sm-4">
+                    <#input id="buyerNick" readonly="readonly" name="买家ID" value="${item.buyerNick}" underline="false"/>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <#input id="timeString" readonly="readonly" name="下单时间" value="${timeString}" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="orderStatus" readonly="readonly" name="订单状态" value="${orderStatus}" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="status" readonly="readonly" name="处理状态" value="${status}" underline="false"/>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <#input id="payType" readonly="readonly" name="支付方式" value="${payType}" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="" readonly="readonly" name="支付渠道" value="" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="orderPayment" readonly="readonly" name="实付金额" value="${item.orderPayment}" underline="false"/>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <#input id="paidTime" readonly="readonly" name="付款时间" value="${item.paidTime}" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="taxFcy" readonly="readonly" name="税费" value="${item.taxFcy}" underline="false"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button data-toggle="dropdown" style="border: 0px;width: 100px;text-align: left;font-weight: bold;font-size: 12px;text-align: center" class="btn btn-white dropdown-toggle"
+                                    type="button">错误原因
+                            </button>
+                        </div>
+                        <textarea  readonly="readonly" value="请填写XXXXX" class="form-control" id="errReason" >${item.errReason}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px">
+                <div class="col-sm-12">
+                    <h3>物流信息:</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="receiverName" readonly="readonly" name="收货人姓名" value="${item.receiverName}" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformProvince" readonly="readonly" name="收货地址_省" value="${item.platformProvince}" underline="false"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="platformCity" readonly="readonly" name="收货地址_市" value="${item.platformCity}" underline="false"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="platformCounty" readonly="readonly" name="收货地址_区" value="${item.platformCounty}" underline="false"/>
+                </div>
+                <div class="col-sm-8">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button data-toggle="dropdown" style="border: 0px;width: 100px;text-align: left;font-weight: bold;font-size: 12px;" class="btn btn-white dropdown-toggle"
+                                    type="button">收货人地址
+                            </button>
+                        </div>
+                        <input readonly="readonly" value="${item.receiverAddress}" class="form-control" id="receiverAddress"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px">
+                <div class="col-sm-12">
+                    <h3>备注信息:</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button data-toggle="dropdown" style="border: 0px;width: 100px;text-align: left;font-weight: bold;font-size: 12px;" class="btn btn-white dropdown-toggle"
+                                        type="button">买家备注
+                                </button>
+                            </div>
+                            <input readonly="readonly" value="${item.customerRemark}" class="form-control" id="customerRemark"/>
+                        </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button data-toggle="dropdown" style="border: 0px;width: 100px;text-align: left;font-weight: bold;font-size: 12px;" class="btn btn-white dropdown-toggle"
+                                    type="button">卖家备注
+                            </button>
+                        </div>
+                        <input readonly="readonly" value="${item.csRemark}" class="form-control" id="csRemark"/>
+                    </div>
+                 </div>
+            </div>
+            <div class="row" style="margin-top: 10px">
+                <div class="col-sm-12">
+                    <h3>商品信息:</h3>
+                </div>
+            </div>
+           <#table id="TempSoItemTable"/>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/tempSo/tempSo_info.js"></script>
+<script src="${ctxPath}/static/modular/business/tempSoItem/tempSoShowItem.js"></script>
+@}
+<style>
+
+</style>

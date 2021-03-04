@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.BrandMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.Brand">
+        <id column="id" property="id"/>
+        <result column="brand_name" property="brandName"/>
+        <result column="brand_company_name" property="brandCompanyName"/>
+        <result column="brand_alias" property="brandAlias"/>
+        <result column="brand_logo_url" property="brandLogoUrl"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="tenant_id" property="tenantId"/>
+        <result column="code" property="code"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, brand_name AS brandName, brand_company_name AS brandCompanyName, brand_alias AS brandAlias, brand_logo_url AS brandLogoUrl, create_time AS createTime, update_time AS updateTime, is_deleted AS isDeleted, updated_by AS updatedBy, created_by AS createdBy, tenant_id AS tenantId, code
+    </sql>
+
+    <select id="selectBrandByTenantId" resultType="com.baiyang.oms.modular.business.model.Brand">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM md_brand
+        where tenant_id = #{tenantId}
+    </select>
+
+    <select id="selectBrandByTenantId" resultType="com.baiyang.oms.modular.business.model.Brand">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM md_brand
+        where tenant_id = #{tenantId}
+    </select>
+
+    <select id="selectAllList" resultType="map" parameterType="com.baiyang.oms.modular.business.model.Brand">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM md_brand
+        where is_deleted = 0
+        <if test="brand.tenantId != null and brand.tenantId != ''">
+            AND  <![CDATA[tenant_id  =  #{brand.tenantId}]]>
+        </if>
+        <if test="brand.brandName != null and brand.brandName != ''">
+            AND brand_name LIKE CONCAT("%",#{brand.brandName},"%")
+        </if>
+        <if test="brand.brandCompanyName != null and brand.brandCompanyName != ''">
+            AND brand_company_name LIKE CONCAT("%",#{brand.brandCompanyName},"%")
+        </if>
+        <if test="brand.brandAlias != null and brand.brandAlias !=''">
+            AND brand_alias LIKE CONCAT("%",#{brand.brandAlias},"%")
+        </if>
+        <if test="brand.code != null and brand.code !=''">
+            AND code LIKE CONCAT("%",#{brand.code},"%")
+        </if>
+        <if test="keyword != null and keyword !=''">
+            AND (code LIKE CONCAT("%",#{keyword},"%") or
+            brand_alias LIKE CONCAT("%",#{keyword},"%") or
+            brand_company_name LIKE CONCAT("%",#{keyword},"%") or
+            brand_name LIKE CONCAT("%",#{keyword},"%")
+            )
+        </if>
+    </select>
+
+
+</mapper>

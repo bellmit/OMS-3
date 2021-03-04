@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.AsnMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.Asn">
+        <id column="id" property="id" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="created_by" property="createdBy" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="ref_order_id" property="refOrderId" />
+        <result column="ref_order_code" property="refOrderCode" />
+        <result column="po_id" property="poId" />
+        <result column="po_code" property="poCode" />
+        <result column="warehouse_id" property="warehouseId" />
+        <result column="merchant_id" property="merchantId" />
+        <result column="supplier_id" property="supplierId" />
+        <result column="asn_code" property="asnCode" />
+        <result column="asn_type" property="asnType" />
+        <result column="status" property="status" />
+        <result column="verified_receive_time" property="verifiedReceiveTime" />
+        <result column="start_receive_time" property="startReceiveTime" />
+        <result column="finish_receive_time" property="finishReceiveTime" />
+        <result column="expected_valid_num" property="expectedValidNum" />
+        <result column="received_num" property="receivedNum" />
+        <result column="expt_arrive_time" property="exptArriveTime" />
+        <result column="prod_state" property="prodState" />
+        <result column="delivery_type" property="deliveryType" />
+        <result column="period_valid" property="periodValid" />
+        <result column="reserve_code" property="reserveCode" />
+        <result column="reserve_date" property="reserveDate" />
+        <result column="valid_date" property="validDate" />
+        <result column="business_type" property="businessType" />
+        <result column="remark" property="remark" />
+        <result column="is_sent" property="isSent" />
+        <result column="rewrite_flag" property="rewriteFlag" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="grf_code" property="grfCode" />
+        <result column="grf_type" property="grfType" />
+        <result column="so_code" property="soCode" />
+        <result column="do_code" property="doCode" />
+        <result column="to_id" property="toId" />
+        <result column="from_warehouse_id" property="fromWarehouseId" />
+        <result column="damage_quality" property="damageQuality" />
+        <result column="normal_quality" property="normalQuality" />
+        <result column="tenant_id" property="tenantId" />
+        <result column="is_deal" property="isDeal" />
+        <result column="outer_order_code" property="outerOrderCode" />
+        <result column="outer_order_type" property="outerOrderType" />
+        <result column="platform_id" property="platformId" />
+        <result column="sub_type" property="subType" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, create_time AS createTime, update_time AS updateTime, created_by AS createdBy, updated_by AS updatedBy, ref_order_id AS refOrderId, ref_order_code AS refOrderCode, po_id AS poId, po_code AS poCode, warehouse_id AS warehouseId, merchant_id AS merchantId, supplier_id AS supplierId, asn_code AS asnCode, asn_type AS asnType, status, verified_receive_time AS verifiedReceiveTime, start_receive_time AS startReceiveTime, finish_receive_time AS finishReceiveTime, expected_valid_num AS expectedValidNum, received_num AS receivedNum, expt_arrive_time AS exptArriveTime, prod_state AS prodState, delivery_type AS deliveryType, period_valid AS periodValid, reserve_code AS reserveCode, reserve_date AS reserveDate, valid_date AS validDate, business_type AS businessType, remark, is_sent AS isSent, rewrite_flag AS rewriteFlag, is_deleted AS isDeleted, grf_code AS grfCode, grf_type AS grfType, so_code AS soCode, do_code AS doCode, to_id AS toId, from_warehouse_id AS fromWarehouseId, damage_quality AS damageQuality, normal_quality AS normalQuality, tenant_id AS tenantId, is_deal AS isDeal, outer_order_code AS outerOrderCode, outer_order_type AS outerOrderType, platform_id AS platformId, sub_type AS subType
+    </sql>
+
+</mapper>

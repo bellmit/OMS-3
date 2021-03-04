@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.ManufacturerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.Manufacturer">
+        <id column="id" property="id" />
+        <result column="mf_company_name" property="mfCompanyName" />
+        <result column="mf_company_ename" property="mfCompanyEname" />
+        <result column="mf_url" property="mfUrl" />
+        <result column="mf_pic_url" property="mfPicUrl" />
+        <result column="mf_description" property="mfDescription" />
+        <result column="address" property="address" />
+        <result column="is_sent" property="isSent" />
+        <result column="tenant_id" property="tenantId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, mf_company_name AS mfCompanyName, mf_company_ename AS mfCompanyEname, mf_url AS mfUrl, mf_pic_url AS mfPicUrl, mf_description AS mfDescription, address, is_sent AS isSent, tenant_id AS tenantId
+    </sql>
+
+
+    <select id="selectMerchantByTenantId" resultType="com.baiyang.oms.modular.business.model.Manufacturer">
+        SELECT <include refid="Base_Column_List"/>
+        FROM md_manufacturer
+        where tenant_id = #{tenantId}
+    </select>
+
+</mapper>

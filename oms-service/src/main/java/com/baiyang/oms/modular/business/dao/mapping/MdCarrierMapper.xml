@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.MdCarrierMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.MdCarrier">
+        <result column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="name" property="name" />
+        <result column="abbr" property="abbr" />
+        <result column="is_non_3pl" property="isNon3pl" />
+        <result column="contacter" property="contacter" />
+        <result column="email" property="email" />
+        <result column="telephone" property="telephone" />
+        <result column="address" property="address" />
+        <result column="domain_id" property="domainId" />
+        <result column="company_id" property="companyId" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="remark" property="remark" />
+        <result column="payment_service" property="paymentService" />
+        <result column="delivery_feature" property="deliveryFeature" />
+        <result column="create_time" property="createTime" />
+        <result column="created_by" property="createdBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="print_config" property="printConfig" />
+        <result column="is_weight" property="isWeight" />
+        <result column="dc_zone_code" property="dcZoneCode" />
+        <result column="line_code" property="lineCode" />
+        <result column="code_for_bill" property="codeForBill" />
+        <result column="log_sys_code" property="logSysCode" />
+        <result column="type" property="type" />
+        <result column="shipping_period" property="shippingPeriod" />
+        <result column="website" property="website" />
+        <result column="is_need_print" property="isNeedPrint" />
+        <result column="tenant_id" property="tenantId" />
+        <result column="app_key" property="appKey" />
+        <result column="app_secret" property="appSecret" />
+        <result column="app_token" property="appToken" />
+        <result column="content_url" property="contentUrl" />
+        <result column="backup_url" property="backupUrl" />
+        <result column="ext_1" property="ext1" />
+        <result column="ext_2" property="ext2" />
+        <result column="ext_3" property="ext3" />
+        <result column="ext_4" property="ext4" />
+        <result column="ext_5" property="ext5" />
+        <result column="logistics_company_id" property="logisticsCompanyId" />
+        <result column="warehouse_id" property="warehouseId" />
+        <result column="logistics_company_code" property="logisticsCompanyCode" />
+        <result column="shop_id" property="shopId" />
+        <result column="product_codes" property="productCodes" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="county" property="county" />
+        <result column="express_station_name" property="expressStationName" />
+        <result column="monthly_account" property="monthlyAccount" />
+        <result column="zip_code" property="zipCode" />
+        <result column="platform_code" property="platformCode" />
+        <result column="carrier_charge_type" property="carrierChargeType" />
+        <result column="is_sync_wms" property="isSyncWms" />
+        <result column="waybill_type" property="waybillType" />
+        <result column="is_by_carton" property="isByCarton" />
+        <result column="mobile" property="mobile" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, name, abbr, is_non_3pl AS isNon3pl, contacter, email, telephone, address, domain_id AS domainId, company_id AS companyId, is_deleted AS isDeleted, remark, payment_service AS paymentService, delivery_feature AS deliveryFeature, create_time AS createTime, created_by AS createdBy, update_time AS updateTime, updated_by AS updatedBy, print_config AS printConfig, is_weight AS isWeight, dc_zone_code AS dcZoneCode, line_code AS lineCode, code_for_bill AS codeForBill, log_sys_code AS logSysCode, type, shipping_period AS shippingPeriod, website, is_need_print AS isNeedPrint, tenant_id AS tenantId, app_key AS appKey, app_secret AS appSecret, app_token AS appToken, content_url AS contentUrl, backup_url AS backupUrl, ext_1 AS ext1, ext_2 AS ext2, ext_3 AS ext3, ext_4 AS ext4, ext_5 AS ext5, logistics_company_id AS logisticsCompanyId, warehouse_id AS warehouseId, logistics_company_code AS logisticsCompanyCode, shop_id AS shopId, product_codes AS productCodes, province, city, county, express_station_name AS expressStationName, monthly_account AS monthlyAccount, zip_code AS zipCode, platform_code AS platformCode, carrier_charge_type AS carrierChargeType, is_sync_wms AS isSyncWms, waybill_type AS waybillType, is_by_carton AS isByCarton, mobile
+    </sql>
+    
+    <select id="getCarrierIdAndName" resultType="map" parameterType="java.lang.Integer">
+    SELECT id ,name
+        FROM md_carrier where tenant_id = #{tenantId} and is_deleted =0
+    </select>
+    
+    <select id="getCarryMapByName"  parameterType="map" resultType="map">
+    SELECT id ,name ,logistics_company_code as logisticsCompanyCode
+        FROM md_carrier 
+        <trim prefix="WHERE" prefixOverrides="AND">
+			  <if test="name != null and name != ''">
+                 AND name = #{name}
+              </if>	
+              <if test="tenantId != null">
+                 AND tenant_id = #{tenantId}
+              </if>	
+               <if test="id != null">
+                 AND id = #{id}
+              </if>	
+              and is_deleted =0
+        </trim>
+    </select>
+
+</mapper>

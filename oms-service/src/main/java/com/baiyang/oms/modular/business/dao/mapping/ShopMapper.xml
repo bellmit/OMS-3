@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.ShopMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.Shop">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="name" property="name"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="merchant_id" property="merchantId"/>
+        <result column="platform_id" property="platformId"/>
+        <result column="app_key" property="appKey"/>
+        <result column="app_secret" property="appSecret"/>
+        <result column="session_key" property="sessionKey"/>
+        <result column="remark" property="remark"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="shop_trade_user_name" property="shopTradeUserName"/>
+        <result column="shop_trade_user_id" property="shopTradeUserId"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_name" property="createName"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_name" property="updateName"/>
+        <result column="contacter" property="contacter"/>
+        <result column="email" property="email"/>
+        <result column="mobile" property="mobile"/>
+        <result column="telephone" property="telephone"/>
+        <result column="url" property="url"/>
+        <result column="business_id" property="businessId"/>
+        <result column="cainiao_code" property="cainiaoCode"/>
+        <result column="sync_stock" property="syncStock"/>
+        <result column="stock_percentage" property="stockPercentage"/>
+        <result column="sync_express" property="syncExpress"/>
+        <result column="tenant_id" property="tenantId"/>
+        <result column="sync_order" property="syncOrder"/>
+        <result column="is_agent" property="isAgent"/>
+        <result column="sync_stock_time" property="syncStockTime"/>
+        <result column="sync_order_time" property="syncOrderTime"/>
+        <result column="is_online" property="isOnline"/>
+        <result column="other_switch" property="otherSwitch"/>
+        <result column="expire_time" property="expireTime"/>
+        <result column="is_syn_wms" property="isSynWms"/>
+        <result column="sync_cancel_order" property="syncCancelOrder"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, name, nick_name AS nickName, merchant_id AS merchantId, platform_id AS platformId, app_key AS appKey, app_secret AS appSecret, session_key AS sessionKey, remark, is_deleted AS isDeleted, shop_trade_user_name AS shopTradeUserName, shop_trade_user_id AS shopTradeUserId, create_by AS createBy, create_name AS createName, create_time AS createTime, update_by AS updateBy, update_time AS updateTime, update_name AS updateName, contacter, email, mobile, telephone, url, business_id AS businessId, cainiao_code AS cainiaoCode, sync_stock AS syncStock, stock_percentage AS stockPercentage, sync_express AS syncExpress, tenant_id AS tenantId, sync_order AS syncOrder, is_agent AS isAgent, sync_stock_time AS syncStockTime, sync_order_time AS syncOrderTime, is_online AS isOnline, other_switch AS otherSwitch, expire_time AS expireTime, is_syn_wms AS isSynWms, sync_cancel_order AS syncCancelOrder
+    </sql>
+    <select id="selectBySearchCondition" resultType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM shop WHERE 1=1
+        <if test="nameSearch != null and nameSearch != ''">
+            AND name LIKE CONCAT('%',#{nameSearch},'%')
+        </if>
+        <if test="platformNameSearch != null and platformNameSearch != ''">
+            AND platform_id IN (SELECT id FROM platform WHERE platform_name LIKE CONCAT('%',#{platformNameSearch},'%'))
+        </if>
+        <if test="isDeletedSearch != null and isDeletedSearch != ''">
+            AND is_deleted = #{isDeletedSearch}
+        </if>
+        <if test="isOnlineSearch != null and isOnlineSearch != ''">
+            AND is_online = #{isOnlineSearch}
+        </if>
+        <if test="merchantIdSearch != null and merchantIdSearch != ''">
+            AND merchant_id =#{merchantIdSearch}
+        </if>
+        <if test="tenantId != null and tenantId != ''">
+            AND tenant_id =#{tenantId}
+        </if>
+    </select>
+    <select id="selectByCatchedOrderCondition" resultType="com.baiyang.oms.modular.business.model.Shop">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM shop
+        WHERE sync_order = #{sync_order} AND is_deleted = #{is_deleted}
+    </select>
+
+    <select id="selectMdShop" resultType="com.baiyang.oms.modular.system.warpper.DataRuleWrapper">
+        SELECT id as code , name as ruleName
+        FROM shop
+    </select>
+    <select id="selectAllUsableShop" resultType="com.baiyang.oms.modular.business.model.Shop">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM shop
+        WHERE is_deleted = 0 AND tenant_id = #{tenantId}
+    </select>
+
+    <select id="getShopIdAndName" resultType="map" parameterType="java.lang.Integer">
+     SELECT id,name
+        FROM shop
+        WHERE is_deleted = 0 AND tenant_id = #{tenantId}
+    </select>
+
+    <select id="pageGrade" resultType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM shop WHERE 1=1
+        <if test="keyword != null and keyword != ''">
+            AND (
+            name like CONCAT('%',#{keyword},'%') or
+            nick_name like CONCAT('%',#{keyword},'%')
+            )
+        </if>
+        <if test="shop.name != null and shop.name != ''">
+            AND name like CONCAT('%',#{shop.name},'%')
+        </if>
+        <if test="shop.tenantId != null and shop.tenantId != ''">
+            AND tenant_id = #{shop.tenantId}
+        </if>
+        <if test="shop.isDeleted != null and shop.isDeleted != ''">
+            AND is_deleted = #{shop.isDeleted}
+        </if>
+        <if test="shop.merchantId != null and shop.merchantId != ''">
+            AND merchant_id = #{shop.merchantId}
+        </if>
+        <if test="shop.platformId != null and shop.platformId != ''">
+            AND platform_id = #{shop.platformId}
+        </if>
+        <if test="shop.isOnline != null and shop.isOnline != ''">
+            AND is_online = #{shop.isOnline}
+        </if>
+    </select>
+
+
+</mapper>

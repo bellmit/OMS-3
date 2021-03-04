@@ -1,0 +1,26 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="type" value="${type}">
+
+            <div class="row btn-group-m-t">
+                    @for(role in ruleList){
+                        <input type="checkbox" name="rule" value="${role.code}">${role.ruleName}
+                    @}
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="确认" id="ensure" icon="fa-check" clickFun="ChooseRule.chooseRule()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ChooseRule.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/dataPermissionGroup/chooseRule.js"></script>
+@}

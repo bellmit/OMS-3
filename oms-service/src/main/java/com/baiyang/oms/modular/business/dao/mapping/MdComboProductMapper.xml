@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.MdComboProductMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.MdComboProduct">
+        <id column="id" property="id"/>
+        <result column="num" property="num"/>
+        <result column="main_product_id" property="mainProductId"/>
+        <result column="single_product_id" property="singleProductId"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="tenant_id" property="tenantId"/>
+        <result column="cost_rate" property="costRate"/>
+        <result column="price" property="price"/>
+        <result column="share_price" property="sharePrice"/>
+        <result column="merchant_id" property="merchantId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <select id="getMdComboProductsByMainProductId" resultMap="BaseResultMap" parameterType="long">
+          select * from md_combo_product where main_product_id =#{mainProductId}
+    </select>
+    <select id="getMdComboProducts" resultType="com.baiyang.oms.modular.business.model.MdComboProduct">
+        SELECT id,num,main_product_id as mainProductId,single_product_id as singleProductId,
+        tenant_id as tenantId,cost_rate as costRate,price,share_price as sharePrice , merchant_id as merchantId
+         from md_test_combo_product where main_product_id in(SELECT id from md_test_product where product_type = 3 and tenant_id =172)
+    </select>
+    <select id="getMdProductsCode" resultType="string" parameterType="int">
+        SELECT product_code as productCode from md_test_product where id = #{id}
+    </select>
+
+    <delete id="deleteAllByMainProductId" parameterType="long">
+        delete from  md_combo_product where main_product_id =#{mainProductId}
+    </delete>
+
+
+</mapper>

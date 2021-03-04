@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.TempSoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.TempSo">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="platform_order_code" property="platformOrderCode" />
+        <result column="platform_id" property="platformId" />
+        <result column="platform_name" property="platformName" />
+        <result column="status" property="status" />
+        <result column="err_reason" property="errReason" />
+        <result column="customer_account" property="customerAccount" />
+        <result column="customer_remark" property="customerRemark" />
+        <result column="cs_remark" property="csRemark" />
+        <result column="create_time" property="createTime" />
+        <result column="paid_time" property="paidTime" />
+        <result column="pay_type" property="payType" />
+        <result column="update_time" property="updateTime" />
+        <result column="expect_receive_date" property="expectReceiveDate" />
+        <result column="expect_receive_time" property="expectReceiveTime" />
+        <result column="receiver_name" property="receiverName" />
+        <result column="receiver_address" property="receiverAddress" />
+        <result column="receiver_post_code" property="receiverPostCode" />
+        <result column="receiver_phone" property="receiverPhone" />
+        <result column="balance_used" property="balanceUsed" />
+        <result column="receiver_mobile" property="receiverMobile" />
+        <result column="amount" property="amount" />
+        <result column="product_amount" property="productAmount" />
+        <result column="fee" property="fee" />
+        <result column="merchant_discount" property="merchantDiscount" />
+        <result column="platform_discount" property="platformDiscount" />
+        <result column="order_payment" property="orderPayment" />
+        <result column="other_fee" property="otherFee" />
+        <result column="platform_fee" property="platformFee" />
+        <result column="cod_amount" property="codAmount" />
+        <result column="delivery_method_type" property="deliveryMethodType" />
+        <result column="merchant_id" property="merchantId" />
+        <result column="shop_id" property="shopId" />
+        <result column="shop_name" property="shopName" />
+        <result column="invoice_title" property="invoiceTitle" />
+        <result column="need_invoice" property="needInvoice" />
+        <result column="invoice_content" property="invoiceContent" />
+        <result column="update_flag" property="updateFlag" />
+        <result column="order_status" property="orderStatus" />
+        <result column="modify_time" property="modifyTime" />
+        <result column="is_detail_invoice" property="isDetailInvoice" />
+        <result column="platform_province" property="platformProvince" />
+        <result column="platform_city" property="platformCity" />
+        <result column="platform_county" property="platformCounty" />
+        <result column="so_status" property="soStatus" />
+        <result column="prescription" property="prescription" />
+        <result column="so_sync_failed" property="soSyncFailed" />
+        <result column="so_sync_failed_reason" property="soSyncFailedReason" />
+        <result column="sync_time" property="syncTime" />
+        <result column="logistics_no" property="logisticsNo" />
+        <result column="invoice_type" property="invoiceType" />
+        <result column="is_allocate" property="isAllocate" />
+        <result column="delivery_date" property="deliveryDate" />
+        <result column="finish_time" property="finishTime" />
+        <result column="tenant_id" property="tenantId" />
+        <result column="buyer_nick" property="buyerNick" />
+        <result column="logistics_company_code" property="logisticsCompanyCode" />
+        <result column="platform_town" property="platformTown" />
+        <result column="cainiao_shipping" property="cainiaoShipping" />
+        <result column="logistics_company" property="logisticsCompany" />
+        <result column="invoice_tax_no" property="invoiceTaxNo" />
+        <result column="store_code" property="storeCode" />
+        <result column="parent_platform_order_code" property="parentPlatformOrderCode" />
+        <result column="cross_border" property="crossBorder" />
+        <result column="freight_fcode" property="freightFcode" />
+        <result column="tax_fcy" property="taxFcy" />
+        <result column="curr_code" property="currCode" />
+        <result column="insurance_amount" property="insuranceAmount" />
+        <result column="receive_type" property="receiveType" />
+        <result column="receive_no" property="receiveNo" />
+        <result column="buyer_name" property="buyerName" />
+        <result column="buyer_telephone" property="buyerTelephone" />
+        <result column="pay_company_code" property="payCompanyCode" />
+        <result column="third_party_pay_no" property="thirdPartyPayNo" />
+        <result column="pay_order_no" property="payOrderNo" />
+        <result column="company_name" property="companyName" />
+        <result column="company_code" property="companyCode" />
+        <result column="e_commerce_code" property="eCommerceCode" />
+        <result column="e_commerce_name" property="eCommerceName" />
+        <result column="source" property="source" />
+        <result column="payment_remark" property="paymentRemark" />
+        <result column="voucher_code" property="voucherCode" />
+        <result column="voucher_title" property="voucherTitle" />
+        <result column="voucher_price" property="voucherPrice" />
+        <result column="order_voucher_price" property="orderVoucherPrice" />
+        <result column="join_type" property="joinType" />
+        <result column="payment_code" property="paymentCode" />
+        <result column="payment_name" property="paymentName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id AS userId, platform_order_code AS platformOrderCode, platform_id AS platformId, platform_name AS platformName, status, err_reason AS errReason, customer_account AS customerAccount, customer_remark AS customerRemark, cs_remark AS csRemark, create_time AS createTime, paid_time AS paidTime, pay_type AS payType, update_time AS updateTime, expect_receive_date AS expectReceiveDate, expect_receive_time AS expectReceiveTime, receiver_name AS receiverName, receiver_address AS receiverAddress, receiver_post_code AS receiverPostCode, receiver_phone AS receiverPhone, balance_used AS balanceUsed, receiver_mobile AS receiverMobile, amount, product_amount AS productAmount, fee, merchant_discount AS merchantDiscount, platform_discount AS platformDiscount, order_payment AS orderPayment, other_fee AS otherFee, platform_fee AS platformFee, cod_amount AS codAmount, delivery_method_type AS deliveryMethodType, merchant_id AS merchantId, shop_id AS shopId, shop_name AS shopName, invoice_title AS invoiceTitle, need_invoice AS needInvoice, invoice_content AS invoiceContent, update_flag AS updateFlag, order_status AS orderStatus, modify_time AS modifyTime, is_detail_invoice AS isDetailInvoice, platform_province AS platformProvince, platform_city AS platformCity, platform_county AS platformCounty, so_status AS soStatus, prescription, so_sync_failed AS soSyncFailed, so_sync_failed_reason AS soSyncFailedReason, sync_time AS syncTime, logistics_no AS logisticsNo, invoice_type AS invoiceType, is_allocate AS isAllocate, delivery_date AS deliveryDate, finish_time AS finishTime, tenant_id AS tenantId, buyer_nick AS buyerNick, logistics_company_code AS logisticsCompanyCode, platform_town AS platformTown, cainiao_shipping AS cainiaoShipping, logistics_company AS logisticsCompany, invoice_tax_no AS invoiceTaxNo, store_code AS storeCode, parent_platform_order_code AS parentPlatformOrderCode, cross_border AS crossBorder, freight_fcode AS freightFcode, tax_fcy AS taxFcy, curr_code AS currCode, insurance_amount AS insuranceAmount, 
+        receive_type AS receiveType, receive_no AS receiveNo, pay_company_code AS payCompanyCode, third_party_pay_no AS thirdPartyPayNo, 
+        pay_order_no AS payOrderNo, company_name AS companyName, company_code AS companyCode, e_commerce_code AS eCommerceCode, 
+        e_commerce_name AS eCommerceName, source, payment_remark AS paymentRemark, buyer_name AS buyerName,buyer_telephone AS buyerTelephone,
+        voucher_code as voucherCode,voucher_title as voucherTitle,voucher_price as voucherPrice,order_voucher_price as orderVoucherPrice,
+        join_type as joinType, payment_code as paymentCode, payment_name as paymentName
+    </sql>
+    
+     <sql id="Search_List">
+         id,  platform_order_code AS platformOrderCode,  platform_name AS platformName, status,
+         err_reason AS errReason,  customer_remark AS customerRemark, cs_remark AS csRemark, create_time AS createTime, 
+         paid_time AS paidTime, pay_type AS payType,   receiver_address AS receiverAddress, 
+		 amount, product_amount AS productAmount, fee, merchant_discount AS merchantDiscount, 
+		 platform_discount AS platformDiscount, order_payment AS orderPayment,  shop_name AS shopName,  order_status AS orderStatus,  
+		 logistics_no AS logisticsNo,  finish_time AS finishTime,  tax_fcy AS taxFcy,
+		 delivery_method_type AS deliveryMethodType,
+		 insurance_amount AS insuranceAmount,
+		 voucher_code as voucherCode,voucher_title as voucherTitle,voucher_price as voucherPrice,order_voucher_price as orderVoucherPrice,
+        join_type as joinType, payment_code as paymentCode, payment_name as paymentName
+    </sql>
+    <select id="getSearchList" resultType="map" parameterType="map">
+    select
+		<include refid="Search_List" />
+		from temp_so 
+			 <trim prefix="WHERE" prefixOverrides="AND">
+			  <!-- <if test="warehouseName != null and warehouseName != ''">
+                AND warehouse_name LIKE  CONCAT(CONCAT('%',#{warehouseName},'%'))
+              </if>	 -->
+		      <if test="platformOrderCodeSearch != null and platformOrderCodeSearch != ''">
+		        AND platform_order_code = #{platformOrderCodeSearch}
+		      </if>
+		      <if test="merchantIdSearch != null and merchantIdSearch != ''">
+		        AND merchant_id = #{merchantIdSearch}
+		      </if>
+		      <if test="shopIdSearch != null and shopIdSearch != ''">
+		        AND shop_id = #{shopIdSearch}
+		      </if>
+		      <if test="statusSearch != null and statusSearch != ''">
+		        AND status = #{statusSearch}
+		      </if>
+		      <if test="createTimeSearchBegin != null and createTimeSearchBegin != ''">
+		        AND  <![CDATA[create_time >=  #{createTimeSearchBegin}]]>
+		      </if>
+		      <if test="createTimeSearchEnd != null and createTimeSearchEnd != ''">
+		        AND  <![CDATA[create_time <=  #{createTimeSearchEnd}]]>
+		      </if>
+	      </trim>
+    </select>
+    <select id="getTempSoSearchListByPage" resultType="map" parameterType="com.baomidou.mybatisplus.plugins.Page">
+        select
+        <include refid="Base_Column_List"/>
+        from temp_so WHERE 1=1
+        <if test="platformOrderCodeSearchList != null and platformOrderCodeSearchList.size() > 0">
+            AND platform_order_code IN
+            <foreach collection="platformOrderCodeSearchList" item="platformOrderCode" open="(" close=")" separator=",">
+                #{platformOrderCode}
+            </foreach>
+        </if>
+        <if test="platformIdSearch != null and platformIdSearch != ''">
+            AND platform_id = #{platformIdSearch}
+        </if>
+        <if test="merchantIdSearch != null and merchantIdSearch != ''">
+            AND merchant_id = #{merchantIdSearch}
+        </if>
+        <if test="shopIdSearch != null and shopIdSearch != ''">
+            AND shop_id = #{shopIdSearch}
+        </if>
+        <if test="receiverMobileSearch != null and receiverMobileSearch != ''">
+            AND receiver_mobile = #{receiverMobileSearch}
+        </if>
+        <if test="buyerNickSearch != null and buyerNickSearch != ''">
+            AND buyer_nick LIKE CONCAT('%',#{buyerNickSearch},'%')
+        </if>
+        <if test="statusSearch != null and statusSearch != ''">
+            AND status = #{statusSearch}
+        </if>
+        <if test="errReasonSearch != null and errReasonSearch != ''">
+            AND err_reason LIKE CONCAT('%',#{errReasonSearch},'%')
+        </if>
+        <if test="prescriptionSearch != null and prescriptionSearch != ''">
+            AND prescription = #{prescriptionSearch}
+        </if>
+        <if test="orderStatusSearch != null and orderStatusSearch != ''">
+            AND order_status = #{orderStatusSearch}
+        </if>
+        <if test="sourceSearch != null and sourceSearch != ''">
+            <choose>
+                <when test='sourceSearch == "android"'>
+                    AND source LIKE CONCAT('%',#{sourceSearch},'%')
+                </when>
+                <otherwise>
+                    AND source  = #{sourceSearch}
+                </otherwise>
+            </choose>
+        </if>
+        <if test="payTypeSearch != null and payTypeSearch != ''">
+            AND pay_type = #{payTypeSearch}
+        </if>
+        <if test="createTimeSearchBegin != null and createTimeSearchBegin != ''">
+            AND  <![CDATA[create_time >=  #{createTimeSearchBegin}]]>
+        </if>
+        <if test="createTimeSearchEnd != null and createTimeSearchEnd != ''">
+            AND  <![CDATA[create_time <=  #{createTimeSearchEnd}]]>
+        </if>
+        <if test="receiverNameSearch != null and receiverNameSearch != ''">
+            AND receiver_name LIKE CONCAT('%',#{receiverNameSearch},'%')
+        </if>
+        <if test="orderPaymentSearch != null and orderPaymentSearch != ''">
+            AND order_payment = #{orderPaymentSearch}
+        </if>
+        <if test="provinceName != null and provinceName != ''">
+            AND platform_province LIKE CONCAT('%',#{provinceName},'%')
+        </if>
+        <if test="cityName != null and cityName != ''">
+            AND platform_city = #{cityName}
+        </if>
+        <if test="countyName != null and countyName != ''">
+            AND platform_county = #{countyName}
+        </if>
+        <if test="customerRemarkSearch != null and customerRemarkSearch != ''">
+            AND customer_remark LIKE CONCAT('%',#{customerRemarkSearch},'%')
+        </if>
+        <if test="csRemarkSearch != null and csRemarkSearch != ''">
+            AND cs_remark LIKE CONCAT('%',#{csRemarkSearch},'%')
+        </if>
+
+        <if test="paidTimeSearchBegin != null and paidTimeSearchBegin != ''">
+            AND  <![CDATA[paid_time >=  #{paidTimeSearchBegin}]]>
+        </if>
+        <if test="paidTimeSearchEnd != null and paidTimeSearchEnd != ''">
+            AND  <![CDATA[paid_time <=  #{paidTimeSearchEnd}]]>
+        </if>
+
+        <if test="statusArr != null and statusArr != ''">
+            AND status IN
+            <foreach collection="statusArr" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="tenantId != null">
+            AND tenant_id= #{tenantId}
+        </if>
+        <if test="merchantList != null and merchantList.size() > 0">
+            AND merchant_id IN
+            <foreach collection="merchantList" item="merchantId" open="(" close=")" separator=",">
+                #{merchantId}
+            </foreach>
+        </if>
+        <if test="shopList != null and shopList.size() > 0">
+            AND shop_id IN
+            <foreach collection="shopList" item="shopId" open="(" close=")" separator=",">
+                #{shopId}
+            </foreach>
+        </if>
+        order by id desc
+    </select>
+
+    <select id="getTempSoByOrderCode" resultType="com.baiyang.oms.modular.business.model.TempSo" parameterType="string">
+     select
+		<include refid="Base_Column_List" />
+		from temp_so  where platform_order_code =#{orderCode}
+    </select>
+
+    <insert id="saveTempSoBatch" parameterType="java.util.List">
+        insert into temp_so (
+        id, platform_order_code,
+        platform_id, platform_name,status,
+        customer_remark,
+        cs_remark, create_time, paid_time,
+        pay_type, update_time,
+        receiver_name, receiver_address,
+        receiver_phone,
+        receiver_mobile, amount, product_amount,
+        fee,merchant_discount,
+        order_payment,
+        delivery_method_type,merchant_id,
+        shop_id,shop_name,invoice_title,
+        need_invoice,
+        order_status,
+        platform_province,platform_city,platform_county,
+        sync_time,
+        invoice_type,
+        finish_time,tenant_id,buyer_nick,
+        logistics_company_code,
+        logistics_company,invoice_tax_no,store_code,
+        parent_platform_order_code,cross_border,freight_fcode,
+        tax_fcy,curr_code,insurance_amount,
+        receive_type,receive_no,buyer_name,buyer_telephone, pay_company_code,
+        third_party_pay_no,pay_order_no,company_name,
+        company_code,e_commerce_code,e_commerce_name,
+        source,
+        voucher_code,voucher_title,voucher_price,order_voucher_price,join_type,
+        payment_code, payment_name
+        )
+        VALUES
+        <foreach collection="list" index="index" item="item" separator=",">
+            (
+            #{item.id,jdbcType=BIGINT}, #{item.platformOrderCode,jdbcType=VARCHAR},
+            #{item.platformId,jdbcType=INTEGER}, #{item.platformName,jdbcType=VARCHAR},#{item.status,jdbcType=INTEGER},
+            #{item.customerRemark,jdbcType=VARCHAR},
+            #{item.csRemark,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.paidTime,jdbcType=TIMESTAMP},
+            #{item.payType,jdbcType=INTEGER}, #{item.updateTime,jdbcType=TIMESTAMP},
+            #{item.receiverName,jdbcType=VARCHAR}, #{item.receiverAddress,jdbcType=VARCHAR},
+            #{item.receiverPhone,jdbcType=VARCHAR},
+            #{item.receiverMobile,jdbcType=VARCHAR}, #{item.amount,jdbcType=DECIMAL}, #{item.productAmount,jdbcType=DECIMAL},
+            #{item.fee,jdbcType=DOUBLE}, #{item.merchantDiscount,jdbcType=DOUBLE},
+            #{item.orderPayment,jdbcType=DECIMAL},
+            #{item.deliveryMethodType,jdbcType=INTEGER}, #{item.merchantId,jdbcType=BIGINT},
+            #{item.shopId,jdbcType=BIGINT}, #{item.shopName,jdbcType=VARCHAR}, #{item.invoiceTitle,jdbcType=VARCHAR},
+            #{item.needInvoice,jdbcType=INTEGER},
+            #{item.orderStatus,jdbcType=VARCHAR},
+            #{item.platformProvince,jdbcType=VARCHAR},
+            #{item.platformCity,jdbcType=VARCHAR}, #{item.platformCounty,jdbcType=VARCHAR},
+            #{item.syncTime,jdbcType=TIMESTAMP}, #{item.invoiceType,jdbcType=TINYINT},
+            #{item.finishTime,jdbcType=TIMESTAMP},
+            #{item.tenantId,jdbcType=INTEGER}, #{item.buyerNick,jdbcType=VARCHAR}, #{item.logisticsCompanyCode,jdbcType=VARCHAR},
+            #{item.logisticsCompany,jdbcType=VARCHAR},
+            #{item.invoiceTaxNo,jdbcType=VARCHAR}, #{item.storeCode,jdbcType=VARCHAR}, #{item.parentPlatformOrderCode,jdbcType=VARCHAR},
+            #{item.crossBorder,jdbcType=INTEGER}, #{item.freightFcode,jdbcType=VARCHAR}, #{item.taxFcy,jdbcType=DECIMAL},
+            #{item.currCode,jdbcType=VARCHAR}, #{item.insuranceAmount,jdbcType=DECIMAL}, #{item.receiveType,jdbcType=INTEGER},
+            #{item.receiveNo,jdbcType=VARCHAR}, #{item.buyerName,jdbcType=VARCHAR}, #{item.buyerTelephone,jdbcType=VARCHAR}, #{item.payCompanyCode,jdbcType=VARCHAR}, #{item.thirdPartyPayNo,jdbcType=VARCHAR},
+            #{item.payOrderNo,jdbcType=VARCHAR},#{item.companyName,jdbcType=VARCHAR}, #{item.companyCode,jdbcType=VARCHAR},
+            #{item.eCommerceCode,jdbcType=VARCHAR}, #{item.eCommerceName,jdbcType=VARCHAR}, #{item.source,jdbcType=VARCHAR},
+            #{item.voucherCode,jdbcType=VARCHAR},#{item.voucherTitle,jdbcType=VARCHAR},
+            #{item.voucherPrice,jdbcType=DOUBLE},#{item.orderVoucherPrice,jdbcType=DOUBLE},#{item.joinType,jdbcType=VARCHAR},
+            #{item.paymentCode,jdbcType=VARCHAR},#{item.paymentName,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+
+    <select id="getTemSoListByStatus" resultType="com.baiyang.oms.modular.business.model.TempSo" parameterType="map">
+     select
+		<include refid="Base_Column_List" />
+		from temp_so
+
+		 <trim prefix="WHERE" prefixOverrides="AND">
+			  <!-- <if test="warehouseName != null and warehouseName != ''">
+                AND warehouse_name LIKE  CONCAT(CONCAT('%',#{warehouseName},'%'))
+              </if>	 -->
+              <if test="orderStatus != null">
+		        and order_status = #{orderStatus}
+		      </if>
+              
+		      <if test="status != null">
+		        AND status =#{status}
+		      </if>
+		      <if test="platformOrderCode != null">
+		        AND platform_order_code = #{platformOrderCode}
+		      </if>
+		      
+		       <if test="platformOrderCodeArr != null">
+		        AND platform_order_code in
+			      <foreach collection="platformOrderCodeArr" index="index" item="item" open="(" separator="," close=")">
+			            #{item}
+			      </foreach>
+		      </if>
+	      </trim>
+
+    </select>
+
+    <select id="selectTempSoListBySyncTime" resultType="com.baiyang.oms.modular.business.model.TempSo">
+        SELECT <include refid="Base_Column_List"/>
+        FROM temp_so
+        WHERE <![CDATA[sync_time >= #{date_start} AND sync_time < #{date}]]>
+    </select>
+
+    <update id="updateTempSoCsRemarkBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update temp_so
+            <set>
+                cs_remark = #{item.csRemark},
+                update_flag = #{item.updateFlag},
+                sync_time = #{item.syncTime},
+            </set>
+            where platform_order_code = #{item.platformOrderCode,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+
+    <update id="updateTempSoOrderStatusBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update temp_so
+            <set>
+                order_status = #{item.orderStatus},
+                update_flag = #{item.updateFlag},
+                sync_time = #{item.syncTime},
+                paid_time = #{item.paidTime},
+                delivery_method_type = #{item.deliveryMethodType},
+                buyer_nick = #{item.buyerNick},
+                pay_company_code = #{item.payCompanyCode},
+                third_party_pay_no = #{item.thirdPartyPayNo},
+                cross_border = #{item.crossBorder},
+                pay_order_no = #{item.payOrderNo},
+                payment_code = #{item.paymentCode},
+                payment_name = #{item.paymentName},
+            </set>
+            where platform_order_code = #{item.platformOrderCode,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+
+    <update id="updateTempSoPayTypeBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update temp_so
+            <set>
+                pay_type = #{item.payType},
+                update_flag = #{item.updateFlag},
+                sync_time = #{item.syncTime},
+            </set>
+            where platform_order_code = #{item.platformOrderCode,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+
+    <update id="updateTempSoAddressBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update temp_so
+            <set>
+                platform_province = #{item.platformProvince},
+                platform_city = #{item.platformCity},
+                platform_county = #{item.platformCounty},
+                receiver_address = #{item.receiverAddress},
+                update_flag = #{item.updateFlag},
+                sync_time = #{item.syncTime},
+            </set>
+            where platform_order_code = #{item.platformOrderCode,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+    <update id="updateTempSo" parameterType="com.baiyang.oms.modular.business.model.TempSo">
+        update temp_so
+        set  platform_province = #{platformProvince},
+             platform_city = #{platformCity},
+             platform_county = #{platformCounty},
+             receiver_address = #{receiverAddress},
+             pay_type = #{payType},
+             order_status = #{orderStatus},
+             cs_remark = #{csRemark},
+             sync_time = now()
+         where platform_order_code = #{platformOrderCode,jdbcType=VARCHAR}
+    </update>
+    <select id="getPlatformOrderCodeList" resultType="String" parameterType="int">
+        SELECT platform_order_code FROM temp_so
+        <if test="tenantId != null and tenantId != 0">
+            WHERE tenant_id = #{tenantId}
+        </if>
+    </select>
+    <update id="updateTempSoBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update temp_so
+            <set>
+                platform_id = #{item.platformId},
+                platform_name = #{item.platformName}, status = #{item.status},err_reason = #{item.errReason},
+                customer_remark = #{item.customerRemark},
+                cs_remark = #{item.csRemark}, create_time = #{item.createTime}, paid_time = #{item.paidTime},
+                pay_type = #{item.payType}, update_time = #{item.updateTime},
+                receiver_name = #{item.receiverName}, receiver_address = #{item.receiverAddress},
+                receiver_phone = #{item.receiverPhone},
+                receiver_mobile = #{item.receiverMobile}, amount = #{item.amount}, product_amount = #{item.productAmount},
+                fee = #{item.fee}, merchant_discount = #{item.merchantDiscount},
+                order_payment = #{item.orderPayment},
+                delivery_method_type = #{item.deliveryMethodType}, merchant_id = #{item.merchantId},
+                shop_id = #{item.shopId}, shop_name = #{item.shopName}, invoice_title = #{item.invoiceTitle},
+                need_invoice = #{item.needInvoice},
+                update_flag = #{item.updateFlag},
+                order_status = #{item.orderStatus},
+                platform_province = #{item.platformProvince}, platform_city = #{item.platformCity}, platform_county = #{item.platformCounty},
+                sync_time = #{item.syncTime},
+                invoice_type = #{item.invoiceType},
+                finish_time = #{item.finishTime}, tenant_id = #{item.tenantId}, buyer_nick = #{item.buyerNick},
+                logistics_company_code = #{item.logisticsCompanyCode},
+                logistics_company = #{item.logisticsCompany},invoice_tax_no = #{item.invoiceTaxNo},store_code = #{item.storeCode},
+                parent_platform_order_code = #{item.parentPlatformOrderCode},cross_border = #{item.crossBorder},freight_fcode = #{item.freightFcode},
+                tax_fcy = #{item.taxFcy},curr_code = #{item.currCode},insurance_amount = #{item.insuranceAmount},
+                receive_type = #{item.receiveType},receive_no = #{item.receiveNo},buyer_name = #{item.buyerName},buyer_telephone = #{item.buyerTelephone},pay_company_code = #{item.payCompanyCode},
+                third_party_pay_no = #{item.thirdPartyPayNo},pay_order_no = #{item.payOrderNo},company_name = #{item.companyName},
+                company_code = #{item.companyCode},e_commerce_code = #{item.eCommerceCode},e_commerce_name = #{item.eCommerceName},
+                source = #{item.source},
+                voucher_code = #{item.voucherCode},voucher_title = #{item.voucherTitle},voucher_price = #{item.voucherPrice},
+                order_voucher_price = #{item.orderVoucherPrice},join_type = #{item.joinType},
+                payment_code = #{item.paymentCode},payment_name = #{item.paymentName}
+            </set>
+            where platform_order_code = #{item.platformOrderCode,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+    <select id="getTempSoPlatformOrderCodeByStatusAndOrderCode" parameterType="list" resultType="String">
+        SELECT platform_order_code
+        FROM temp_so
+        WHERE
+        status !=0 AND tenant_id = #{tenantId}
+        AND
+        platform_order_code IN
+        <foreach collection="platformOrderCodeList" item="platformOrderCode" open="(" close=")" separator=",">
+            #{platformOrderCode}
+        </foreach>
+    </select>
+    <select id="getTempSoListByPlatformOrderCodeList" parameterType="list" resultType="com.baiyang.oms.modular.business.model.TempSo">
+        SELECT <include refid="Base_Column_List"/>
+        FROM temp_so
+        WHERE
+        platform_order_code IN
+        <foreach collection="platformOrderCodeStatusErrorList" item="platformOrderCode" open="(" close=")" separator=",">
+            #{platformOrderCode}
+        </foreach>
+    </select>
+    <update id="updateTempSoStatus">
+        UPDATE temp_so
+        SET status = 0, err_reason = #{errReason}, sync_time = now()
+        WHERE
+        platform_order_code = #{abnormalGoodsPlatformOrderCode}
+    </update>
+    <select id="getUnAbnormalGoodsTempSoByStatusAndOrderCode" resultType="com.baiyang.oms.modular.business.model.TempSo">
+        SELECT <include refid="Base_Column_List"/>
+        FROM temp_so
+        WHERE status !=2 AND platform_order_code = #{abnormalGoodsPlatformOrderCode}
+    </select>
+    <select id="getTempSoListByExportCondition" resultType="com.baiyang.oms.modular.business.model.TempSo" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from temp_so WHERE 1=1
+        <if test="platformOrderCodeSearchList != null and platformOrderCodeSearchList.size() > 0">
+            AND platform_order_code IN
+            <foreach collection="platformOrderCodeSearchList" item="platformOrderCode" open="(" close=")" separator=",">
+                #{platformOrderCode}
+            </foreach>
+        </if>
+        <if test="platformIdSearch != null and platformIdSearch != ''">
+            AND platform_id = #{platformIdSearch}
+        </if>
+        <if test="merchantIdSearch != null and merchantIdSearch != ''">
+            AND merchant_id = #{merchantIdSearch}
+        </if>
+        <if test="shopIdSearch != null and shopIdSearch != ''">
+            AND shop_id = #{shopIdSearch}
+        </if>
+        <if test="receiverMobileSearch != null and receiverMobileSearch != ''">
+            AND receiver_mobile = #{receiverMobileSearch}
+        </if>
+        <if test="buyerNickSearch != null and buyerNickSearch != ''">
+            AND buyer_nick LIKE CONCAT('%',#{buyerNickSearch},'%')
+        </if>
+        <if test="statusSearch != null and statusSearch != ''">
+            AND status = #{statusSearch}
+        </if>
+        <if test="errReasonSearch != null and errReasonSearch != ''">
+            AND err_reason LIKE CONCAT('%',#{errReasonSearch},'%')
+        </if>
+        <if test="prescriptionSearch != null and prescriptionSearch != ''">
+            AND prescription = #{prescriptionSearch}
+        </if>
+        <if test="orderStatusSearch != null and orderStatusSearch != ''">
+            AND order_status = #{orderStatusSearch}
+        </if>
+        <if test="sourceSearch != null and sourceSearch != ''">
+            <choose>
+                <when test='sourceSearch == "android"'>
+                    AND source LIKE CONCAT('%',#{sourceSearch},'%')
+                </when>
+                <otherwise>
+                    AND source  = #{sourceSearch}
+                </otherwise>
+            </choose>
+        </if>
+        <if test="payTypeSearch != null and payTypeSearch != ''">
+            AND pay_type = #{payTypeSearch}
+        </if>
+        <if test="createTimeSearchBegin != null and createTimeSearchBegin != ''">
+            AND  <![CDATA[create_time >=  #{createTimeSearchBegin}]]>
+        </if>
+        <if test="createTimeSearchEnd != null and createTimeSearchEnd != ''">
+            AND  <![CDATA[create_time <=  #{createTimeSearchEnd}]]>
+        </if>
+        <if test="receiverNameSearch != null and receiverNameSearch != ''">
+            AND receiver_name LIKE CONCAT('%',#{receiverNameSearch},'%')
+        </if>
+        <if test="orderPaymentSearch != null and orderPaymentSearch != ''">
+            AND order_payment = #{orderPaymentSearch}
+        </if>
+        <if test="provinceName != null and provinceName != ''">
+            AND platform_province LIKE CONCAT('%',#{provinceName},'%')
+        </if>
+        <if test="cityName != null and cityName != ''">
+            AND platform_city = #{cityName}
+        </if>
+        <if test="countyName != null and countyName != ''">
+            AND platform_county = #{countyName}
+        </if>
+        <if test="customerRemarkSearch != null and customerRemarkSearch != ''">
+            AND customer_remark LIKE CONCAT('%',#{customerRemarkSearch},'%')
+        </if>
+        <if test="csRemarkSearch != null and csRemarkSearch != ''">
+            AND cs_remark LIKE CONCAT('%',#{csRemarkSearch},'%')
+        </if>
+
+        <if test="paidTimeSearchBegin != null and paidTimeSearchBegin != ''">
+            AND  <![CDATA[paid_time >=  #{paidTimeSearchBegin}]]>
+        </if>
+        <if test="paidTimeSearchEnd != null and paidTimeSearchEnd != ''">
+            AND  <![CDATA[paid_time <=  #{paidTimeSearchEnd}]]>
+        </if>
+
+        <if test="statusArr != null and statusArr != ''">
+            AND status IN
+            <foreach collection="statusArr" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="tenantId != null">
+            AND tenant_id= #{tenantId}
+        </if>
+        <if test="merchantList != null and merchantList.size() > 0">
+            AND merchant_id IN
+            <foreach collection="merchantList" item="merchantId" open="(" close=")" separator=",">
+                #{merchantId}
+            </foreach>
+        </if>
+        <if test="shopList != null and shopList.size() > 0">
+            AND shop_id IN
+            <foreach collection="shopList" item="shopId" open="(" close=")" separator=",">
+                #{shopId}
+            </foreach>
+        </if>
+        order by id desc
+    </select>
+    <select id="getTempSoListByOrderStatus" resultType="com.baiyang.oms.modular.business.model.TempSo">
+        SELECT <include refid="Base_Column_List"/>
+        FROM temp_so
+        WHERE order_status = #{orderStatus} AND <![CDATA[sync_time >=  #{dateStart}]]> AND <![CDATA[sync_time <=  #{dateEnd}]]>
+    </select>
+    
+</mapper>

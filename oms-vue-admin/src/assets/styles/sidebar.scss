@@ -1,0 +1,92 @@
+#app {
+  // 主体区域
+  .main-container {
+    min-height: 100%;
+    transition: margin-left .28s;
+  }
+  // 侧边栏
+  .sidebar-container {
+    transition: width 0.28s;
+    height: 100%;
+    font-size: 0px;
+    z-index: 1001;
+    overflow: hidden;
+    letter-spacing: .02em !important;
+  }
+
+  .el-menu-item {
+    font-weight: 600 !important;
+    letter-spacing: .02em !important;
+    font-size: $firstMenuFontSize !important;
+    height: $firstMenuItemHeight !important;
+    line-height: $firstMenuItemHeight !important;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    text-overflow: ellipsis;
+  }
+
+  .el-menu-item.is-active {
+    letter-spacing: .02em !important;
+    color: white !important;
+    background-color: $menuHover !important;
+  }
+
+  .el-submenu {
+    overflow: hidden;
+    & > .el-submenu__title {
+      height: $firstMenuItemHeight !important;
+      font-size: $firstMenuFontSize !important;
+    }
+  }
+  .sidebar-container .el-submenu > .el-submenu__title {
+    height: $firstMenuItemHeight !important;
+    line-height: $firstMenuItemHeight !important;
+    font-size: $firstMenuFontSize !important;
+    letter-spacing: .02em !important;
+  }
+  .sidebar-container .el-submenu .el-menu-item.is-active {
+    background-color: $menuHover !important;
+    color: white !important;
+    letter-spacing: .02em !important;
+  }
+  .sidebar-container .el-submenu .el-menu-item {
+    letter-spacing: .02em !important;
+    font-size: $secondMenuFontSize !important;
+    height: $secondMenuItemHeight !important;
+    line-height: $secondMenuItemHeight !important;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    text-overflow: ellipsis;
+    background-color: $subMenuBg !important;
+    &:hover {
+      background-color: $menuHover !important;
+    }
+  }
+}
+
+//缩小后的样式
+.el-menu--vertical .el-menu .el-menu-item {
+  background-color: $subMenuBg !important;
+  letter-spacing: .02em !important;
+  font-size: $secondMenuFontSize !important;
+  font-weight: 600 !important;
+  height: $secondMenuItemHeight !important;
+  line-height: $secondMenuItemHeight !important;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  &:hover {
+    background-color: $menuHover !important;
+  }
+}
+
+.el-menu--vertical .el-menu .el-menu-item.is-active {
+  background-color: $menuHover !important;
+  color: white !important;
+  font-weight: 600 !important;
+}
+
+.el-menu--popup {
+  padding: 0;
+}
+

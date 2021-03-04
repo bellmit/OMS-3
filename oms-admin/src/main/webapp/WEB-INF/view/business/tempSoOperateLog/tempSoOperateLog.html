@@ -1,0 +1,30 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                            <input type="hidden" id="condition" value="${code}">
+                            </div>
+                        </div>
+                        <#table id="TempSoOperateLogTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/tempSoOperateLog/tempSoOperateLog.js"></script>
+<!-- <script type="text/javascript">
+$(function () {
+	alert("d999999999999")
+	TempSoOperateLog.search()
+}); 
+</script> -->
+@}

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.MdProductMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.MdProduct">
+        <id column="id" property="id"/>
+        <result column="product_code" property="productCode"/>
+        <result column="original_code" property="originalCode"/>
+        <result column="product_cname" property="productCname"/>
+        <result column="product_sale_type" property="productSaleType"/>
+        <result column="store_code" property="storeCode"/>
+        <result column="product_brand_id" property="productBrandId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="product_list_price" property="productListPrice"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="category_responsible" property="categoryResponsible"/>
+        <result column="stock_upper_limit" property="stockUpperLimit"/>
+        <result column="stock_lower_limit" property="stockLowerLimit"/>
+        <result column="mfid" property="mfid"/>
+        <result column="specification" property="specification"/>
+        <result column="ean13" property="ean13"/>
+        <result column="length" property="length"/>
+        <result column="width" property="width"/>
+        <result column="height" property="height"/>
+        <result column="weight" property="weight"/>
+        <result column="package_length" property="packageLength"/>
+        <result column="package_width" property="packageWidth"/>
+        <result column="package_height" property="packageHeight"/>
+        <result column="package_volume" property="packageVolume"/>
+        <result column="package_weight" property="packageWeight"/>
+        <result column="package_num" property="packageNum"/>
+        <result column="avg_package_volume" property="avgPackageVolume"/>
+        <result column="keep_temperature" property="keepTemperature"/>
+        <result column="keep_humidity" property="keepHumidity"/>
+        <result column="product_quality_assurance_day" property="productQualityAssuranceDay"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="unit" property="unit"/>
+        <result column="in_price" property="inPrice"/>
+        <result column="volume" property="volume"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="std_pack_qty" property="stdPackQty"/>
+        <result column="product_type" property="productType"/>
+        <result column="product_tax_rate" property="productTaxRate"/>
+        <result column="color" property="color"/>
+        <result column="gross_weight" property="grossWeight"/>
+        <result column="weight_with_material" property="weightWithMaterial"/>
+        <result column="category_search_name" property="categorySearchName"/>
+        <result column="product_size" property="productSize"/>
+        <result column="place_of_origin" property="placeOfOrigin"/>
+        <result column="can_purchase" property="canPurchase"/>
+        <result column="can_sale" property="canSale"/>
+        <result column="need_batch_control" property="needBatchControl"/>
+        <result column="use_expire_control" property="useExpireControl"/>
+        <result column="is_must_invoice" property="isMustInvoice"/>
+        <result column="product_is_gift" property="productIsGift"/>
+        <result column="special_type" property="specialType"/>
+        <result column="product_sname" property="productSname"/>
+        <result column="register_no" property="registerNo"/>
+        <result column="tax_category_code" property="taxCategoryCode"/>
+        <result column="need_sn_control" property="needSnControl"/>
+        <result column="sales_tax" property="salesTax"/>
+        <result column="is_sent" property="isSent"/>
+        <result column="new_product_status" property="newProductStatus"/>
+        <result column="is_large" property="isLarge"/>
+        <result column="delivery_feature" property="deliveryFeature"/>
+        <result column="tenant_id" property="tenantId"/>
+        <result column="sync_stock" property="syncStock"/>
+        <result column="wholesale_price" property="wholesalePrice"/>
+        <result column="storage_condition" property="storageCondition"/>
+        <result column="product_label" property="productLabel"/>
+        <result column="product_label2" property="productLabel2"/>
+        <result column="expand1" property="expand1"/>
+        <result column="expand2" property="expand2"/>
+        <result column="expand3" property="expand3"/>
+        <result column="expand4" property="expand4"/>
+        <result column="expand5" property="expand5"/>
+        <result column="expand6" property="expand6"/>
+        <result column="custom_tax_rate" property="customTaxRate"/>
+        <result column="origin_country" property="originCountry"/>
+        <result column="code_hs" property="codeHs"/>
+        <result column="first_qty" property="firstQty"/>
+        <result column="first_unit" property="firstUnit"/>
+        <result column="item_unit" property="itemUnit"/>
+        <result column="merchant_id" property="merchantId"/>
+        <result column="declare_price" property="declarePrice"/>
+        <result column="virtual_code" property="virtualCode"/>
+        <result column="dosage_form" property="dosageForm"/>
+        <result column="is_special_drug" property="isSpecialDrug"/>
+        <result column="product_forbidden_sell_day" property="productForbiddenSellDay"/>
+        <result column="product_forbidden_collect_day" property="productForbiddenCollectDay"/>
+        <result column="product_department" property="productDepartment"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, product_code AS productCode, original_code AS originalCode, product_cname AS productCname, product_sale_type AS productSaleType, store_code AS storeCode, product_brand_id AS productBrandId, create_time AS createTime, created_by AS createdBy, product_list_price AS productListPrice, category_id AS categoryId, category_responsible AS categoryResponsible, stock_upper_limit AS stockUpperLimit, stock_lower_limit AS stockLowerLimit, mfid, specification, ean13, length, width, height, weight, package_length AS packageLength, package_width AS packageWidth, package_height AS packageHeight, package_volume AS packageVolume, package_weight AS packageWeight, package_num AS packageNum, avg_package_volume AS avgPackageVolume, keep_temperature AS keepTemperature, keep_humidity AS keepHumidity, product_quality_assurance_day AS productQualityAssuranceDay, is_deleted AS isDeleted, unit, in_price AS inPrice, volume, update_time AS updateTime, updated_by AS updatedBy, std_pack_qty AS stdPackQty, product_type AS productType, product_tax_rate AS productTaxRate, color, gross_weight AS grossWeight, weight_with_material AS weightWithMaterial, category_search_name AS categorySearchName, product_size AS productSize, place_of_origin AS placeOfOrigin, can_purchase AS canPurchase, can_sale AS canSale, need_batch_control AS needBatchControl, use_expire_control AS useExpireControl, is_must_invoice AS isMustInvoice, product_is_gift AS productIsGift, special_type AS specialType, product_sname AS productSname, register_no AS registerNo, tax_category_code AS taxCategoryCode, need_sn_control AS needSnControl, sales_tax AS salesTax, is_sent AS isSent, new_product_status AS newProductStatus, is_large AS isLarge, delivery_feature AS deliveryFeature, tenant_id AS tenantId, sync_stock AS syncStock, wholesale_price AS wholesalePrice, storage_condition AS storageCondition, product_label AS productLabel, product_label2 AS productLabel2, expand1, expand2, expand3, expand4, expand5, expand6, custom_tax_rate AS customTaxRate, origin_country AS originCountry, code_hs AS codeHs, first_qty AS firstQty, first_unit AS firstUnit, item_unit AS itemUnit, merchant_id AS merchantId, declare_price AS declarePrice, virtual_code AS virtualCode, dosage_form AS dosageForm, is_special_drug AS isSpecialDrug, product_forbidden_sell_day AS productForbiddenSellDay,
+        product_forbidden_collect_day AS productForbiddenCollectDay, product_department AS productDepartment
+    </sql>
+
+    <select id="getCountByProductCode" resultType="java.lang.Integer" parameterType="string">
+       select count(1) from md_product where product_code = #{productCode}
+    </select>
+
+    <select id="getProductsByCode" resultType="com.baiyang.oms.modular.business.model.MdProduct" parameterType="string">
+    select in_price as inPrice, id, product_code AS productCode, original_code AS originalCode,
+     product_cname AS productCname, product_sale_type AS productSaleType, store_code AS storeCode, product_brand_id AS productBrandId
+     from md_product where product_code = #{productCode}
+    </select>
+    
+    <select id="getProductsByCodes" resultType="com.baiyang.oms.modular.business.model.MdProduct" parameterType="com.baiyang.oms.modular.business.model.MdProduct">
+     select mp.id as id, mp.product_code as productCode,
+     mp.product_cname as productCname,
+     mp.original_code as originalCode,
+     mp.specification,
+     mp.mfid,
+     mf.mf_company_name as expand2
+      from md_product mp left join
+      md_manufacturer mf 
+      on mp.mfid = mf.id
+      where 
+       mp.product_type != 3 
+     <if test="product.productCodeList != null and product.productCodeList.length>0">
+            AND mp.product_code IN
+        <foreach collection="product.productCodeList" item="productCode" open="(" close=")" separator=",">
+            #{productCode}
+        </foreach>
+     </if>	
+     <if test="product.merchantId != null">
+            AND  <![CDATA[mp.merchant_id =  #{product.merchantId}]]>
+      </if>
+    </select>
+
+    <select id="selectListPage" resultType="map" parameterType="com.baiyang.oms.modular.business.model.MdProduct">
+        select
+        mp.id,
+        product_code as productCode,
+        original_code as originalCode,
+        product_cname as productCname,
+        mp.create_time as createTime,
+        mp.category_responsible as categoryResponsible,
+        specification ,
+        product_type as productType,
+        product_brand_id as productBrandId,
+        mmf.mf_company_name as mfCompanyName,
+        ean13,
+        stock_upper_limit as stockUpperLimit,
+        stock_lower_limit as stockLowerLimit,
+        weight,
+        wholesale_price as wholesalePrice,
+        product_tax_rate as productTaxRate,
+        sales_tax as salesTax,
+        color,
+        product_size as productSize,
+        special_type as specialType,
+        register_no as registerNo,
+        virtual_code as virtualCode,
+        product_quality_assurance_day as productQualityAssuranceDay,
+        product_forbidden_sell_day as productForbiddenSellDay,
+        product_forbidden_collect_day as productForbiddenCollectDay,
+        mm.merchant_name as merchantName,
+        brand_name as brandName,
+        mw.warehouse_name as storeCode
+        from
+        md_product mp
+        left join md_merchant mm ON mp.merchant_id = mm.id
+        left join md_brand mb on mp.product_brand_id = mb.id
+        left join md_manufacturer mmf on mp.mfid = mmf.id
+        left join md_warehouse mw on mp.store_code = mw.code
+        where mp.is_deleted = 0
+        <if test="product.tenantId != null and product.tenantId != ''">
+            AND  <![CDATA[mp.tenant_id  =  #{product.tenantId}]]>
+        </if>
+        <if test="product.productCode != null and product.productCode != ''">
+            AND  <![CDATA[mp.product_code =  #{product.productCode}]]>
+        </if>
+        <if test="product.originalCode != null and product.originalCode != ''">
+            AND  <![CDATA[mp.original_code =  #{product.originalCode}]]>
+        </if>
+        <if test="product.merchantId != null and product.merchantId != ''">
+            AND  <![CDATA[mp.merchant_id =  #{product.merchantId}]]>
+        </if>
+        <if test="product.productCname != null and product.productCname != ''">
+            AND  <![CDATA[mp.product_cname like CONCAT('%',#{product.productCname},'%') ]]>
+        </if>
+        <if test="product.productType != null and product.productType == 3">
+            AND  <![CDATA[mp.product_type =  #{product.productType} ]]>
+        </if>
+        <if test="product.productType != null and product.productType != 3">
+            AND  <![CDATA[mp.product_type != 3 ]]>
+        </if>
+        
+        <if test="keyword != null and keyword != ''">
+            AND (mp.product_code LIKE CONCAT("%",#{keyword},"%") or
+            mp.original_code LIKE CONCAT("%",#{keyword},"%") or
+            mp.product_cname LIKE CONCAT("%",#{keyword},"%")
+            )
+        </if>
+        
+         <if test="product.productCodeList != null and product.productCodeList.length>0">
+                 AND mp.product_code IN
+	            <foreach collection="product.productCodeList" item="productCode" open="(" close=")" separator=",">
+	                #{productCode}
+	            </foreach>
+         </if>	
+
+
+    </select>
+
+    <select id="productCodeById" resultType="java.lang.String" parameterType="java.lang.Long">
+    	select product_code AS productCode  from md_product where id = #{id}
+    </select>
+
+    <select id="getProductMapById" resultType="map" parameterType="java.lang.Long">
+   		select product_cname AS productName,specification,original_code as originalCode,ean13 as ean,
+   		std_pack_qty as stdPackQty   from md_product where id = #{id}
+    </select>
+
+   <select id="getMdProductByCodeAndMerchantIdAndHouseCode" resultType="map">
+        select id,product_code AS productCode , product_cname AS productCname,specification,gross_weight as grossWeight,
+        product_is_gift AS productIsGift,code_hs as codeHs,original_code as originalCode,first_qty AS firstQty,item_unit
+        AS itemUnit,weight,first_unit AS firstUnit,wholesale_price as wholesalePrice,origin_country as originCountry,in_price as inPrice,
+        ean13,product_brand_id as brandId,expand2,expand3,product_type as productType,virtual_code as virtualCode,expand1
+
+       from md_product
+        where product_code = #{productCode} and merchant_id = #{merchantId}
+        <if test="houseCode != null and houseCode != ''">
+            and store_code = #{houseCode}
+        </if>
+
+    </select>
+    <select id="getMdProductByCodeAndMerchantId" resultType="map">
+    select id,product_code AS productCode ,  product_cname AS productCname,specification,gross_weight as grossWeight, 
+            product_is_gift AS productIsGift,code_hs as codeHs,original_code as originalCode,first_qty AS firstQty,item_unit AS itemUnit,weight,
+            first_unit AS firstUnit,wholesale_price as wholesalePrice,origin_country as originCountry,in_price as inPrice,
+            ean13,product_brand_id as brandId,expand2,expand3
+     from md_product 
+    	where product_code = #{productCode} and merchant_id = #{merchantId}
+    </select>
+    <select id="getProductByProductCodeAndStoreCode" resultType="com.baiyang.oms.modular.business.model.MdProduct">
+    select <include refid="Base_Column_List"/>
+     from md_product 
+    	where product_code = #{productCode} and store_code = #{houseCode}
+    </select>
+</mapper>

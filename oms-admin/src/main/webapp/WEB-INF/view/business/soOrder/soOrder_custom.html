@@ -1,0 +1,33 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="col-sm-12">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button data-toggle="dropdown" style="border: 0px;width: 100px;text-align: left;font-weight: bold;font-size: 12px;text-align: center" class="btn btn-white dropdown-toggle"
+                                        type="button">选择快递公司
+                                </button>
+                            </div>
+                            <input id="orderCodeId" type="hidden" value="${orderCode}"/>
+                              <#select id="carrid" name="选择快递公司 默认是EMS">
+                            <option value=''></option>
+						       @for(value in list!){
+                                   <option  value="${value.id}">${value.logisCompanyName}</option>
+                               @}
+							</#select>
+                        </div>
+                 </div>
+            </div>
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12" style="text-align: center">
+                    <#button btnCss="info" name="确定" id="ensure" icon="fa-check" clickFun="soOrderCarry.submit()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/soOrder/soOrder_real_carry.js"></script>
+@}

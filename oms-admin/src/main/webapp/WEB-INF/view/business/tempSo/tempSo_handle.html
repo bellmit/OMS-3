@@ -1,0 +1,28 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+            <input type="hidden" id="id" value="">
+            <div class="row" style="border-bottom: 1px dashed #e7eaec">
+                <div class="col-sm-4">
+                    <#input id="orderNo" readonly="readonly" name="平台单号" value="${platformOrderCode}"/>
+                </div>
+            </div>
+            <input type="hidden" id="platformOrderCode" value="${platformOrderCode}">
+            <div class="row">
+                <div class="col-sm-12">
+                    <#table id="abnormalGoodsTable"/>
+                </div>
+            </div>
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12" style="text-align: center">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="tempSoHandle.submit()"/>
+                    <#button btnCss="default" name="取消" id="cancel" icon="fa-eraser" clickFun="tempSoHandle.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/tempSo/tempSo_handle.js"></script>
+@}

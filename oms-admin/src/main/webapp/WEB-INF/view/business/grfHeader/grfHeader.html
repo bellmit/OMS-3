@@ -1,0 +1,83 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>退换货管理</h5>
+                <#FormSlideToggle searchFormId="searchForm"/>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div id="searchForm">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <#TextareaCon id="originalCode" name="平台单号" />
+                                </div>
+                                <div class="col-sm-3">
+                                    <#SelectCon id="platformId" name="渠道" >
+                                        <option value="">请选择</option>
+                                        @for(platform in platformList){
+                                        <option value="${platform.id}">${platform.platformName}</option>
+                                        @}
+                                    </#SelectCon>
+                                 </div>
+                                <div class="col-sm-3">
+                                    <#SelectCon id="merchantId" name="商家" >
+                                        <option value="">请选择</option>
+                                        @for(merchant in merchantList){
+                                        <option value="${merchant.id}">${merchant.merchantName}</option>
+                                        @}
+                                    </#SelectCon>
+                                 </div>
+                                <div class="col-sm-3">
+                                    <#SelectCon id="shopId" name="店铺" >
+                                        <option value="">请选择</option>
+                                        @for(shop in shopMap){
+                                        <option value="${shop.id}">${shop.name}</option>
+                                        @}
+                                    </#SelectCon>
+                                </div>
+                                <div class="col-sm-3">
+                                    <#NameCon id="code" name="退换货单号" />
+                                </div>
+                                <div class="col-sm-3">
+                                    <#SelectCon id="prescription" name="申请原因" >
+                                        <option value="">请选择</option>
+                                        <option value="0">七天无理由</option>
+                                    </#SelectCon>
+                                </div>
+                                <div class="col-sm-3">
+                                    <#NameCon id="totalAmount" name="退款总额" />
+                                </div>
+                                <div class="col-sm-3">
+                                    <#SelectCon id="deliveryFee" name="是否退税费" >
+                                        <option value="">请选择</option>
+                                        <option value="1">是</option>
+                                        <option value="0">否</option>
+                                    </#SelectCon>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12" style="text-align: center;padding-top: 20px">
+                                <#button name="搜索" icon="fa-search" clickFun="GrfHeader.search()"/>
+                                <#button name="重置" icon="fa-repeat" clickFun="GrfHeader.reset()" space="true"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden-xs" id="GrfHeaderTableToolbar" role="group">
+                            @if(shiro.hasPermission("/grfHeader/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="GrfHeader.openAddGrfHeader()"/>
+                            @}
+                        </div>
+                        <#table id="GrfHeaderTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/grfHeader/grfHeader.js"></script>
+@}

@@ -1,0 +1,160 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal"  id="houseFourmId">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <input type="hidden" id="productSaleTypeValue" value="${item.productSaleType}" />
+            <input type="hidden" id="useExpireControlValue" value="${item.useExpireControl}"/>
+            <input type="hidden" id="productBrandIdValue" value="${item.productBrandId}"/>
+            <input type="hidden" id="productTypeValue" value="${item.productType}"/>
+            <input type="hidden" id="specialTypeValue" value="${item.specialType}"/>
+            <input type="hidden" id="merchantIdValue" value="${item.merchantId}"/>
+            <input type="hidden" id="mfidValue" value="${item.mfid}">
+            <input type="hidden" id="unitValue" value="${item.unit}">
+            <input type="hidden" id="originCountryValue" value="${item.originCountry}">
+            <input type="hidden" id="firstUnitValue" value="${item.firstUnit}">
+            <input type="hidden" id="itemUnitValue" value="${item.itemUnit}">
+
+
+            <div class="row">
+                <div class="col-sm-4 b-r">
+                    <#input id="productCode"  name="商品编码" value="${item.productCode}" underline="true"/>
+                    <#select id="merchantId" name="商家" underline="true">
+                        <option value="">请选择</option>
+                        @for(mdMerchant in mdMerchantList){
+                            <option value="${mdMerchant.id}">${mdMerchant.merchantName}</option>
+                        @}
+                    </#select>
+
+                    <#select id="productSaleType" name="销售类型" value="${item.productSaleType}" underline="true">
+                        <option value="">请选择</option>
+                        <option value="1">备货</option>
+                        <option value="2">寄售</option>
+                        <option value="3">代售</option>
+                    </#select>
+                    <#input id="categoryResponsible" name="品类负责人" value="${item.categoryResponsible}" underline="true"/>
+                    <#select id="mfid" name="厂商" underline="true">
+                        <option value="">请选择</option>
+                        @for(manufacturer in manufacturerList){
+                            <option value="${manufacturer.id}">${manufacturer.mfCompanyName}</option>
+                        @}
+                    </#select>
+
+                    <#input id="length" name="长度 cm" value="${item.length}" underline="true"/>
+                    <#input id="packageLength" name="包装长度" value="${item.packageLength}" underline="true"/>
+                    <#input id="packageVolume" name="包装体积" value="${item.packageVolume}" underline="true"/>
+                    <#input id="packageNum" name="箱装数" value="${item.packageNum}" underline="true"/>
+                    <#select id="storeCode" name="发货仓" underline="true">
+                        <option value="">请选择</option>
+                        @for(warehouse in warehouseList){
+                        <option value="${warehouse.code}">${warehouse.warehouseName}</option>
+                        @}
+                    </#select>
+                    <#input id="grossWeight" name="毛重" value="${item.grossWeight}" underline="true"/>
+                    <#input id="placeOfOrigin" name="产地" value="${item.placeOfOrigin}" underline="true"/>
+                    <#select id="useExpireControl" name="效期控制" value="${item.useExpireControl}"  underline="true">
+                        <option value="">请选择</option>
+                        <option value="1">启用</option>
+                        <option value="0">不启用</option>
+                    </#select>
+                    <#input id="productSname" name="产品简称" value="${item.productSname}" underline="true"/>
+                    <#input id="wholesalePrice" name="批发价" value="${item.wholesalePrice}" underline="true"/>
+                    <#input id="codeHs" name="商品HS编码" value="${item.codeHs}" underline="true"/>
+                    <#input id="declarePrice" name="申报价" value="${item.declarePrice}" underline="true"/>
+                    <#select id="firstUnit" name="第一单位" underline="true">
+                        <option value="">请选择</option>
+                        @for(unit in unitList){
+                            <option value="${unit.code}">${unit.unit}</option>
+                        @}
+                    </#select>
+                    <#select id="itemUnit" name="成交计量单位" underline="true">
+                        <option value="">请选择</option>
+                        @for(unit in unitList){
+                            <option value="${unit.code}">${unit.unit}</option>
+                        @}
+                    </#select>
+                </div>
+
+                <div class="col-sm-4">
+                    <#input id="originalCode" name="商品货号" value="${item.originalCode}" underline="true"/>
+                    <#select id="productBrandId" name="品牌" value="${item.productBrandId}" underline="true">
+                        <option value="">请选择</option>
+                        @for(brand in brandList){
+                            <option value="${brand.id}">${brand.brandName}</option>
+                        @}
+                    </#select>
+                    <#input id="stockUpperLimit" name="库存上限" value="${item.stockUpperLimit}" underline="true"/>
+                    <#input id="specification" name="产品规格" value="${item.specification}" underline="true"/>
+                    <#input id="weight" name="净重 kg" value="${item.weight}" underline="true"/>
+                    <#input id="width" name="宽度 cm" value="${item.width}" underline="true"/>
+                    <#input id="packageWidth" name="包装宽度" value="${item.packageWidth}" underline="true"/>
+                    <#input id="keepTemperature" name="温度范围" value="${item.keepTemperature}" underline="true"/>
+                    <#input id="productQualityAssuranceDay" name="保质天数" value="${item.productQualityAssuranceDay}" underline="true"/>
+                    <#select id="unit" name="计量单位" underline="true">
+                        <option value="">请选择</option>
+                        @for(unit in unitList){
+                            <option value="${unit.code}">${unit.unit}</option>
+                        @}
+                    </#select>
+                    <#input id="stdPackQty" name="箱规" value="${item.stdPackQty}" underline="true"/>
+                    <#input id="productTaxRate" name="采购税率" value="${item.productTaxRate}" underline="true"/>
+                    <#input id="weightWithMaterial" name="带耗材重量" value="${item.weightWithMaterial}" underline="true"/>
+                    <#input id="productIsGift" name="是否为赠品" value="${item.productIsGift}" underline="true"/>
+                    <#input id="registerNo" name="批准文号" value="${item.registerNo}" underline="true"/>
+                    <#input id="customTaxRate" name="海关税率" value="${item.customTaxRate}" underline="true"/>
+                    <#input id="firstQty" name="第一数量" value="${item.firstQty}" underline="true"/>
+                    <#input id="productForbiddenCollectDay" name="禁收天数" value="${item.productForbiddenCollectDay}" underline="true"/>
+
+                </div>
+                <div class="col-sm-4">
+                    <#input id="productCname" name="商品名称" value="${item.productCname}" underline="true"/>
+                    <#select id="productType" name="商品类型" value="${item.productType}"  underline="true">
+                        <option value="">请选择</option>
+                        <option value="0">普通商品</option>
+                        <option value="5">虚拟商品</option>
+                    </#select>
+                    <#input id="productListPrice" name="市场价" value="${item.productListPrice}" underline="true"/>
+                    <#input id="stockLowerLimit" name="库存下限" value="${item.stockLowerLimit}" underline="true"/>
+                    <#input id="ean13" name="条形码" value="${item.ean13}" underline="true"/>
+                    <#input id="height" name="高度 cm" value="${item.height}" underline="true"/>
+                    <#input id="packageHeight" name="包装高度" value="${item.packageHeight}" underline="true"/>
+                    <#input id="packageWeight" name="包装重量" value="${item.packageWeight}" underline="true"/>
+                    <#input id="keepHumidity" name="湿度范围" value="${item.keepHumidity}" underline="true"/>
+                    <#input id="inPrice" name="进价" value="${item.inPrice}" underline="true"/>
+                    <#input id="color" name="颜色" value="${item.color}" underline="true"/>
+                    <#input id="salesTax" name="销售税率" value="${item.salesTax}" underline="true"/>
+                    <#input id="productSize" name="尺码" value="${item.productSize}" underline="true"/>
+                    <#select id="specialType" name="特殊类型"  value="${item.specialType}" underline="true">
+                        <option value="">请选择</option>
+                        <option value="1">普通</option>
+                        <option value="14">OTC</option>
+                        <option value="16">处方药<option>
+                    </#select>
+
+                    <#input id="taxCategoryCode" name="税收分类编码" value="${item.taxCategoryCode}" underline="true"/>
+                    <#select id="originCountry" name="原产国" underline="true">
+                        <option value="">请选择</option>
+                        @for(country in countryList){
+                            <option value="${country.countryCode}">${country.countryCname}</option>
+                        @}
+                    </#select>
+                    <#input id="productForbiddenSellDay" name="禁售天数" value="${item.productForbiddenSellDay}" underline="true"/>
+                    <#input id="virtualCode" name="虚拟商品编码" value="${item.virtualCode}" underline="true"/>
+
+                </div>
+
+                <div class="row btn-group-m-t" align="right">
+                    <div class="col-sm-10">
+                        <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="MdProductInfoDlg.editSubmit()"/>
+                        <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MdProductInfoDlg.close()"/>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/mdProduct/mdProduct_info.js"></script>
+@}

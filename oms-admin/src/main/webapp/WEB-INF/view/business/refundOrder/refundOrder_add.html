@@ -1,0 +1,57 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" underline="true"/>
+                            <#input id="code" name="退款单号" underline="true"/>
+                            <#input id="grfCode" name="退货单号" underline="true"/>
+                            <#input id="soCode" name="订单号" underline="true"/>
+                            <#input id="originalCode" name="平台原始单号" underline="true"/>
+                            <#input id="type" name="退款类型 1线上退款，2 线下退款" underline="true"/>
+                            <#input id="refundReason" name="退款原因" underline="true"/>
+                            <#input id="refundMethod" name="退款方式:现金，退回平台帐号，支付宝，微信支付，网银支付，白条" underline="true"/>
+                            <#input id="refundAmount" name="退款金额" underline="true"/>
+                            <#input id="accountBank" name="开户行" underline="true"/>
+                            <#input id="backCarrierShipCode" name="退回物流单号" underline="true"/>
+                            <#input id="refundAccount" name="退款帐号" underline="true"/>
+                            <#input id="state" name="初始化，已完成（已通知平台）" underline="true"/>
+                            <#input id="remark" name="备注" underline="true"/>
+                            <#input id="shopId" name=""/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="endUserId" name="下单用户ID" underline="true"/>
+                            <#input id="endUserName" name="下单用户" underline="true"/>
+                            <#input id="buyerNick" name="买家昵称" underline="true"/>
+                            <#input id="shipmentNo" name="物流单号" underline="true"/>
+                            <#input id="confirmTime" name="确认退款时间" underline="true"/>
+                            <#input id="confirmUserName" name="确认退款人" underline="true"/>
+                            <#input id="responsiblePerson" name="责任人" underline="true"/>
+                            <#input id="checkBy" name="审核人" underline="true"/>
+                            <#input id="createTime" name="创建时间" underline="true"/>
+                            <#input id="createdBy" name="" underline="true"/>
+                            <#input id="updatedBy" name="修改人id" underline="true"/>
+                            <#input id="updateTime" name="最后修改时间" underline="true"/>
+                            <#input id="tenantId" name="" underline="true"/>
+                            <#input id="refundName" name="" underline="true"/>
+                            <#input id="reasonType" name="退款原因类型 100-退货退款,200-补差价,300-补邮差,400-给好评 500-其他" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="RefundOrderInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="RefundOrderInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/refundOrder/refundOrder_info.js"></script>
+@}

@@ -1,0 +1,91 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="poCode" name="采购单编码" underline="true"/>
+                    <#select id="warehouseId" name="仓库" underline="true">
+                        <option value="">请选择</option>
+                        @for(warehouse in warehouseList){
+                        <option value="${warehouse.id}">${warehouse.warehouseName}</option>
+                        @}
+                    </#select>
+                    <#input id="expectedValidNum" name="预计发货数量" underline="true"/>
+                    <#input id="normalQuality" name="实收好品数" underline="true"/>
+                    <#input id="reserveCode" name="预约号" underline="true"/>
+                    <#select id="deliveryType" name="配货类型" underline="true">
+                        <option value="">请选择</option>
+                        <option value="4">采购</option>
+                        <option value="3">调拨</option>
+                    </#select>
+                    <#TimeAdd id="verifiedReceiveTime" name="确认收货时间" isTime="true" pattern="YYYY-MM-DD hh:mm:ss" underline="true"/>
+                    <#input id="asnCode" name="ASN单据号" underline="true"/>
+                </div>
+
+                <div class="col-sm-4">
+                    <#input id="doCode" name="发货单编码" underline="true"/>
+                    <#select id="periodValid" name="效期类型" underline="true">
+                        <option value="">请选择</option>
+                        <option value="1">正常</option>
+                        <option value="2">特批</option>
+                    </#select>
+                    <#input id="receivedNum" name="实收数量" underline="true"/>
+                    <#input id="damageQuality" name="实收坏品数" underline="true"/>
+                    <#TimeAdd id="reserveDate" name="预约日期" isTime="true" pattern="YYYY-MM-DD hh:mm:ss"  underline="true"/>
+                    <#select id="businessType" name="采购类型" underline="true">
+                        <option value="">请选择</option>
+                        <option value="1">直采</option>
+                        <option value="2">代理直采</option>
+                        <option value="3">跨境通</option>
+                        <option value="4">国内采购</option>
+                        <option value="5">调拨</option>
+                    </#select>
+                    <#TimeAdd id="validDate" name="订单过期日" isTime="true" pattern="YYYY-MM-DD hh:mm:ss"  underline="true"/>
+                    <#TimeAdd id="startReceiveTime" name="开始收货时间" isTime="true" pattern="YYYY-MM-DD hh:mm:ss"  underline="true"/>
+                </div>
+
+                <div class="col-sm-4">
+                    <#input id="platformId" name="平台" underline="true"/>
+                    <#select id="merchantId" name="商家" underline="true">
+                        <option value="">请选择</option>
+                        @for(mdMerchant in mdMerchantList){
+                        <option value="${mdMerchant.id}">${mdMerchant.merchantName}</option>
+                        @}
+                    </#select>
+                    <#TimeAdd id="exptArriveTime" name="预计到货日期" isTime="true" pattern="YYYY-MM-DD hh:mm:ss"  underline="true"/>
+                    <#input id="prodState" name="产品状态" underline="true"/>
+                    <#select id="supplierId" name="供应商" underline="true">
+                        <option value="">请选择</option>
+                        @for(supplier in supplierList){
+                        <option value="${supplier.supplierCode}">${supplier.supplierCompanyName}</option>
+                        @}
+                    </#select>
+                    <#select id="asnType" name="采购商品类型" underline="true">
+                        <option value="">请选择</option>
+                        <option value="1">正品</option>
+                        <option value="2">寄售</option>
+                        <option value="3">退货</option>
+                        <option value="4">赠品</option>
+                    </#select>
+                    <#TimeAdd id="finishReceiveTime" name="完成收货时间" isTime="true" pattern="YYYY-MM-DD hh:mm:ss"  underline="true"/>
+                    <#input id="remark" name="备注信息" underline="true"/>
+                </div>
+
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10" align="right">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="AsnInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="AsnInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/asn/asn_info.js"></script>
+@}

@@ -1,0 +1,122 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>平台管理</h5>
+                <#FormSlideToggle searchFormId="searchForm"/>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div id="searchForm">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#TextareaCon id="platformOrderCode" name="订单号" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#TextareaCon id="productCode" name="商品编码" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#TextareaCon id="payOrderNo" name="支付单号" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="merchantExpressNbr" name="快递单号" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="productCname" name="商品名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="warehouseId" name="仓库" >
+                                    <option value="">请选择</option>
+                                    @for(ware in wareHouseMap!){
+                                    <option value="${ware.id}">${ware.warehouseName}</option>
+                                    @}
+                                </#SelectCon>
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="shopId" name="店铺" >
+                                    <option value="">请选择</option>
+                                    @for(shop in shopList!){
+                                    <option value="${shop.id}">${shop.name}</option>
+                                    @}
+                                </#SelectCon>
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="merchantId" name="商家" >
+                                    <option value="">请选择</option>
+                                    @for(merchant in merchantList!){
+                                    <option value="${merchant.id}">${merchant.merchantName}</option>
+                                    @}
+                                </#SelectCon>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <div class="col-sm-8">
+                                        <select class="form-control" id="timeType" name="timeType">
+                                            <option value= "1" >下单时间 </option>
+                                            <option value= "2" selected>付款时间 </option>
+                                            <!--<option value= "3">发货时间 </option>-->
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-3">
+                                <#TimeCon id="timeSearchBegin" name="开始时间" isTime="true" pattern="YYYY-MM-DD" />
+                            </div>
+                            <div class="col-lg-3 col-sm-3">
+                                <#TimeCon id="timeSearchEnd" name="结束时间" isTime="true" pattern="YYYY-MM-DD"/>
+                            </div>
+                        </div>
+                        <div>
+                            <label><input type="radio" name="dateTypeTime" id="dayT" value="1" checked onclick="pickTimeDayT()" />当天</label>
+                            <label><input type="radio" name="dateTypeTime" id="dayY" value="2" onclick="pickTimeDayY()"/>昨天</label>
+                            <label><input type="radio" name="dateTypeTime" id="weekT" value="3" onclick="pickTimeWeekT()"/>本周</label>
+                            <label><input type="radio" name="dateTypeTime" id="weekY" value="4" onclick="pickTimeWeekY()"/>上周</label>
+                            <label><input type="radio" name="dateTypeTime" id="monthT" value="5" onclick="pickTimeMonthT()"/>本月</label>
+                            <label><input type="radio" name="dateTypeTime" id="monthY" value="6" onclick="pickTimeMonthY()"/>上月</label>
+                        </div>
+                        <div>
+                            <label><input type="checkbox" name="orderNoDeliverGoods" id="orderNoDeliverGoods" value="1" />包含未发货订单</label>
+                        </div>
+                        <div>
+                            <label><input type="checkbox" name="removeHuangdaoOrder" id="removeHuangdaoOrder" value="1" checked/>去掉黄岛仓订单</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12" style="text-align: center;padding-top: 20px">
+                                <#button name="搜索" icon="fa-search" clickFun="SalesAccount.search()"/>
+                                <#button name="重置" icon="fa-repeat" clickFun="SalesAccount.resetSearch()" space="true"/>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="hidden-xs" style="margin-top: 0px" id="TempSoTableToolbar" role="group">
+                            <#button name="导出" bootStrapIconClass="glyphicon glyphicon-export" clickFun="SalesAccount.exportOrder()" space="true"/>
+                            <br/>
+                        </div>
+                        <div id="totalCount" style="color:#F00">合计：
+                            销售金额:<div class="lable" id="itemAmountTotal" value="">0</div>
+                            商品数量:<div class="lable" id="itemNumTotal" value="">0</div>
+                            税费:<div class="lable" id="taxFcyTotal" value="">0</div>
+                            订单数:<div class="lable"id="platformOrderCodeTotal" value="">0</div>
+                            优惠卷:<div class="lable" id="preferentialvolumeTotal" value="">0</div>
+                            运费:<div class="lable" id="feeTotal" value="">0</div>
+                            总计:<div class="lable" id="totalTotal" value="123"></div>
+                            </div>
+                        <#table id="salesAccountTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/report/salesAccount.js"></script>
+<style>
+    .lable {
+        display: inline-block;
+    }
+</style>
+@}

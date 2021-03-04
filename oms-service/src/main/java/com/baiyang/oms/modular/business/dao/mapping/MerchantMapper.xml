@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.MerchantMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.Merchant">
+        <id column="id" property="id"/>
+        <result column="group_merchant_id" property="groupMerchantId"/>
+        <result column="merchant_name" property="merchantName"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="is_sent" property="isSent"/>
+        <result column="tax_payer_code" property="taxPayerCode"/>
+        <result column="invoice_platform_code" property="invoicePlatformCode"/>
+        <result column="invoice_interface_url" property="invoiceInterfaceUrl"/>
+        <result column="tenant_id" property="tenantId"/>
+        <result column="code" property="code"/>
+        <result column="address_phone" property="addressPhone"/>
+        <result column="param3" property="param3"/>
+        <result column="param2" property="param2"/>
+        <result column="param1" property="param1"/>
+        <result column="tax_payer_name" property="taxPayerName"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, group_merchant_id AS groupMerchantId, merchant_name AS merchantName, create_time AS createTime, update_time AS updateTime, created_by AS createdBy, updated_by AS updatedBy, is_deleted AS isDeleted, is_sent AS isSent, tax_payer_code AS taxPayerCode, invoice_platform_code AS invoicePlatformCode, invoice_interface_url AS invoiceInterfaceUrl, tenant_id AS tenantId, code, address_phone AS addressPhone, param3, param2, param1, tax_payer_name AS taxPayerName
+    </sql>
+
+    <select id="selectAllMdMerchant" resultType="com.baiyang.oms.modular.business.model.Merchant">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM md_merchant
+        WHERE tenant_id = #{tenantId}
+    </select>
+
+    <select id="selectMdMerchant" resultType="com.baiyang.oms.modular.system.warpper.DataRuleWrapper">
+        SELECT id as code,merchant_name as ruleName
+        FROM md_merchant
+    </select>
+
+    <select id="getmerChantNameById" resultType="string" parameterType="java.lang.Long">
+        SELECT merchant_name as ruleName
+        FROM md_merchant where id = #{id}
+    </select>
+
+    <select id="selectMerchantByTenantId" resultType="com.baiyang.oms.modular.business.model.Merchant">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM md_merchant
+        where tenant_id = #{tenantId}
+    </select>
+
+    <select id="getMerchantIdAndName" resultType="map" parameterType="java.lang.Integer">
+      SELECT id,merchant_name as merchantName
+        FROM md_merchant 
+        where tenant_id = #{tenantId}
+        and is_deleted =0 
+    </select>
+
+    <select id="pageGrade" resultType="com.baiyang.oms.modular.business.model.Merchant">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM md_merchant
+        where 1=1
+        <if test="tenantId != null">
+            and tenant_id = #{tenantId}
+        </if>
+        <if test="keyword != null and keyword !=''">
+            and (
+            merchant_name LIKE CONCAT("%",#{keyword},"%") or
+            code LIKE CONCAT("%",#{keyword},"%") or
+            invoice_platform_code LIKE CONCAT("%",#{keyword},"%") or
+            tax_payer_code LIKE CONCAT("%",#{keyword},"%")
+            )
+        </if>
+    </select>
+
+</mapper>

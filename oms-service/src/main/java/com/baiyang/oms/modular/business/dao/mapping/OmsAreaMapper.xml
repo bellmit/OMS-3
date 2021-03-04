@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.OmsAreaMapper">
+  <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.OmsArea">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pid, name, type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from md_area
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from md_area
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.baiyang.oms.modular.business.model.OmsArea">
+    insert into md_area (id, pid, name, 
+      type)
+    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.baiyang.oms.modular.business.model.OmsArea">
+    insert into md_area
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.baiyang.oms.modular.business.model.OmsArea">
+    update md_area
+    <set>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.baiyang.oms.modular.business.model.OmsArea">
+    update md_area
+    set pid = #{pid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectByName" parameterType="com.baiyang.oms.modular.business.model.OmsArea" resultType="java.lang.String">
+    select id from md_area
+    where name  like CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+          and type =  #{type,jdbcType=INTEGER}
+      <if test="pid != null"  >
+          and pid = #{pid,jdbcType=INTEGER}
+      </if>
+
+  </select>
+  
+  <select id="getAreaByPid" parameterType="java.lang.Integer" resultType="com.baiyang.oms.modular.business.model.OmsArea">
+    	select id,name from md_area
+   		  <if test=" pid != 0"  >
+         	where pid = #{pid,jdbcType=INTEGER}
+      	 </if>
+      	 <if test=" pid == 0 "  >
+         	where type = #{pid,jdbcType=INTEGER}
+      	 </if>
+  </select>
+  
+    <select id="selectById" parameterType="java.lang.Integer" resultType="string">
+    	select name from md_area
+   		  <if test=" id != 0"  >
+         	where id = #{id,jdbcType=INTEGER}
+      	 </if>
+  </select>
+
+
+   <select id="getProvinceIdByName" parameterType="string" resultType="java.lang.Integer">
+    	SELECT id  FROM md_area WHERE name=#{name} and type=0
+  </select>
+  
+  <select id="getCityIdByName" parameterType="map" resultType="java.lang.Integer">
+    	SELECT id  FROM md_area WHERE name=#{cityName} and pid = 
+    	(SELECT id  FROM md_area WHERE name=#{provinceName} and type=0) and type =1
+  </select>
+  
+  <select id="getCountyIdByName" parameterType="map" resultType="java.lang.Integer">
+    	SELECT id  FROM md_area WHERE name=#{countyName} and pid =( SELECT id  FROM md_area WHERE name=#{cityName} and pid = 
+    	(SELECT id  FROM md_area WHERE name=#{provinceName} and type=0) and type =1) and type = 2
+  </select>
+
+  <select id="getAreaIdByName" parameterType="map" resultType="java.lang.Integer">
+      select id from md_area where type = 2 and pid = (
+        select id  from md_area where type = 1 and name = #{cityName}) and name = #{countyName}
+  </select>
+
+    <select id="getCityByName" parameterType="map" resultType="java.lang.Integer">
+        select id  from md_area where type = 1 and name = #{cityName}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.SoOrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.SoOrder">
+        <id column="id" property="id" />
+        <result column="end_user_id" property="endUserId" />
+        <result column="order_amount" property="orderAmount" />
+        <result column="order_code" property="orderCode" />
+        <result column="original_code" property="originalCode" />
+        <result column="grf_code" property="grfCode" />
+        <result column="shop_id" property="shopId" />
+        <result column="shop_name" property="shopName" />
+        <result column="order_status" property="orderStatus" />
+        <result column="reason_failure" property="reasonFailure" />
+        <result column="order_type" property="orderType" />
+        <result column="order_attr" property="orderAttr" />
+        <result column="order_fulfillment_type" property="orderFulfillmentType" />
+        <result column="order_remark" property="orderRemark" />
+        <result column="order_delivery_fee" property="orderDeliveryFee" />
+        <result column="order_source" property="orderSource" />
+        <result column="order_source_name" property="orderSourceName" />
+        <result column="order_payment_confirm_date" property="orderPaymentConfirmDate" />
+        <result column="order_create_time" property="orderCreateTime" />
+        <result column="order_to_logistics_time" property="orderToLogisticsTime" />
+        <result column="order_out_of_inventory_status" property="orderOutOfInventoryStatus" />
+        <result column="order_need_invoice" property="orderNeedInvoice" />
+        <result column="parent_so_id" property="parentSoId" />
+        <result column="delivery_date" property="deliveryDate" />
+        <result column="receive_date" property="receiveDate" />
+        <result column="account_payable" property="accountPayable" />
+        <result column="product_amount" property="productAmount" />
+        <result column="good_receiver_name" property="goodReceiverName" />
+        <result column="good_receiver_address" property="goodReceiverAddress" />
+        <result column="good_receiver_province" property="goodReceiverProvince" />
+        <result column="good_receiver_city" property="goodReceiverCity" />
+        <result column="good_receiver_county" property="goodReceiverCounty" />
+        <result column="good_receiver_phone" property="goodReceiverPhone" />
+        <result column="cancel_date" property="cancelDate" />
+        <result column="is_leaf" property="isLeaf" />
+        <result column="order_cs_remark" property="orderCsRemark" />
+        <result column="to_logistic_flag" property="toLogisticFlag" />
+        <result column="good_receiver_mobile" property="goodReceiverMobile" />
+        <result column="spec_proc_flag" property="specProcFlag" />
+        <result column="good_receiver_city_id" property="goodReceiverCityId" />
+        <result column="good_receiver_county_id" property="goodReceiverCountyId" />
+        <result column="good_receiver_province_id" property="goodReceiverProvinceId" />
+        <result column="warehouse_id" property="warehouseId" />
+        <result column="warehouse_ids" property="warehouseIds" />
+        <result column="merchant_express_nbr" property="merchantExpressNbr" />
+        <result column="virtual_stock_status" property="virtualStockStatus" />
+        <result column="update_time" property="updateTime" />
+        <result column="order_cs_reason" property="orderCsReason" />
+        <result column="order_promotion_discount" property="orderPromotionDiscount" />
+        <result column="delivery_method_type" property="deliveryMethodType" />
+        <result column="pay_service_type" property="payServiceType" />
+        <result column="order_weight" property="orderWeight" />
+        <result column="gross_weight" property="grossWeight" />
+        <result column="collect_on_delivery_amount" property="collectOnDeliveryAmount" />
+        <result column="merchant_id" property="merchantId" />
+        <result column="version" property="version" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="create_time" property="createTime" />
+        <result column="merchant_discount" property="merchantDiscount" />
+        <result column="platform_discount" property="platformDiscount" />
+        <result column="prescription" property="prescription" />
+        <result column="delivery_supplier_id" property="deliverySupplierId" />
+        <result column="delivery_supplier_name" property="deliverySupplierName" />
+        <result column="agent_operate" property="agentOperate" />
+        <result column="is_split" property="isSplit" />
+        <result column="order_cs_by" property="orderCsBy" />
+        <result column="order_cs_time" property="orderCsTime" />
+        <result column="is_cpm" property="isCpm" />
+        <result column="generate_wave_time" property="generateWaveTime" />
+        <result column="wms_is_lock" property="wmsIsLock" />
+        <result column="wms_lock_code" property="wmsLockCode" />
+        <result column="instea_status" property="insteaStatus" />
+        <result column="instea_supplier" property="insteaSupplier" />
+        <result column="instea_supplier_name" property="insteaSupplierName" />
+        <result column="order_finished_time" property="orderFinishedTime" />
+        <result column="order_end_time" property="orderEndTime" />
+        <result column="invoice_type" property="invoiceType" />
+        <result column="invoice_title" property="invoiceTitle" />
+        <result column="order_volume" property="orderVolume" />
+        <result column="delivery_feature" property="deliveryFeature" />
+        <result column="order_create_type" property="orderCreateType" />
+        <result column="exception_code" property="exceptionCode" />
+        <result column="exception_remark" property="exceptionRemark" />
+        <result column="merge_order_code" property="mergeOrderCode" />
+        <result column="carrier_distribute_failed_reason" property="carrierDistributeFailedReason" />
+        <result column="is_carrier_distribute" property="isCarrierDistribute" />
+        <result column="carrier_distribute_failed" property="carrierDistributeFailed" />
+        <result column="tenant_id" property="tenantId" />
+        <result column="freight" property="freight" />
+        <result column="freight_adjust" property="freightAdjust" />
+        <result column="ralation_tenant_id" property="ralationTenantId" />
+        <result column="buyer_nick" property="buyerNick" />
+        <result column="is_sync" property="isSync" />
+        <result column="logistics_status" property="logisticsStatus" />
+        <result column="audit_fail" property="auditFail" />
+        <result column="receipt_time" property="receiptTime" />
+        <result column="good_receiver_town" property="goodReceiverTown" />
+        <result column="good_receiver_town_id" property="goodReceiverTownId" />
+        <result column="collection_status" property="collectionStatus" />
+        <result column="collection_date" property="collectionDate" />
+        <result column="business_type" property="businessType" />
+        <result column="order_flag" property="orderFlag" />
+        <result column="order_merge_flag" property="orderMergeFlag" />
+        <result column="unfreeze_time" property="unfreezeTime" />
+        <result column="deliveryman_id" property="deliverymanId" />
+        <result column="invoice_tax_no" property="invoiceTaxNo" />
+        <result column="sale_type" property="saleType" />
+        <result column="parent_platform_order_code" property="parentPlatformOrderCode" />
+        <result column="cross_border" property="crossBorder" />
+        <result column="freight_fcode" property="freightFcode" />
+        <result column="tax_fcy" property="taxFcy" />
+        <result column="actual_fcy" property="actualFcy" />
+        <result column="estimate_fcy" property="estimateFcy" />
+        <result column="curr_code" property="currCode" />
+        <result column="insurance_amount" property="insuranceAmount" />
+        <result column="receive_type" property="receiveType" />
+        <result column="receive_no" property="receiveNo" />
+        <result column="pay_company_code" property="payCompanyCode" />
+        <result column="third_party_pay_no" property="thirdPartyPayNo" />
+        <result column="pay_order_no" property="payOrderNo" />
+        <result column="company_name" property="companyName" />
+        <result column="company_code" property="companyCode" />
+        <result column="e_commerce_code" property="eCommerceCode" />
+        <result column="e_commerce_name" property="eCommerceName" />
+        <result column="outer_order_code" property="outerOrderCode" />
+        <result column="outer_order_type" property="outerOrderType" />
+        <result column="customs_completed_time" property="customsCompletedTime" />
+        <result column="prescription_url" property="prescriptionUrl" />
+        <result column="source" property="source" />
+        <result column="created_by" property="createdBy" />
+        <result column="wms_rewrite_date" property="wmsRewriteDate" />
+        <result column="tax_collection_date" property="taxCollectionDate" />
+        <result column="payment_remark" property="paymentRemark" />
+        <result column="is_real_warehouse_order" property="isRealWarehouseOrder" />
+        <result column="pay_name" property="payName" />
+        <result column="pay_phone" property="payPhone" />
+        <result column="payment_code" property="paymentCode" />
+        <result column="payment_name" property="paymentName" />
+        
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, end_user_id AS endUserId, order_amount AS orderAmount, order_code AS orderCode, original_code AS originalCode, grf_code AS grfCode,
+         shop_id AS shopId, shop_name AS shopName, order_status AS orderStatus, reason_failure AS reasonFailure, order_type AS orderType, 
+         order_attr AS orderAttr, order_fulfillment_type AS orderFulfillmentType, order_remark AS orderRemark, order_delivery_fee AS orderDeliveryFee,
+          order_source AS orderSource, order_payment_confirm_date AS orderPaymentConfirmDate, order_create_time AS orderCreateTime, 
+          order_to_logistics_time AS orderToLogisticsTime, order_out_of_inventory_status AS orderOutOfInventoryStatus, 
+          order_need_invoice AS orderNeedInvoice, parent_so_id AS parentSoId, delivery_date AS deliveryDate, receive_date AS receiveDate,
+           account_payable AS accountPayable, product_amount AS productAmount, good_receiver_name AS goodReceiverName, good_receiver_address AS goodReceiverAddress, good_receiver_province AS goodReceiverProvince, good_receiver_city AS goodReceiverCity, good_receiver_county AS goodReceiverCounty, good_receiver_phone AS goodReceiverPhone, cancel_date AS cancelDate, is_leaf AS isLeaf, order_cs_remark AS orderCsRemark, to_logistic_flag AS toLogisticFlag, good_receiver_mobile AS goodReceiverMobile,
+            spec_proc_flag AS specProcFlag, good_receiver_city_id AS goodReceiverCityId, good_receiver_county_id AS goodReceiverCountyId, good_receiver_province_id AS goodReceiverProvinceId, warehouse_id AS warehouseId, warehouse_ids AS warehouseIds, merchant_express_nbr AS merchantExpressNbr, virtual_stock_status AS virtualStockStatus, update_time AS updateTime, order_cs_reason AS orderCsReason, order_promotion_discount AS orderPromotionDiscount, delivery_method_type AS deliveryMethodType, pay_service_type AS payServiceType, order_weight AS orderWeight, gross_weight AS grossWeight, collect_on_delivery_amount AS collectOnDeliveryAmount,
+			merchant_id AS merchantId, version, is_deleted AS isDeleted, create_time AS createTime, merchant_discount AS merchantDiscount, platform_discount AS platformDiscount, prescription,
+             delivery_supplier_id AS deliverySupplierId, agent_operate AS agentOperate, is_split AS isSplit, order_cs_by AS orderCsBy, 
+             order_cs_time AS orderCsTime, is_cpm AS isCpm, generate_wave_time AS generateWaveTime, wms_is_lock AS wmsIsLock, wms_lock_code AS wmsLockCode,
+              instea_status AS insteaStatus, instea_supplier AS insteaSupplier, order_finished_time AS orderFinishedTime, order_end_time AS orderEndTime,
+               invoice_type AS invoiceType, invoice_title AS invoiceTitle, order_volume AS orderVolume, delivery_feature AS deliveryFeature, 
+               order_create_type AS orderCreateType, exception_code AS exceptionCode, exception_remark AS exceptionRemark, merge_order_code AS mergeOrderCode,
+                carrier_distribute_failed_reason AS carrierDistributeFailedReason, is_carrier_distribute AS isCarrierDistribute,
+                 carrier_distribute_failed AS carrierDistributeFailed, tenant_id AS tenantId, freight, freight_adjust AS freightAdjust, 
+                 ralation_tenant_id AS ralationTenantId, buyer_nick AS buyerNick, is_sync AS isSync, logistics_status AS logisticsStatus, 
+                 audit_fail AS auditFail, receipt_time AS receiptTime, good_receiver_town AS goodReceiverTown, good_receiver_town_id AS goodReceiverTownId, 
+                 collection_status AS collectionStatus, collection_date AS collectionDate, business_type AS businessType, order_flag AS orderFlag, 
+                 order_merge_flag AS orderMergeFlag, unfreeze_time AS unfreezeTime, deliveryman_id AS deliverymanId, invoice_tax_no AS invoiceTaxNo, sale_type AS saleType, parent_platform_order_code AS parentPlatformOrderCode, cross_border AS crossBorder, freight_fcode AS freightFcode, 
+                 tax_fcy AS taxFcy, actual_fcy AS actualFcy, estimate_fcy AS estimateFcy, curr_code AS currCode, insurance_amount AS insuranceAmount, 
+                 receive_type AS receiveType, receive_no AS receiveNo, pay_company_code AS payCompanyCode, third_party_pay_no AS thirdPartyPayNo, pay_order_no AS payOrderNo, company_name AS companyName, company_code AS companyCode, e_commerce_code AS eCommerceCode, e_commerce_name AS eCommerceName, outer_order_code AS outerOrderCode, outer_order_type AS outerOrderType, customs_completed_time AS customsCompletedTime, prescription_url AS prescriptionUrl, source, created_by AS createdBy, wms_rewrite_date AS wmsRewriteDate, tax_collection_date AS taxCollectionDate, payment_remark AS paymentRemark
+                 ,payment_name as paymentName
+    </sql>
+    
+        <sql id="Search_List">
+        id,order_amount AS orderAmount,source, original_code AS originalCode,gross_weight AS grossWeight,shop_name AS shopName,order_code AS orderCode, pay_service_type AS payServiceType,order_status AS orderStatus,order_remark AS orderRemark,order_cs_remark AS orderCsRemark,
+good_receiver_address AS goodReceiverAddress,delivery_method_type AS deliveryMethodType,shop_name AS shopName, warehouse_id AS warehouseId,order_type AS orderType,account_payable AS accountPayable,
+collect_on_delivery_amount AS collectOnDeliveryAmount, invoice_title AS invoiceTitle, order_create_time AS orderCreateTime,order_payment_confirm_date AS orderPaymentConfirmDate, order_finished_time AS orderFinishedTime,
+created_by AS createdBy,merchant_id as merchantId,delivery_date as deliveryDate,order_source_name as orderSourceName,exception_remark AS exceptionRemark,receive_no AS receiveNo,delivery_supplier_name as deliverySupplierName,
+merchant_express_nbr as merchantExpressNbr, create_time as createTime,order_need_invoice as orderNeedInvoice, buyer_nick AS buyerNick, payment_remark AS paymentRemark,
+good_receiver_mobile AS goodReceiverMobile,tax_fcy AS taxFcy, order_delivery_fee AS orderDeliveryFee,product_amount AS productAmount,third_party_pay_no AS thirdPartyPayNo,
+good_receiver_province AS goodReceiverProvince, good_receiver_city AS goodReceiverCity, good_receiver_county AS goodReceiverCounty,merchant_discount AS merchantDiscount, platform_discount AS platformDiscount,
+good_receiver_name AS goodReceiverName,payment_name as paymentName,shop_id AS shopId
+    </sql>
+    
+    <select id="selectSoOrderList" resultType="map" parameterType="map">
+    select
+		<include refid="Search_List" />
+		from so_order
+		<trim prefix="WHERE" prefixOverrides="AND">
+			 <if test="originalCodeList != null and originalCodeList.length>0">
+                 AND original_code IN
+	            <foreach collection="originalCodeList" item="platformOrderCode" open="(" close=")" separator=",">
+	                #{platformOrderCode}
+	            </foreach>
+              </if>	
+              <if test="virtualType != null">
+                 AND is_real_warehouse_order = #{virtualType}
+              </if>	
+              <if test="orderStatus != null">
+              	AND order_status = #{orderStatus}
+              </if>
+              
+              <if test="orderSourceName != null and orderSourceName != ''">
+              	AND order_source_name = #{orderSourceName}
+              </if>
+              <if test="merchantId != null">
+              	AND merchant_id = #{merchantId}
+              </if>
+              <if test="shopId != null">
+              	AND shop_id = #{shopId}
+              </if>
+              <if test="goodReceiverName != null and goodReceiverName != ''">
+              	AND pay_name LIKE  CONCAT(CONCAT('%',#{goodReceiverName},'%')) 
+              </if>
+              <if test="buyerNick != null and buyerNick != ''">
+              	AND buyer_nick  LIKE  CONCAT(CONCAT('%',#{buyerNick},'%')) 
+              </if>
+              <if test="goodReceiverMobile != null and goodReceiverMobile != ''">
+              	AND good_receiver_mobile LIKE  CONCAT(CONCAT('%',#{goodReceiverMobile},'%')) 
+              </if>
+              <if test="orderCreateTimeBegin != null and orderCreateTimeBegin != ''">
+              	AND order_create_time <![CDATA[>=]]> #{orderCreateTimeBegin}
+              </if>
+              <if test="orderCreateTimeEnd != null and orderCreateTimeEnd != ''">
+              	AND order_create_time <![CDATA[<=]]> #{orderCreateTimeEnd}
+              </if>
+              <if test="orderPaymentConfirmDateBegin != null and orderPaymentConfirmDateBegin != ''">
+              	AND order_payment_confirm_date <![CDATA[>=]]> #{orderPaymentConfirmDateBegin}
+              </if>
+              <if test="orderPaymentConfirmDateEnd != null and orderPaymentConfirmDateEnd != ''">
+              	AND order_payment_confirm_date <![CDATA[<=]]> #{orderPaymentConfirmDateEnd}
+              </if>
+              <if test="deliveryDateBegin != null and deliveryDateBegin != ''">
+              	AND delivery_date <![CDATA[>=]]> #{deliveryDateBegin}
+              </if>
+              <if test="deliveryDateEnd != null and deliveryDateEnd != ''">
+              	AND delivery_date <![CDATA[<=]]> #{deliveryDateEnd}
+              </if>
+              <if test="orderFinishedTimeBegin != null and orderFinishedTimeBegin != ''">
+              	AND order_finished_time <![CDATA[>=]]> #{orderFinishedTimeBegin}
+              </if>
+              <if test="orderFinishedTimeEnd != null and orderFinishedTimeEnd != ''">
+              	AND order_finished_time <![CDATA[<=]]> #{orderFinishedTimeEnd}
+              </if>
+              <if test="orderRemark != null and orderRemark != ''">
+              	AND order_remark LIKE  CONCAT(CONCAT('%',#{orderRemark},'%')) 
+              </if>
+              <if test="orderCsRemark != null and orderCsRemark != ''">
+              	AND order_cs_remark LIKE  CONCAT(CONCAT('%',#{orderCsRemark},'%')) 
+              </if>
+              <if test="warehouseId != null">
+              	AND warehouse_id = #{warehouseId}
+              </if>
+              <if test="deliveryMethodType != null">
+              	AND delivery_method_type = #{deliveryMethodType}
+              </if>
+              <if test="deliverySupplierId != null">
+              	AND delivery_supplier_id = #{deliverySupplierId}
+              </if>
+              
+              <if test="merchantIds != null">
+              	 AND  merchant_id IN
+	            <foreach collection="merchantIds" index="index" item="item" open="(" separator="," close=")">
+	                #{item}
+	            </foreach>
+              </if>
+              
+              
+              
+              AND tenant_id = 172
+              
+              order by update_time desc
+	    </trim>
+	     limit #{pageBegin},#{pageEnd}
+    </select>
+    
+    <select id="pageCount" resultType="java.lang.Integer" parameterType="map">
+    select
+		count(1)
+		from so_order
+		<trim prefix="WHERE" prefixOverrides="AND">
+			  <if test="originalCodeList != null and originalCodeList.length>0">
+                 AND original_code IN
+	            <foreach collection="originalCodeList" item="platformOrderCode" open="(" close=")" separator=",">
+	                #{platformOrderCode}
+	            </foreach>
+              </if>	
+              <if test="virtualType != null">
+                 AND is_real_warehouse_order = #{virtualType}
+              </if>	
+              <if test="orderStatus != null">
+              	AND order_status = #{orderStatus}
+              </if>
+              
+              <if test="orderSourceName != null and orderSourceName != ''">
+              	AND order_source_name = #{orderSourceName}
+              </if>
+              <if test="merchantId != null">
+              	AND merchant_id = #{merchantId}
+              </if>
+              <if test="shopId != null">
+              	AND shop_id = #{shopId}
+              </if>
+              <if test="goodReceiverName != null and goodReceiverName != ''">
+              	AND pay_name LIKE  CONCAT(CONCAT('%',#{goodReceiverName},'%')) 
+              </if>
+              <if test="buyerNick != null and buyerNick != ''">
+              	AND buyer_nick  LIKE  CONCAT(CONCAT('%',#{buyerNick},'%')) 
+              </if>
+              <if test="goodReceiverMobile != null and goodReceiverMobile != ''">
+              	AND good_receiver_mobile LIKE  CONCAT(CONCAT('%',#{goodReceiverMobile},'%')) 
+              </if>
+              <if test="orderCreateTimeBegin != null and orderCreateTimeBegin != ''">
+              	AND order_create_time <![CDATA[>=]]> #{orderCreateTimeBegin}
+              </if>
+              <if test="orderCreateTimeEnd != null and orderCreateTimeEnd != ''">
+              	AND order_create_time <![CDATA[<=]]> #{orderCreateTimeEnd}
+              </if>
+              <if test="orderPaymentConfirmDateBegin != null and orderPaymentConfirmDateBegin != ''">
+              	AND order_payment_confirm_date <![CDATA[>=]]> #{orderPaymentConfirmDateBegin}
+              </if>
+              <if test="orderPaymentConfirmDateEnd != null and orderPaymentConfirmDateEnd != ''">
+              	AND order_payment_confirm_date <![CDATA[<=]]> #{orderPaymentConfirmDateEnd}
+              </if>
+              <if test="deliveryDateBegin != null and deliveryDateBegin != ''">
+              	AND delivery_date <![CDATA[>=]]> #{deliveryDateBegin}
+              </if>
+              <if test="deliveryDateEnd != null and deliveryDateEnd != ''">
+              	AND delivery_date <![CDATA[<=]]> #{deliveryDateEnd}
+              </if>
+              <if test="orderFinishedTimeBegin != null and orderFinishedTimeBegin != ''">
+              	AND order_finished_time <![CDATA[>=]]> #{orderFinishedTimeBegin}
+              </if>
+              <if test="orderFinishedTimeEnd != null and orderFinishedTimeEnd != ''">
+              	AND order_finished_time <![CDATA[<=]]> #{orderFinishedTimeEnd}
+              </if>
+              <if test="orderRemark != null and orderRemark != ''">
+              	AND order_remark LIKE  CONCAT(CONCAT('%',#{orderRemark},'%')) 
+              </if>
+              <if test="orderCsRemark != null and orderCsRemark != ''">
+              	AND order_cs_remark LIKE  CONCAT(CONCAT('%',#{orderCsRemark},'%')) 
+              </if>
+              <if test="warehouseId != null">
+              	AND warehouse_id = #{warehouseId}
+              </if>
+              <if test="deliveryMethodType != null">
+              	AND delivery_method_type = #{deliveryMethodType}
+              </if>
+              <if test="deliverySupplierId != null">
+              	AND delivery_supplier_id = #{deliverySupplierId}
+              </if>
+              
+              <if test="merchantIds != null">
+              	 AND  merchant_id IN
+	            <foreach collection="merchantIds" index="index" item="item" open="(" separator="," close=")">
+	                #{item}
+	            </foreach>
+              </if>
+              
+              AND tenant_id = 172
+	    </trim>
+    </select>
+    
+    <update id="updateSoById" parameterType="com.baiyang.oms.modular.business.model.SoOrder">
+    	UPDATE so_order 
+    	<trim prefix="SET" suffixOverrides=",">  
+          	<if test="grossWeight != null">
+		       gross_weight=#{grossWeight},
+			</if>
+	    	<if test="orderCode != null and orderCode != ''">
+			       order_code=#{orderCode},
+			</if>
+			<if test="goodReceiverName != null and goodReceiverName != ''">
+			       good_receiver_name=#{goodReceiverName},
+			</if>
+			<if test="goodReceiverAddress != null and goodReceiverAddress != ''">
+			       good_receiver_address=#{goodReceiverAddress},
+			</if>
+			<if test="goodReceiverMobile != null and goodReceiverMobile != ''">
+			       good_receiver_mobile=#{goodReceiverMobile},
+			</if>
+			<if test="goodReceiverProvince != null and goodReceiverProvince != ''">
+			       good_receiver_province=#{goodReceiverProvince},
+			</if>
+			<if test="goodReceiverCity != null and goodReceiverCity != ''">
+			       good_receiver_city=#{goodReceiverCity},
+			</if>
+			<if test="goodReceiverCounty != null and goodReceiverCounty != ''">
+			       good_receiver_county=#{goodReceiverCounty},
+			</if>
+			<if test="goodReceiverCityId != null">
+			       good_receiver_city_id=#{goodReceiverCityId},
+			</if>
+			<if test="goodReceiverCountyId != null">
+			       good_receiver_county_id=#{goodReceiverCountyId},
+			</if>
+			<if test="goodReceiverProvinceId != null">
+			       good_receiver_province_id=#{goodReceiverProvinceId},
+			</if>
+			<if test="receiveNo != null and receiveNo != ''">
+			       receive_no=#{receiveNo},
+			</if>
+			<if test="orderCsRemark != null and orderCsRemark != ''">
+			       order_cs_remark=#{orderCsRemark},
+			</if>
+            <if test="payName != null and payName != ''">
+                pay_name=#{payName},
+            </if>
+             <if test="payPhone != null and payPhone != ''">
+                pay_phone=#{payPhone},
+            </if>
+        </trim> 
+    	 where id = #{id}
+    </update>
+    
+    <update id="updateSoByoriginalCode" parameterType="com.baiyang.oms.modular.business.model.SoOrder">
+    UPDATE so_order 
+    	<trim prefix="SET" suffixOverrides=",">  
+			<if test="merchantExpressNbr != null">
+				   merchant_express_nbr = #{merchantExpressNbr},
+			</if>
+			<if test="updateTime != null">
+				   update_time = #{updateTime},
+			</if>
+			<if test="orderFinishedTime != null">
+					order_finished_time = #{orderFinishedTime},
+			</if>
+			<if test="insteaSupplierName != null">
+					instea_supplier_name = #{insteaSupplierName},
+			</if>
+			<if test="deliverySupplierName != null">
+					delivery_supplier_name = #{deliverySupplierName},
+			</if>
+			<if test="orderCsBy != null">
+					order_cs_by = #{orderCsBy},
+			</if>
+			<if test="orderCsTime != null">
+					order_cs_time = #{orderCsTime},
+			</if>
+			<if test="exceptionRemark != null">
+					exception_remark = #{exceptionRemark},
+			</if>
+			<if test="exceptionCode != null">
+					exception_code = #{exceptionCode},
+			</if>
+			<if test="orderStatus != null">
+					order_status = #{orderStatus},
+			</if>
+        </trim> 
+    	 where original_code = #{originalCode}
+    </update>
+    
+    <select id="getGoodReceiverById" resultType="map" parameterType="java.lang.Integer">
+    select  good_receiver_name as goodReceiverName ,good_receiver_address as goodReceiverAddress,good_receiver_phone as goodReceiverPhone,
+		    good_receiver_mobile as goodReceiverMobile,good_receiver_city_id as goodReceiverCityId,good_receiver_county_id as goodReceiverCountyId,
+		    good_receiver_province_id as goodReceiverProvinceId,receive_no AS receiveNo,order_cs_remark AS orderCsRemark,pay_name as payName
+		    ,pay_phone as payPhone 
+    	from so_order where id = #{soId}
+    </select>
+    
+    <select id="getSoOrdersByMap" resultType="com.baiyang.oms.modular.business.model.SoOrder" parameterType="map">
+    select
+		<include refid="Search_List" />
+		from so_order
+		<trim prefix="WHERE" prefixOverrides="AND">
+			  <if test="originalCode != null and originalCode != ''">
+                 AND original_code = #{originalCode}
+              </if>	
+              <if test="virtualType != null">
+                 AND is_real_warehouse_order = #{virtualType}
+              </if>
+	    </trim>
+    </select>
+    
+    <select id="getSoOrderCodeByOriginalCode" resultType="string" parameterType="string">
+     select
+        order_code as orderCode
+        from so_order
+        where original_code = #{originalCode}
+    </select>
+
+
+    <select id="getSoOrdersByOrderCode" resultType="com.baiyang.oms.modular.business.model.SoOrder" parameterType="java.lang.String">
+        select
+            id,original_code AS originalCode,order_code AS orderCode, order_status AS orderStatus, warehouse_id AS warehouseId,
+            is_real_warehouse_order as isRealWarehouseOrder
+        from so_order
+        where original_code = #{originalCode}
+    </select>
+    
+    <select id="getSoOrderMapById" resultType="map" parameterType="java.lang.Integer">
+    	select original_code as originalCode,merchant_id as merchantId,warehouse_id AS warehouseId, shop_id as shopId,
+    	order_cs_remark as orderCsRemark,order_status as orderStatus,spec_proc_flag as specProcFlag,is_real_warehouse_order as isRealWarehouseOrder 
+    	from so_order 
+    	<trim prefix="WHERE" prefixOverrides="AND">
+			  <if test="soId != null">
+                 AND id = #{soId}
+              </if>	
+              <if test="tenantId != null">
+                 AND tenant_id = #{tenantId}
+              </if>	
+        </trim>
+    </select>
+<select id="getSoOrderListByExportCondition" resultType="com.baiyang.oms.modular.business.model.SoOrder" parameterType="map">
+    select
+    <include refid="Base_Column_List" />
+    from so_order
+    <trim prefix="WHERE" prefixOverrides="AND">
+        <if test="originalCodeList != null and originalCodeList.length>0">
+            AND original_code IN
+            <foreach collection="originalCodeList" item="platformOrderCode" open="(" close=")" separator=",">
+                #{platformOrderCode}
+            </foreach>
+        </if>
+        <if test="virtualType != null">
+            AND is_real_warehouse_order = #{virtualType}
+        </if>
+        <if test="orderStatus != null">
+            AND order_status = #{orderStatus}
+        </if>
+        <if test="orderSourceName != null and orderSourceName != ''">
+            AND order_source_name = #{orderSourceName}
+        </if>
+        <if test="merchantId != null">
+            AND merchant_id = #{merchantId}
+        </if>
+        <if test="shopId != null">
+            AND shop_id = #{shopId}
+        </if>
+        <if test="goodReceiverName != null and goodReceiverName != ''">
+            AND pay_name LIKE  CONCAT(CONCAT('%',#{goodReceiverName},'%'))
+        </if>
+        <if test="buyerNick != null and buyerNick != ''">
+            AND buyer_nick  LIKE  CONCAT(CONCAT('%',#{buyerNick},'%'))
+        </if>
+        <if test="goodReceiverMobile != null and goodReceiverMobile != ''">
+            AND good_receiver_mobile LIKE  CONCAT(CONCAT('%',#{goodReceiverMobile},'%'))
+        </if>
+        <if test="orderCreateTimeBegin != null and orderCreateTimeBegin != ''">
+            AND order_create_time <![CDATA[>=]]> #{orderCreateTimeBegin}
+        </if>
+        <if test="orderCreateTimeEnd != null and orderCreateTimeEnd != ''">
+            AND order_create_time <![CDATA[<=]]> #{orderCreateTimeEnd}
+        </if>
+        <if test="orderPaymentConfirmDateBegin != null and orderPaymentConfirmDateBegin != ''">
+            AND order_payment_confirm_date <![CDATA[>=]]> #{orderPaymentConfirmDateBegin}
+        </if>
+        <if test="orderPaymentConfirmDateEnd != null and orderPaymentConfirmDateEnd != ''">
+            AND order_payment_confirm_date <![CDATA[<=]]> #{orderPaymentConfirmDateEnd}
+        </if>
+        <if test="deliveryDateBegin != null and deliveryDateBegin != ''">
+            AND delivery_date <![CDATA[>=]]> #{deliveryDateBegin}
+        </if>
+        <if test="deliveryDateEnd != null and deliveryDateEnd != ''">
+            AND delivery_date <![CDATA[<=]]> #{deliveryDateEnd}
+        </if>
+        <if test="orderFinishedTimeBegin != null and orderFinishedTimeBegin != ''">
+            AND order_finished_time <![CDATA[>=]]> #{orderFinishedTimeBegin}
+        </if>
+        <if test="orderFinishedTimeEnd != null and orderFinishedTimeEnd != ''">
+            AND order_finished_time <![CDATA[<=]]> #{orderFinishedTimeEnd}
+        </if>
+        <if test="orderRemark != null and orderRemark != ''">
+            AND order_remark LIKE  CONCAT(CONCAT('%',#{orderRemark},'%'))
+        </if>
+        <if test="orderCsRemark != null and orderCsRemark != ''">
+            AND order_cs_remark LIKE  CONCAT(CONCAT('%',#{orderCsRemark},'%'))
+        </if>
+        <if test="warehouseId != null">
+            AND warehouse_id = #{warehouseId}
+        </if>
+        <if test="deliveryMethodType != null">
+            AND delivery_method_type = #{deliveryMethodType}
+        </if>
+        <if test="deliverySupplierId != null">
+            AND delivery_supplier_id = #{deliverySupplierId}
+        </if>
+
+        <if test="merchantList != null and merchantList.size() > 0">
+            AND merchant_id IN
+            <foreach collection="merchantList" item="merchantId" open="(" close=")" separator=",">
+                #{merchantId}
+            </foreach>
+        </if>
+        <if test="shopList != null and shopList.size() > 0">
+            AND shop_id IN
+            <foreach collection="shopList" item="shopId" open="(" close=")" separator=",">
+                #{shopId}
+            </foreach>
+        </if>
+        <if test="tenantId != null">
+            AND tenant_id= #{tenantId}
+        </if>
+    </trim>
+</select>
+
+    <select id="getVirtualOrderExportList" resultType="map" parameterType="map">
+        select
+            so.order_source_name as orderSourceName, so.original_code as originalCodeSoOrder, so.order_code as orderCode, so.order_create_time as orderCreateTime,
+            so.order_payment_confirm_date as orderPaymentConfirmDate,
+            so.pay_order_no as payOrderNo, so.good_receiver_name as goodReceiverName, so.receive_no as receiveNo,
+            so.good_receiver_mobile as goodReceiverMobile, so.good_receiver_province as goodReceiverProvince,
+            so.good_receiver_city as goodReceiverCity, so.good_receiver_county as goodReceiverCounty, so.good_receiver_address as goodReceiverAddress,
+            si.warehouse_id as warehouseId, so.instea_supplier_name as insteaSupplierName,
+            mp.wholesale_price as wholesalePrice, so.account_payable as accountPayable, so.order_amount as orderAmount,
+            si.product_code as productCode, si.order_item_num as orderItemNum,
+            mp.original_code as originalCodeMdProduct, mp.ean13,
+            mp.product_cname as productCname, so.order_remark as orderRemark
+        from so_order so
+        right join so_item si on so.original_code=si.platform_order_code
+        right join md_product mp on si.product_code=mp.product_code
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="originalCodeList != null and originalCodeList.length>0">
+                AND so.original_code IN
+                <foreach collection="originalCodeList" item="platformOrderCode" open="(" close=")" separator=",">
+                    #{platformOrderCode}
+                </foreach>
+            </if>
+            <if test="virtualType != null">
+                AND so.is_real_warehouse_order = #{virtualType}
+            </if>
+            <if test="orderStatus != null">
+                AND so.order_status = #{orderStatus}
+            </if>
+            <if test="orderSourceName != null and orderSourceName != ''">
+                AND so.order_source_name = #{orderSourceName}
+            </if>
+            <if test="merchantId != null">
+                AND so.merchant_id = #{merchantId}
+            </if>
+            <if test="shopId != null">
+                AND so.shop_id = #{shopId}
+            </if>
+            <if test="goodReceiverName != null and goodReceiverName != ''">
+                AND so.pay_name LIKE  CONCAT(CONCAT('%',#{goodReceiverName},'%'))
+            </if>
+            <if test="buyerNick != null and buyerNick != ''">
+                AND so.buyer_nick  LIKE  CONCAT(CONCAT('%',#{buyerNick},'%'))
+            </if>
+            <if test="goodReceiverMobile != null and goodReceiverMobile != ''">
+                AND so.good_receiver_mobile LIKE  CONCAT(CONCAT('%',#{goodReceiverMobile},'%'))
+            </if>
+            <if test="orderCreateTimeBegin != null and orderCreateTimeBegin != ''">
+                AND so.order_create_time <![CDATA[>=]]> #{orderCreateTimeBegin}
+            </if>
+            <if test="orderCreateTimeEnd != null and orderCreateTimeEnd != ''">
+                AND so.order_create_time <![CDATA[<=]]> #{orderCreateTimeEnd}
+            </if>
+            <if test="orderPaymentConfirmDateBegin != null and orderPaymentConfirmDateBegin != ''">
+                AND so.order_payment_confirm_date <![CDATA[>=]]> #{orderPaymentConfirmDateBegin}
+            </if>
+            <if test="orderPaymentConfirmDateEnd != null and orderPaymentConfirmDateEnd != ''">
+                AND so.order_payment_confirm_date <![CDATA[<=]]> #{orderPaymentConfirmDateEnd}
+            </if>
+            <if test="deliveryDateBegin != null and deliveryDateBegin != ''">
+                AND so.delivery_date <![CDATA[>=]]> #{deliveryDateBegin}
+            </if>
+            <if test="deliveryDateEnd != null and deliveryDateEnd != ''">
+                AND so.delivery_date <![CDATA[<=]]> #{deliveryDateEnd}
+            </if>
+            <if test="orderFinishedTimeBegin != null and orderFinishedTimeBegin != ''">
+                AND so.order_finished_time <![CDATA[>=]]> #{orderFinishedTimeBegin}
+            </if>
+            <if test="orderFinishedTimeEnd != null and orderFinishedTimeEnd != ''">
+                AND so.order_finished_time <![CDATA[<=]]> #{orderFinishedTimeEnd}
+            </if>
+            <if test="orderRemark != null and orderRemark != ''">
+                AND so.order_remark LIKE  CONCAT(CONCAT('%',#{orderRemark},'%'))
+            </if>
+            <if test="orderCsRemark != null and orderCsRemark != ''">
+                AND so.order_cs_remark LIKE  CONCAT(CONCAT('%',#{orderCsRemark},'%'))
+            </if>
+            <if test="warehouseId != null">
+                AND so.warehouse_id = #{warehouseId}
+            </if>
+            <if test="deliveryMethodType != null">
+                AND so.delivery_method_type = #{deliveryMethodType}
+            </if>
+            <if test="deliverySupplierId != null">
+                AND so.delivery_supplier_id = #{deliverySupplierId}
+            </if>
+            <if test="merchantIds != null">
+                AND  so.merchant_id IN
+                <foreach collection="merchantIds" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="shopIds != null">
+                AND  so.shop_id IN
+                <foreach collection="shopIds" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="tenantId != null">
+                AND so.tenant_id = #{tenantId}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getSoOrdersByMap" resultType="com.baiyang.oms.modular.business.model.SoOrder" parameterType="map">
+        select
+
+        from so_order
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="originalCode != null and originalCode != ''">
+                AND original_code = #{originalCode}
+            </if>
+            <if test="virtualType != null">
+                AND is_real_warehouse_order = #{virtualType}
+            </if>
+        </trim>
+        limit #{pageBegin},#{pageEnd}
+    </select>
+
+</mapper>

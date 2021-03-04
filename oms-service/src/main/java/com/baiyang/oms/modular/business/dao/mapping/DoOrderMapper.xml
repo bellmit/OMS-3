@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.DoOrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.DoOrder">
+        <id column="id" property="id" />
+        <result column="do_no" property="doNo" />
+        <result column="so_no" property="soNo" />
+        <result column="parent_so_no" property="parentSoNo" />
+        <result column="delivery_order_id" property="deliveryOrderId" />
+        <result column="wv_no" property="wvNo" />
+        <result column="sorting_no" property="sortingNo" />
+        <result column="grf_no" property="grfNo" />
+        <result column="do_create_time" property="doCreateTime" />
+        <result column="so_create_time" property="soCreateTime" />
+        <result column="last_operate_time" property="lastOperateTime" />
+        <result column="state" property="state" />
+        <result column="do_type" property="doType" />
+        <result column="delivery_mode" property="deliveryMode" />
+        <result column="delivery_method_type" property="deliveryMethodType" />
+        <result column="deliveryman_id" property="deliverymanId" />
+        <result column="order_source" property="orderSource" />
+        <result column="carton_quantity" property="cartonQuantity" />
+        <result column="payment_mode" property="paymentMode" />
+        <result column="product_amount" property="productAmount" />
+        <result column="to_collect_amount" property="toCollectAmount" />
+        <result column="wh_id" property="whId" />
+        <result column="product_codes" property="productCodes" />
+        <result column="carrier_id" property="carrierId" />
+        <result column="consignee" property="consignee" />
+        <result column="consignee_telephone" property="consigneeTelephone" />
+        <result column="consignee_mobile" property="consigneeMobile" />
+        <result column="province_id" property="provinceId" />
+        <result column="province" property="province" />
+        <result column="city_id" property="cityId" />
+        <result column="city" property="city" />
+        <result column="district_id" property="districtId" />
+        <result column="district" property="district" />
+        <result column="area" property="area" />
+        <result column="area_id" property="areaId" />
+        <result column="address" property="address" />
+        <result column="is_need_invoice" property="isNeedInvoice" />
+        <result column="leaving_wh_time" property="leavingWhTime" />
+        <result column="arrive_dc_time" property="arriveDcTime" />
+        <result column="leave_dc_time" property="leaveDcTime" />
+        <result column="return_time" property="returnTime" />
+        <result column="created_by" property="createdBy" />
+        <result column="create_time" property="createTime" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="is_lock" property="isLock" />
+        <result column="shipped_sku_qty" property="shippedSkuQty" />
+        <result column="shipped_units_qty" property="shippedUnitsQty" />
+        <result column="shipment_no" property="shipmentNo" />
+        <result column="is_syn_wms" property="isSynWms" />
+        <result column="is_syn_dts" property="isSynDts" />
+        <result column="pay_time" property="payTime" />
+        <result column="sync_time" property="syncTime" />
+        <result column="remark" property="remark" />
+        <result column="so_id" property="soId" />
+        <result column="notice" property="notice" />
+        <result column="order_sale_method" property="orderSaleMethod" />
+        <result column="order_qty" property="orderQty" />
+        <result column="pack_qty" property="packQty" />
+        <result column="is_third_party_bill" property="isThirdPartyBill" />
+        <result column="order_payment_method_id" property="orderPaymentMethodId" />
+        <result column="order_amount" property="orderAmount" />
+        <result column="account_payable" property="accountPayable" />
+        <result column="discount_amount" property="discountAmount" />
+        <result column="order_delivery_fee" property="orderDeliveryFee" />
+        <result column="invoice_content" property="invoiceContent" />
+        <result column="invoice_number" property="invoiceNumber" />
+        <result column="invoice_amount" property="invoiceAmount" />
+        <result column="receive_amount" property="receiveAmount" />
+        <result column="merchant_id" property="merchantId" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="data_exchange_flag" property="dataExchangeFlag" />
+        <result column="shop_id" property="shopId" />
+        <result column="original_so_code" property="originalSoCode" />
+        <result column="prescription" property="prescription" />
+        <result column="cs_remark" property="csRemark" />
+        <result column="customer_remark" property="customerRemark" />
+        <result column="order_volume" property="orderVolume" />
+        <result column="order_weight" property="orderWeight" />
+        <result column="is_print_waybill" property="isPrintWaybill" />
+        <result column="is_print_do" property="isPrintDo" />
+        <result column="tenant_id" property="tenantId" />
+        <result column="parent_platform_order_code" property="parentPlatformOrderCode" />
+        <result column="cross_border" property="crossBorder" />
+        <result column="is_deal" property="isDeal" />
+        <result column="outer_order_code" property="outerOrderCode" />
+        <result column="outer_order_type" property="outerOrderType" />
+        <result column="team_buy_rule_id" property="teamBuyRuleId" />
+        <result column="sub_type" property="subType" />
+        <result column="shop_name" property="shopName" />
+        <result column="merchant_name" property="merchantName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, do_no AS doNo, so_no AS soNo, parent_so_no AS parentSoNo, wv_no AS wvNo, sorting_no AS sortingNo, grf_no AS grfNo, do_create_time AS doCreateTime, so_create_time AS soCreateTime, last_operate_time AS lastOperateTime, state, do_type AS doType, delivery_mode AS deliveryMode, delivery_method_type AS deliveryMethodType, deliveryman_id AS deliverymanId, order_source AS orderSource, carton_quantity AS cartonQuantity, payment_mode AS paymentMode, product_amount AS productAmount, to_collect_amount AS toCollectAmount, wh_id AS whId, product_codes AS productCodes, carrier_id AS carrierId, consignee, consignee_telephone AS consigneeTelephone, consignee_mobile AS consigneeMobile, province_id AS provinceId, province, city_id AS cityId, city, district_id AS districtId, district, area, area_id AS areaId, address, is_need_invoice AS isNeedInvoice, leaving_wh_time AS leavingWhTime, arrive_dc_time AS arriveDcTime, leave_dc_time AS leaveDcTime, return_time AS returnTime, created_by AS createdBy, create_time AS createTime, updated_by AS updatedBy, update_time AS updateTime, is_lock AS isLock, shipped_sku_qty AS shippedSkuQty, shipped_units_qty AS shippedUnitsQty, shipment_no AS shipmentNo, is_syn_wms AS isSynWms, is_syn_dts AS isSynDts, pay_time AS payTime, sync_time AS syncTime, remark, so_id AS soId, notice, order_sale_method AS orderSaleMethod, order_qty AS orderQty, pack_qty AS packQty, is_third_party_bill AS isThirdPartyBill, order_payment_method_id AS orderPaymentMethodId, order_amount AS orderAmount, account_payable AS accountPayable, discount_amount AS discountAmount, order_delivery_fee AS orderDeliveryFee, invoice_content AS invoiceContent, invoice_number AS invoiceNumber, invoice_amount AS invoiceAmount, receive_amount AS receiveAmount, merchant_id AS merchantId, is_deleted AS isDeleted, data_exchange_flag AS dataExchangeFlag, shop_id AS shopId, original_so_code AS originalSoCode, prescription, cs_remark AS csRemark, customer_remark AS customerRemark, order_volume AS orderVolume, order_weight AS orderWeight, is_print_waybill AS isPrintWaybill, is_print_do AS isPrintDo, tenant_id AS tenantId, parent_platform_order_code AS parentPlatformOrderCode, cross_border AS crossBorder, is_deal AS isDeal, outer_order_code AS outerOrderCode, outer_order_type AS outerOrderType, team_buy_rule_id AS teamBuyRuleId, sub_type AS subType, shop_name AS shopName, merchant_name AS merchantName
+    </sql>
+    
+    <select id="getSoNoById" parameterType="java.lang.Long" resultType="string">
+    select so_no AS soNo from do_order where id = #{id}
+    </select>
+    
+    <select id="getIdBySoNo" parameterType="string" resultType="java.lang.Long">
+    select id from do_order where so_no = #{soNo}
+    </select>
+
+</mapper>

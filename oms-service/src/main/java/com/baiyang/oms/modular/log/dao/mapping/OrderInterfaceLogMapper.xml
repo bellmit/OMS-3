@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.log.dao.OrderInterfaceLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.log.model.OrderInterfaceLog">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="interface_type_code" jdbcType="VARCHAR" property="interfaceTypeCode"/>
+        <result column="interface_type_name" jdbcType="VARCHAR" property="interfaceTypeName"/>
+        <result column="interface_method" jdbcType="VARCHAR" property="interfaceMethod"/>
+        <result column="order_code" jdbcType="VARCHAR" property="orderCode"/>
+        <result column="interface_path" jdbcType="VARCHAR" property="interfacePath"/>
+        <result column="msg_type" jdbcType="VARCHAR" property="msgType"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="execute_count" jdbcType="INTEGER" property="executeCount"/>
+        <result column="ext_fld1" jdbcType="VARCHAR" property="extFld1"/>
+        <result column="ext_fld2" jdbcType="VARCHAR" property="extFld2"/>
+        <result column="ext_fld3" jdbcType="VARCHAR" property="extFld3"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+               type="com.baiyang.oms.modular.log.model.OrderInterfaceLog">
+        <result column="content" jdbcType="LONGVARCHAR" property="content"/>
+        <result column="err_message" jdbcType="LONGVARCHAR" property="errMessage"/>
+        <result column="back_message" jdbcType="LONGVARCHAR" property="backMessage"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        interface_type_code AS interfaceTypeCode,
+        interface_type_name AS interfaceTypeName,
+        order_code AS orderCode,
+        interface_path AS interfacePath,
+        interface_method AS interfaceMethod,
+        msg_type AS msgType, status, create_time AS createTime, update_time AS updateTime, execute_count AS executeCount, ext_fld1 AS extFld1, ext_fld2 AS extFld2, ext_fld3 AS extFld3
+    </sql>
+    <sql id="Blob_Column_List">
+        content, err_message AS errMessage, back_message AS backMessage
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from order_interface_log
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <insert id="insertLog" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.baiyang.oms.modular.log.model.OrderInterfaceLog">
+        insert into order_interface_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            interface_type_code,interface_type_name,msg_type,
+            <if test="orderCode != null and orderCode != ''">
+                order_code,
+            </if>
+            <if test="interfacePath != null and interfacePath != ''">
+                interface_path,
+            </if>
+            <if test="interfaceMethod != null and interfaceMethod != ''">
+                interface_method,
+            </if>
+            <if test="content != null and content != ''">
+                content,
+            </if>
+            <if test="status != null and status != ''">
+                status,
+            </if>
+            create_time,
+            <if test="updateTime != null and updateTime != ''">
+                update_time,
+            </if>
+            execute_count,
+            <if test="errMessage != null and errMessage != ''">
+                err_message,
+            </if>
+            <if test="backMessage != null and backMessage != ''">
+                back_message,
+            </if>
+            <if test="extFld1 != null and extFld1 != ''">
+                ext_fld1,
+            </if>
+            <if test="extFld2 != null and extFld2 != ''">
+                ext_fld2,
+            </if>
+            <if test="extFld3 != null and extFld3 != ''">
+                ext_fld3
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            #{interfaceTypeCode,jdbcType=VARCHAR},
+            #{interfaceTypeName,jdbcType=VARCHAR},
+            #{msgType,jdbcType=VARCHAR},
+            <if test="orderCode != null and orderCode != ''">
+                #{orderCode,jdbcType=VARCHAR},
+            </if>
+            <if test="interfacePath != null and interfacePath != ''">
+                #{interfacePath,jdbcType=VARCHAR},
+            </if>
+            <if test="interfaceMethod != null and interfaceMethod != ''">
+                #{interfaceMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null and content != ''">
+                #{content, jdbcType=LONGVARCHAR},
+            </if>
+            <if test="status != null and status != ''">
+                #{status, jdbcType=VARCHAR},
+            </if>
+            SYSDATE(),
+            <if test="updateTime != null and updateTime != ''">
+                #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+            0,
+            <if test="errMessage != null and errMessage != ''">
+                #{errMessage, jdbcType=LONGVARCHAR},
+            </if>
+            <if test="backMessage != null and backMessage != ''">
+                #{backMessage, jdbcType=LONGVARCHAR},
+            </if>
+            <if test="extFld1 != null and extFld1 != ''">
+                #{extFld1, jdbcType=VARCHAR},
+            </if>
+            <if test="extFld2 != null and extFld2 != ''">
+                #{extFld2, jdbcType=VARCHAR},
+            </if>
+            <if test="extFld3 != null and extFld3 != ''">
+                #{extFld3, jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateLog" parameterType="com.baiyang.oms.modular.log.model.OrderInterfaceLog">
+        update order_interface_log
+        <set>
+            <trim suffixOverrides=",">
+                <if test="status != null and status != ''">
+                    status = #{status, jdbcType=VARCHAR},
+                </if>
+                update_time = SYSDATE(),
+                execute_count = execute_count + 1,
+                <if test="orderCode != null and orderCode != ''">
+                    order_code = #{orderCode,jdbcType=VARCHAR},
+                </if>
+                <if test="interfacePath != null and interfacePath != ''">
+                    interface_path = #{interfacePath,jdbcType=VARCHAR},
+                </if>
+                <if test="interfaceMethod != null and interfaceMethod != ''">
+                    interface_method = #{interfaceMethod,jdbcType=VARCHAR},
+                </if>
+                <if test="errMessage != null and errMessage != ''">
+                    err_message = #{errMessage, jdbcType=LONGVARCHAR},
+                </if>
+                <if test="backMessage != null and backMessage != ''">
+                    back_message = #{backMessage, jdbcType=LONGVARCHAR},
+                </if>
+                <if test="extFld1 != null and extFld1 != ''">
+                    ext_fld1 = #{extFld1, jdbcType=VARCHAR},
+                </if>
+                <if test="extFld2 != null and extFld2 != ''">
+                    ext_fld2 = #{extFld2, jdbcType=VARCHAR},
+                </if>
+                <if test="extFld3 != null and extFld3 != ''">
+                    ext_fld3 = #{extFld3, jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+</mapper>

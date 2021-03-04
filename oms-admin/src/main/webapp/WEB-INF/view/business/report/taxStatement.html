@@ -1,0 +1,81 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>平台管理</h5>
+                <#FormSlideToggle searchFormId="searchForm"/>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div id="searchForm">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="originalCode" name="平台单号" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="productCode" name="产品编码" />
+                            </div>
+                           <div class="col-sm-3">
+                                <#SelectCon id="warehouseId" name="仓库" >
+                                <option value="">请选择</option>
+                                @for(ware in wareHouseMap){
+                                <option value="${ware.id}">${ware.warehouseName}</option>
+                                @}
+                            </#SelectCon>
+                           </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#TimeCon id="payTimeBegin" name="付款时间开始" isTime="true" pattern="YYYY-MM-DD hh:mm:ss" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#TimeCon id="payTimeEnd" name="付款时间结束" isTime="true" pattern="YYYY-MM-DD hh:mm:ss" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#TimeCon id="riseTimeBegin" name="核销时间开始" isTime="true" pattern="YYYY-MM-DD hh:mm:ss" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#TimeCon id="riseTimeEnd" name="核销时间结束" isTime="true" pattern="YYYY-MM-DD hh:mm:ss" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12" style="text-align: center;padding-top: 20px">
+                                <#button name="搜索" icon="fa-search" clickFun="TaxStatement.search()"/>
+                                <#button name="重置" icon="fa-repeat" clickFun="TaxStatement.resetSearch()" space="true"/>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="hidden-xs" id="taxStatementTableToolbar" role="group">
+                            <#button name="导出" bootStrapIconClass="glyphicon glyphicon-export" clickFun="TaxStatement.exportOrder()" space="true"/>
+                            <#button name="导入" bootStrapIconClass="glyphicon glyphicon-import" clickFun="openExcelIn()" space="true"/>
+                        </div>
+                        <#table id="taxStatementTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/report/taxStatement.js"></script>
+<style>
+    .row-tip {
+        font-size: 12px;
+        color: red;
+        margin-top: 20px;
+        margin-left: 2px;
+        padding-top: 10px
+    }
+
+    .a-download-modal {
+        width: 60px;
+        margin-left: 280px;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        position: absolute
+    }
+</style>
+@}

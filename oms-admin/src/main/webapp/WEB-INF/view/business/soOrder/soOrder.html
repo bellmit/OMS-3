@@ -1,0 +1,261 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>订单管理管理</h5>
+                <#FormSlideToggle searchFormId="searchForm"/>
+                <!--用于js区分实单虚单使用-->
+                <input type="hidden" value="${warehouseOrderType}" id="warehouseOrderType">
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div id="searchForm">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#TextareaCon id="platformOrderCodeSearch" name="平台单号" />                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="platformIdSearch" name="渠道" >
+                                <option value="">请选择</option>
+                                <option value="官网平台">官网平台</option>
+                                 </#SelectCon>
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="merchantIdSearch" name="商家" >
+                                  <option value="">请选择</option>
+                                   @for(map in merchantMap!){
+                                   <option  value="${map.id}">${map.merchantName}</option>
+                               @}
+                                </#SelectCon>
+                           </div>
+                           <div class="col-sm-3">
+                                <#SelectCon id="shopIdSearch" name="店铺">
+                                 <option value="">请选择</option>
+                                    @for(map in shopMap!){
+                                   <option  value="${map.id}">${map.name}</option>
+                               @}
+                                </#SelectCon>
+                           </div>
+                           
+                             <div class="col-sm-3">
+                                <#NameCon id="buyerName" name="购买人姓名" />
+                            </div>
+                            
+                             <div class="col-sm-3">
+                                <#NameCon id="buyerNickId" name="买家Id" />
+                            </div>
+                             <div class="col-sm-3">
+                                <#NameCon id="" name="买家账号" />
+                            </div>
+                            
+                            <div class="col-sm-3">
+                                <#NameCon id="receiverMobile" name="买家手机号" />
+                            </div>
+							<div class="col-lg-3 col-sm-3">
+                                <#TimeCon id="createTimeSearchBegin" name="下单开始时间" isTime="true" pattern="YYYY-MM-DD hh:mm:ss" />
+                            </div>
+                            <div class="col-lg-3 col-sm-3">
+                                <#TimeCon id="createTimeSearchEnd" name="下单结束时间" isTime="true" pattern="YYYY-MM-DD hh:mm:ss"/>
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="goodsName" name="商品名称" />
+                            </div>
+
+                            <div class="col-sm-3">
+                                <#NameCon id="goodsCode" name="商品编码" />
+                            </div>
+                           <div class="col-lg-3 col-sm-3">
+                                <#TimeCon id="payTimeSearchBegin" name="付款开始时间" isTime="true" pattern="YYYY-MM-DD hh:mm:ss" />
+                           </div>
+                           <div class="col-lg-3 col-sm-3">
+                                <#TimeCon id="payTimeSearchEnd" name="付款结束时间" isTime="true" pattern="YYYY-MM-DD hh:mm:ss"/>
+                           </div>
+                           <div class="col-sm-3">
+                            <#NameCon id="orderRemark" name="买家备注" />
+                           </div>
+                           <div class="col-sm-3">
+                            <#NameCon id="csRemark" name="卖家备注" />
+                           </div>
+                           <div class="col-lg-3 col-sm-3">
+                                <#TimeCon id="outTimeSearchBegin" name="发货开始时间" isTime="true" pattern="YYYY-MM-DD hh:mm:ss" />
+                            </div>
+                            <div class="col-lg-3 col-sm-3">
+                                <#TimeCon id="outTimeSearchEnd" name="发货结束时间" isTime="true" pattern="YYYY-MM-DD hh:mm:ss"/>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <#SelectCon id="wareHouseId" name="发货仓" >
+                                <option value="">请选择</option>
+                                @for(map in wareHouseMap!){
+                                <option  value="${map.id}">${map.warehouseName}</option>
+                                @}
+                               </#SelectCon>
+                           </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="deliveryMethodType" name="配送方式" >
+                                <option value="">请选择</option>
+                                @for(map in dictMap!){
+                                <option  value="${map.num}">${map.name}</option>
+                                @}
+                              </#SelectCon>
+                            </div>
+
+                            <div class="col-lg-3 col-sm-3">
+                                <#TimeCon id="finishTimeSearchBegin" name="完成开始时间" isTime="true" pattern="YYYY-MM-DD hh:mm:ss" />
+                            </div>
+                            <div class="col-lg-3 col-sm-3">
+                                <#TimeCon id="finishTimeSearchEnd" name="完成结束时间" isTime="true" pattern="YYYY-MM-DD hh:mm:ss"/>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <#SelectCon id="supplierId" name="物流公司" >
+                                <option value="">请选择</option>
+                                 @for(map in carryMap!){
+                                   <option  value="${map.id}">${map.name}</option>
+                               @}
+                                
+                                </#SelectCon>
+                            </div>
+                           
+                           <!--  <div class="col-sm-3">
+                                <#SelectCon id="orderStatus" name="订单状态" >
+                                <option value="">请选择</option>
+                               </#SelectCon>
+                           </div> -->
+                          
+                           <!-- <div class="col-sm-3">
+                                <#NameCon id="" name="收获人姓名" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="" name="联系电话" />
+                            </div> -->
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align: center;padding-top: 20px">
+                            <#button name="搜索" icon="fa-search" clickFun="SoOrder.search()"/>
+                            <#button name="重置" icon="<fa-repeat></fa-repeat>" clickFun="SoOrder.reset()" space="true"/>
+                        </div>
+                    </div>
+                   </div>
+                    <div class="hidden-xs" id="SoOrderTableToolbar" role="group">
+                        <div id="soOrderBtn" style="display: none;">
+                            <#button name="导出" bootStrapIconClass="glyphicon glyphicon-export" clickFun="SoOrder.openExcelIn()"/>
+                            <#button id="updateAddress" name="修改订单信息" icon="fa-edit" clickFun="SoOrder.orderUserDetail()" space="true"/>
+                            <#button id="checkOrder" name="审核" icon="fa-check" clickFun="SoOrder.passStatus()" space="true"/>
+                            <#button id="remarkOrder" name="备注" icon="fa-credit-card" clickFun="SoOrder.orderCsRemark()" space="true"/>
+                            <#button id="cancelOrder" name="跨境订单取消" icon="fa-credit-card" clickFun="SoOrder.cancelOrder(0)" space="true"/>
+                            <#button id="cancelCheckOrder" name="OMS订单取消" icon="fa-credit-card" clickFun="SoOrder.cancelOrder(1)" space="true"/>
+                        </div>
+                        <div id="soVirtualOrderBtn" style="display: none;">
+                            <#button id="importOrder" name="导入" bootStrapIconClass="glyphicon glyphicon-import" clickFun="openExcelIn()"/>
+                            <#button id="updateVirtualAddress" name="修改订单信息" icon="fa-edit" clickFun="SoOrder.orderUserDetail()" space="true"/>
+                            <#button id="remarkVirtualOrder" name="备注" icon="fa-credit-card" clickFun="SoOrder.orderCsRemark()" space="true"/>
+                            <#button id="exportVirtualOrder" name="导出" icon="fa-credit-card" clickFun="SoOrder.virtualOrderExport()" space="true"/>
+                            <#button id="virtualCancelOrder" name="OMS订单取消" icon="fa-credit-card" clickFun="SoOrder.cancelOrder(1)" space="true"/>
+                        </div>
+                        <ul class="nav nav-tabs" id="soOrder-nav" style="display: none;">
+                        	<li><a href="#" name="全部">全部</a></li>
+                            <li><a href="#" name="待审核">待审核</a></li>
+                            <li><a href="#" name="挂起">挂起</a></li>
+                            <li><a href="#" name="已取消">已取消</a></li>
+                            <!-- <li><a href="#" name="已审核">已审核</a></li> -->
+                            <li><a href="#" name="已审核清关中">已审核清关中</a></li>
+                            <li><a href="#" name="异常订单">异常订单</a></li> 
+                            <li><a href="#" name="仓库作业">仓库作业</a></li>
+                            <li><a href="#" name="已发货">已发货</a></li>
+                            <li><a href="#" name="已完成">已完成</a></li>
+                        </ul>
+                        <ul class="nav nav-tabs" id="soVirtualOrder-nav" style="display: none;">
+                        	<li><a href="" name="全部">全部</a></li>
+                            <li><a href="" name="待审核">待审核</a></li>
+                            <li><a href="" name="挂起">挂起</a></li>
+                            <li><a href="" name="已取消">已取消</a></li>
+                            <li><a href="" name="已发货">已发货</a></li>
+                            <li><a href="" name="已完成">已完成</a></li>
+                            <li><a href="" name="异常">异常</a></li>
+                        </ul>
+                    </div>
+	                      <div id="div2"><#table id="SoOrderTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</div>
+</div>
+<style>
+
+#div2 {
+width: 100%;
+height: 100%;
+position: absolute;
+left: 0;
+top: 300px;
+}
+</style>
+
+<script>
+h_div2 = document.getElementById('div2');
+var h_hvttop = 0;
+window.onscroll = function () {
+HoverTreeMove(h_div2, h_hvttop)
+
+//显示信息
+var h_scrollTop = document.documentElement.scrollTop || document.body.scrollTop;//滚动的距离
+
+};
+
+function HoverTreeMove(obj,top)
+{
+var h_scrollTop = document.documentElement.scrollTop || document.body.scrollTop;//滚动的距离
+var h_buchang = 10;
+	if(h_scrollTop < 300){
+		HoverTreeMove(h_div2, 300)
+		}
+	if (obj.offsetTop < h_scrollTop + top - h_buchang)
+	{
+	obj.style.top = obj.offsetTop + h_buchang + "px";
+	setTimeout(function () { HoverTreeMove(obj, top); }, 0);
+	
+	}
+		else if (obj.offsetTop > h_scrollTop + top + h_buchang)
+		{
+		obj.style.top = (obj.offsetTop - h_buchang) + "px";
+		setTimeout(function () { HoverTreeMove(obj, top); }, 0);
+		}
+			else {
+			obj.style.top = h_scrollTop + top + "px";
+			}
+}
+</script>
+
+@if(warehouseOrderType==1){
+<script src="${ctxPath}/static/modular/business/soOrder/soOrder.js"></script>
+@}
+@if(warehouseOrderType==0){
+<script src="${ctxPath}/static/modular/business/soOrder/soVirtualOrder.js"></script>
+<script src="${ctxPath}/static/js/jquery.form.js"></script>
+<style>
+    .row-tip {
+        font-size: 12px;
+        color: red;
+        margin-top: 20px;
+        margin-left: 2px;
+        padding-top: 10px
+    }
+
+    .a-download-modal {
+        width: 60px;
+        margin-left: 280px;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        position: absolute
+    }
+
+</style>
+@}
+
+@}

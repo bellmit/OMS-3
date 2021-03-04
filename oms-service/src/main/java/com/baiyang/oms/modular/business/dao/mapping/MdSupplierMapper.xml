@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.MdSupplierMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.MdSupplier">
+        <id column="id" property="id" />
+        <result column="supplier_company_name" property="supplierCompanyName" />
+        <result column="supplier_contact_person" property="supplierContactPerson" />
+        <result column="supplier_contact_phone" property="supplierContactPhone" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="supplier_contact_email" property="supplierContactEmail" />
+        <result column="supplier_contact_mobile" property="supplierContactMobile" />
+        <result column="supplier_bank_name" property="supplierBankName" />
+        <result column="supplier_bank_account_name" property="supplierBankAccountName" />
+        <result column="supplier_bank_account_number" property="supplierBankAccountNumber" />
+        <result column="supplier_status" property="supplierStatus" />
+        <result column="create_time" property="createTime" />
+        <result column="supplier_code" property="supplierCode" />
+        <result column="cooperation_status" property="cooperationStatus" />
+        <result column="is_sent" property="isSent" />
+        <result column="balance_accounts_type" property="balanceAccountsType" />
+        <result column="merchant_office_address" property="merchantOfficeAddress" />
+        <result column="created_by" property="createdBy" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="tenant_id" property="tenantId" />
+        <result column="distribution_type" property="distributionType" />
+        <result column="expand1" property="expand1" />
+        <result column="expand2" property="expand2" />
+        <result column="expand3" property="expand3" />
+        <result column="expand4" property="expand4" />
+        <result column="tax_reg_no" property="taxRegNo" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, supplier_company_name AS supplierCompanyName, supplier_contact_person AS supplierContactPerson, supplier_contact_phone AS supplierContactPhone, is_deleted AS isDeleted, supplier_contact_email AS supplierContactEmail, supplier_contact_mobile AS supplierContactMobile, supplier_bank_name AS supplierBankName, supplier_bank_account_name AS supplierBankAccountName, supplier_bank_account_number AS supplierBankAccountNumber, supplier_status AS supplierStatus, create_time AS createTime, supplier_code AS supplierCode, cooperation_status AS cooperationStatus, is_sent AS isSent, balance_accounts_type AS balanceAccountsType, merchant_office_address AS merchantOfficeAddress, created_by AS createdBy, updated_by AS updatedBy, update_time AS updateTime, tenant_id AS tenantId, distribution_type AS distributionType, expand1, expand2, expand3, expand4, tax_reg_no AS taxRegNo
+    </sql>
+
+</mapper>

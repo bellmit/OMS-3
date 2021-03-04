@@ -1,0 +1,61 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" underline="true"/>
+                            <#input id="platformOrderCode" name="平台订单id" underline="true"/>
+                            <#input id="merchantId" name="商家id" underline="true"/>
+                            <#input id="platformMainSkuId" name="平台的主品，如果是普通品为NULL,如果是系列品，则为主品id" underline="true"/>
+                            <#input id="platformMainSkuCode" name="平台主商品CODE" underline="true"/>
+                            <#input id="platformSkuId" name="平台skid" underline="true"/>
+                            <#input id="mainSkuId" name="如果是普通品为NULL,如果是系列品，则为主品id" underline="true"/>
+                            <#input id="skuId" name="" underline="true"/>
+                            <#input id="skuCode" name="" underline="true"/>
+                            <#input id="skuName" name="产品中文名称" underline="true"/>
+                            <#input id="pmInfoId" name="商家商品id（pminfoid）" underline="true"/>
+                            <#input id="itemAmount" name="商品总金额" underline="true"/>
+                            <#input id="itemPrice" name="商品单价" underline="true"/>
+                            <#input id="itemNum" name="商品购买数量" underline="true"/>
+                            <#input id="createTime" name="创建时间" underline="true"/>
+                            <#input id="updateTime" name="更新时间" underline="true"/>
+                            <#input id="merchantDiscount" name=""/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="platformDiscount" name="" underline="true"/>
+                            <#input id="platformId" name="" underline="true"/>
+                            <#input id="prescription" name="是否处方药标记 0：否 1：是" underline="true"/>
+                            <#input id="specification" name="药品规格" underline="true"/>
+                            <#input id="agentOperate" name="是否代运营 0 否 1 是" underline="true"/>
+                            <#input id="isInstea" name="厂家代发标识 1 代发打标" underline="true"/>
+                            <#input id="isOos" name="是否缺货" underline="true"/>
+                            <#input id="oosNum" name="缺货数量" underline="true"/>
+                            <#input id="editType" name="编辑标记(0:原有产品 1：新替换的产品 2 促销，添加赠品)" underline="true"/>
+                            <#input id="remark" name="编辑替换备注" underline="true"/>
+                            <#input id="pictureUrl" name="" underline="true"/>
+                            <#input id="tenantId" name="" underline="true"/>
+                            <#input id="salesMethod" name="商品销售方式1 直接销售10 上门换货11淘宝补发12淘宝换货13配件2搭销3赠品4补发5换货6对寄7退转换8检修9原件返" underline="true"/>
+                            <#input id="gnum" name="序号,单据行号" underline="true"/>
+                            <#input id="actualPrice" name="实际成交价" underline="true"/>
+                            <#input id="officeName" name="分办名称--百洋" underline="true"/>
+                            <#input id="taxFcy" name="明细税费" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="TempSoItemInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="TempSoItemInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/tempSoItem/tempSoItem_info.js"></script>
+@}

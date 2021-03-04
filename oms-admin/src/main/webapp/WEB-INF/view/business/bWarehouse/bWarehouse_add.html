@@ -1,0 +1,98 @@
+@layout("/common/_container.html"){
+
+
+  <script type="text/javascript">
+    $(function () {
+    	 
+    }); 
+</script>  
+
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="houseFourmId">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-4">
+                            
+                            <#input id="warehouseName" name="仓库名称" underline="true"/>
+                            <#select id="provinceId" name="省" underline="true">
+                            <option value=''>请选择省</option>
+						       @for(value in areas!){
+                                   <option  value="${value.id}">${value.name}</option>
+                               @}
+							</#select>
+							
+							<#select id="warehouseType" name="类型" underline="true">
+								<option value="0" selected="selected">仓库</option>
+								<option value="1">门店</option>
+							</#select>
+                            
+                             <#select id="isRealWarehouse" name="是否实体库" underline="true">
+								<option value="1" selected="selected">是</option>
+								<option value="0">否</option>
+							</#select>
+                            
+							<#input id="phone" name="联系电话" underline="true"/>
+							
+							<#input id="addressName" name="仓库地址" underline="true"/>
+                             
+                </div>
+
+                <div class="col-sm-4">
+                			<#input id="code" name="外部编码" underline="true"/>
+                			
+                			<#select id="cityId" name="市" underline="true">
+							</#select>
+                            
+                            <#select id="storageType" name="存储类型" underline="true">
+								<option value="0" selected="selected">常温</option>
+								<option value="1">冷藏</option>
+								<option value="2">冷冻</option>
+							</#select>
+                            
+                            <#select id="shippingMode" name="发货平台" underline="true">
+								<option value="1">erp</option>
+								<option value="2">wms</option>
+							</#select>
+							
+							<#input id="mobile" name="手机" underline="true"/>
+							
+							<#select id="returnWarehouseId" name="退换货仓" underline="true">
+							</#select>
+							
+                </div>
+                
+                 <div class="col-sm-4">
+                			 <#select id="carrierId" name="配送商" underline="true">
+							</#select>
+							 <#select id="countyId" name="区" underline="true">
+							</#select>
+							<#select id="functionType" name="功能类型" underline="true">
+								<option value="0" selected="selected">存储+销售</option>
+								<option value="1">存储不销售</option>
+							</#select>
+                            <#input id="contactor" name="负责人" underline="true"/>
+                           
+                             <#select id="tradeType" name="贸易类型" underline="true">
+								<option value="0" selected="selected">普通仓</option>
+								<option value="1">保税仓</option>
+							</#select>
+							<#input id="areaCode" name="关区编码"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t" >
+                <div class="col-sm-10" align="center">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="BWarehouseInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="BWarehouseInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/bWarehouse/bWarehouse_info.js"></script>
+<script src="${ctxPath}/static/js/common/area-ajax.js"></script>
+@}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.system.dao.DataPermissionGroupRuleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.system.model.DataPermissionGroupRule">
+        <id column="id" property="id"/>
+        <result column="type" property="type"/>
+        <result column="content" property="content"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="tenant_id" property="tenantId"/>
+        <result column="group_id" property="groupId"/>
+        <result column="group_name" property="groupName"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, type, content, created_by AS createdBy, create_time AS createTime, updated_by AS updatedBy, update_time AS updateTime, tenant_id AS tenantId, group_id AS groupId
+    </sql>
+
+    <select id="selectByGroupId" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_data_permission_group_rule
+        where group_id = #{groupId}
+    </select>
+
+    <select id="pageGrape" resultType="map">
+        SELECT
+            b.id as id,
+            a.group_name as groupName,
+            a.description,
+            b.type,
+            b.content,
+            b.group_id as groupId
+        FROM
+            sys_data_permission_group a
+            INNER JOIN sys_data_permission_group_rule b ON a.id = b.group_id
+        WHERE
+            b.group_id = #{groupId}
+    </select>
+
+</mapper>

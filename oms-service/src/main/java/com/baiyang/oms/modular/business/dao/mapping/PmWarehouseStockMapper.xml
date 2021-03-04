@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.PmWarehouseStockMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.PmWarehouseStock">
+        <id column="id" property="id" />
+        <result column="product_id" property="productId" />
+        <result column="merchant_id" property="merchantId" />
+        <result column="warehouse_id" property="warehouseId" />
+        <result column="pm_info_id" property="pmInfoId" />
+        <result column="category_id" property="categoryId" />
+        <result column="real_stock_num" property="realStockNum" />
+        <result column="real_frozen_stock_num" property="realFrozenStockNum" />
+        <result column="lock_stock_num" property="lockStockNum" />
+        <result column="damage_stock_num" property="damageStockNum" />
+        <result column="wt_putaway_qty" property="wtPutawayQty" />
+        <result column="frozen_damage_stock_num" property="frozenDamageStockNum" />
+        <result column="lock_demage_stock_num" property="lockDemageStockNum" />
+        <result column="frozen_update_time" property="frozenUpdateTime" />
+        <result column="last_leaving_wh_time" property="lastLeavingWhTime" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="pri" property="pri" />
+        <result column="tenant_id" property="tenantId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, product_id AS productId, merchant_id AS merchantId, warehouse_id AS warehouseId, pm_info_id AS pmInfoId, category_id AS categoryId, real_stock_num AS realStockNum, real_frozen_stock_num AS realFrozenStockNum, lock_stock_num AS lockStockNum, damage_stock_num AS damageStockNum, wt_putaway_qty AS wtPutawayQty, frozen_damage_stock_num AS frozenDamageStockNum, lock_demage_stock_num AS lockDemageStockNum, frozen_update_time AS frozenUpdateTime, last_leaving_wh_time AS lastLeavingWhTime, create_time AS createTime, update_time AS updateTime, pri, tenant_id AS tenantId
+    </sql>
+    
+    
+    <select id="getHouseStockByProductCodeAndHouseId" resultType="com.baiyang.oms.modular.business.model.PmWarehouseStock" parameterType="map">
+    
+    select real_stock_num as realStockNum ,  real_frozen_stock_num as realFrozenStockNum,lock_stock_num as lockStockNum
+      from pm_warehouse_stock where pm_info_id =#{productCode} and warehouse_id =#{warehouseId}
+    
+    </select>
+    
+    <select id="getSearchList" resultType="map" parameterType="com.baomidou.mybatisplus.plugins.Page" >
+     select
+		<include refid="Base_Column_List" />
+		from pm_warehouse_stock 
+		where 1 = 1
+		<if test="productCode != null and productCode != ''">
+			and pm_info_id = #{productCode}
+		</if>
+		<if test="tenantId != null">
+			and tenant_id = #{tenantId}
+		</if>
+		
+		<if test="merchantIds != null">
+			AND  merchant_id IN
+	            <foreach collection="merchantIds" index="index" item="item" open="(" separator="," close=")">
+	                #{item}
+	            </foreach>
+		</if>
+		
+    </select>
+    
+    <select id="getDistinctProductId" resultType="java.lang.Long">
+    	SELECT DISTINCT product_id AS productId FROM pm_warehouse_stock
+    </select>
+    
+    <update id="updatePmInfoIdByProductId" parameterType="map" >
+    	update pm_warehouse_stock set pm_info_id = #{pmInfoId} where product_id =#{productId}
+    </update>
+    
+     <update id="updateStockByProductCodeAndWareHouseId" parameterType="map" >
+    	update 
+    	pm_warehouse_stock 
+    	<trim prefix="SET" suffixOverrides=",">  
+          	<if test="realStockNumAdd != null">
+		       real_stock_num=real_stock_num + #{realStockNumAdd},
+			</if>
+			<if test="realFrozenStockNumAdd != null">
+		       real_frozen_stock_num=real_frozen_stock_num + #{realFrozenStockNumAdd},
+			</if>
+			<if test="lockStockNumAdd != null">
+		       lock_stock_num=lock_stock_num + #{lockStockNumAdd},
+			</if>
+			
+			<if test="realStockNumSubtract != null">
+		       real_stock_num=real_stock_num - #{realStockNumSubtract},
+			</if>
+			<if test="realFrozenStockNumSubtract != null">
+		       real_frozen_stock_num=real_frozen_stock_num - #{realFrozenStockNumSubtract},
+			</if>
+			<if test="lockStockNumSubtract != null">
+		       lock_stock_num=lock_stock_num - #{lockStockNumSubtract},
+			</if>
+		</trim>
+    	 where pm_info_id =#{productCode} and warehouse_id =#{warehouseId}
+    </update>
+
+</mapper>

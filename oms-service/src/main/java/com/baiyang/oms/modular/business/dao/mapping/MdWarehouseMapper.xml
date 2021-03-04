@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.MdWarehouseMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.MdWarehouse">
+        <id column="id" property="id"/>
+        <result column="warehouse_name" property="warehouseName"/>
+        <result column="province_id" property="provinceId"/>
+        <result column="county_id" property="countyId"/>
+        <result column="country_id" property="countryId"/>
+        <result column="city_id" property="cityId"/>
+        <result column="address_name" property="addressName"/>
+        <result column="distribution_center_id" property="distributionCenterId"/>
+        <result column="fax" property="fax"/>
+        <result column="phone" property="phone"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="mobile" property="mobile"/>
+        <result column="contactor" property="contactor"/>
+        <result column="warehouse_type" property="warehouseType"/>
+        <result column="is_sent" property="isSent"/>
+        <result column="status" property="status"/>
+        <result column="is_real_warehouse" property="isRealWarehouse"/>
+        <result column="is_enable" property="isEnable"/>
+        <result column="storage_type" property="storageType"/>
+        <result column="stock_type" property="stockType"/>
+        <result column="function_type" property="functionType"/>
+        <result column="code" property="code"/>
+        <result column="carrier_id" property="carrierId"/>
+        <result column="shipping_mode" property="shippingMode"/>
+        <result column="tenant_id" property="tenantId"/>
+        <result column="return_warehouse_id" property="returnWarehouseId"/>
+        <result column="trade_type" property="tradeType"/>
+        <result column="area_code" property="areaCode"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, warehouse_name AS warehouseName, province_id AS provinceId, county_id AS countyId,
+         country_id AS countryId, city_id AS cityId, address_name AS addressName, 
+         distribution_center_id AS distributionCenterId, fax, phone, update_time AS updateTime, 
+         updated_by AS updatedBy, create_time AS createTime, created_by AS createdBy, is_deleted AS isDeleted, 
+         mobile, contactor, warehouse_type AS warehouseType, is_sent AS isSent, status, 
+         is_real_warehouse AS isRealWarehouse, is_enable AS isEnable, storage_type AS storageType, 
+         stock_type AS stockType, function_type AS functionType, code, carrier_id AS carrierId, 
+         shipping_mode AS shippingMode, tenant_id AS tenantId, return_warehouse_id AS returnWarehouseId, 
+         trade_type AS tradeType, area_code AS areaCode
+    </sql>
+    <select id="selectHouseList" resultType="map" parameterType="com.baiyang.oms.modular.business.model.MdWarehouse">
+        select
+        <include refid="Base_Column_List"/>
+        from md_warehouse
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="warehouseName != null and warehouseName != ''">
+                AND warehouse_name LIKE CONCAT(CONCAT('%',#{warehouseName},'%'))
+            </if>
+            <if test="warehouseType != null">
+                AND warehouse_type = #{warehouseType,jdbcType=INTEGER}
+            </if>
+            <if test="storageType != null">
+                AND storage_type = #{storageType,jdbcType=INTEGER}
+            </if>
+            <if test="tradeType != null">
+                AND trade_type = #{tradeType,jdbcType=INTEGER}
+            </if>
+            <if test="functionType != null">
+                AND function_type = #{functionType,jdbcType=INTEGER}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted,jdbcType=INTEGER}
+            </if>
+        </trim>
+    </select>
+
+
+    <update id="updateStatusById" parameterType="map">
+        update md_warehouse set
+        <if test=" status != null">
+            status = #{status}
+        </if>
+        <if test=" delete != null">
+            is_deleted = #{delete}
+        </if>
+        where id = #{id}
+    </update>
+
+
+    <select id="selectMdWarehouse" resultType="com.baiyang.oms.modular.system.warpper.DataRuleWrapper">
+        SELECT id as code , warehouse_name as ruleName
+        FROM md_warehouse
+    </select>
+
+    <select id="selectIdByCode" resultType="java.lang.Long" parameterType="string">
+     SELECT id
+        FROM md_warehouse where code = #{code}
+    </select>
+
+    <select id="getWarehouseMapByCode" resultType="map" parameterType="string">
+     SELECT id , is_real_warehouse as  isRealWarehouse
+        FROM md_warehouse where code = #{code}
+    </select>
+
+    <select id="getNameById" resultType="string" parameterType="java.lang.Integer">
+     SELECT  warehouse_name as warehouseName
+        FROM md_warehouse where id = #{houseId}
+    </select>
+
+    <select id="getHouseCodeById" resultType="string" parameterType="java.lang.Long">
+    SELECT code
+        FROM md_warehouse where id = #{id}
+    </select>
+
+    <select id="getHouseIdAndName" resultType="map">
+     SELECT id ,code,warehouse_name as warehouseName
+        FROM md_warehouse where tenant_id = 172 and is_deleted =0
+    </select>
+    <select id="getWareHouseNameByCode" resultType="string">
+        SELECT warehouse_name as warehouseName
+        FROM md_warehouse where code = #{storeCode}
+    </select>
+
+    <select id="selectWarehouseByTenantId" resultType="com.baiyang.oms.modular.business.model.MdWarehouse">
+        SELECT id,code ,warehouse_name as warehouseName
+        FROM md_warehouse where tenant_id = 172 and is_deleted =0
+    </select>
+
+    <select id="pageGrade" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        FROM md_warehouse where 1=1
+        <if test="keyword != null and keyword != ''">
+            AND (
+            warehouse_name like CONCAT('%',#{keyword},'%') or
+            address_name like CONCAT('%',#{keyword},'%') or
+            phone like CONCAT('%',#{keyword},'%') or
+            contactor like CONCAT('%',#{keyword},'%')
+            )
+        </if>
+        <if test="bwh.isDeleted != null ">
+            AND is_deleted = #{bwh.isDeleted}
+        </if>
+        <if test="bwh.warehouseName != null and bwh.warehouseName != ''">
+            AND warehouse_name like CONCAT('%',#{bwh.warehouseName},'%')
+        </if>
+        <if test="bwh.warehouseType != null ">
+            AND warehouse_type = #{bwh.warehouseType}
+        </if>
+        <if test="bwh.storageType != null ">
+            AND storage_type = #{bwh.storageType}
+        </if>
+        <if test="bwh.functionType != null ">
+            AND function_type = #{bwh.functionType}
+        </if>
+        <if test="bwh.tradeType != null ">
+            AND trade_type = #{bwh.tradeType}
+        </if>
+    </select>
+
+</mapper>

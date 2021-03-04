@@ -1,0 +1,36 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+            <input id="orderCodeId" type="hidden" value="${orderCode}"/>
+            <div class="row">
+            <#input id="carryShopId" name="代发供应商" />
+            <input id="countId" type="hidden" value="${list.~size}"/>
+             
+                @for(value in list!){
+                 <div style="background-color: #bbc;height: 1px;margin: 20px 0"></div>
+                <label>商品编码:${value.productCode} 商品名称:${value.productCname}</label> 
+                 <input id="productId${valueLP.index}" type="hidden" value="${value.productCode}" />
+                <#input id="carryPriceId${valueLP.index}" name="代发价格" value="${value.insteaPrice}" />
+               <#input id="carryNoId${valueLP.index}" placeholder="多个单号用逗号隔开 例如：222,3333" name="运单号" />
+               <#select id="carryNameId${valueLP.index}" name="快递公司" >
+               <option value=''>请选择快递公司</option>
+               @for(carry in carryList!){
+               <option  value="${carry.id}">${carry.name}</option>
+               @}
+               </#select>
+                               @}
+                
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12" style="text-align: center">
+                    <#button btnCss="info" name="确定" id="ensure" icon="fa-check" clickFun="soOrderRemark.submit()"/>
+                </div>
+            </div>
+        </div>
+</div>
+    </div>
+</div>
+<!-- <textarea style="height: 140px"  placeholder="多个运单号用英文逗号隔开 快递号与快递公司空格隔开 不同快递公司 换行  &#10例如&#10 222,331 顺丰&#10 3333 EMS" maxlength="200" class="form-control" id="remarkContent" ></textarea>
+ -->
+ <script src="${ctxPath}/static/modular/business/soOrder/soOrder_carryRemark.js"></script>
+@}

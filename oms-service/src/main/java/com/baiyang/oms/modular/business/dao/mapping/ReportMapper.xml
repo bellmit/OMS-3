@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.ReportMapper">
+    <!-- 订单明细报表统计 -->
+    <sql id="saleaAccount_Base_Column_List">
+       SELECT
+        so.order_source_name platformName, 
+        so.source,
+        brand.brand_name brandName,
+        ware.warehouse_name warehouseName,
+        so.company_name companyName, 
+        '无' btoborbtoc,
+        '无' mborh,
+        '无' distribution,
+        '无' ifetv,
+        '无' groundpush,
+        '无' suboffice,
+        '无' collarxiang,
+        so.original_code platformOrderCode, 
+        so.pay_order_no payOrderNo, 
+        so.pay_name payName,
+        so.pay_phone payPhone,
+        DATE_FORMAT(
+        so.order_payment_confirm_date,
+        '%Y-%c-%d %H:%i:%s'
+        ) orderPaymentConfirmDate, 
+        so.good_receiver_province platformProvince, 
+        so.good_receiver_city platformCity, 
+        so.good_receiver_county district,
+        so.good_receiver_address receiverAddress, 
+        pro.product_code as pmInfoId,
+        pro.product_cname as goodName,
+        pro.register_no as batch,
+        '' bidUSD,
+        '' exchangerate,
+        round(pro.in_price,2) bidCNY,
+        round(pro.in_price*soitem.order_item_num,2) totalbid,
+        soitem.order_item_price itemPrice,
+        soitem.order_item_num itemNum,
+        round(IFNULL(soitem.order_item_amount,0)-IFNULL(soitem.promotion_amount,0),2) itemAmount,
+        round(soitem.promotion_amount,2) preferentialvolume,
+        so.order_delivery_fee fee,
+        round(pro.declare_price,2) declarePrice,
+        round(soitem.item_tax_fcy,2) taxFcy,
+        round(IFNULL(soitem.order_item_amount,0)+IFNULL(soitem.item_tax_fcy,0)-IFNULL(soitem.promotion_amount,0),2) total,
+        CASE so.order_status
+        WHEN '20' THEN
+        '已发货'
+        ELSE
+        '已完成'
+        END ifcancel, 
+        so.merchant_express_nbr logisticsNo,
+        so.instea_supplier_name supplier,
+        '无' remark,
+        so.is_real_warehouse_order as isRealWarehouseOrder
+        FROM
+        so_item soitem
+        LEFT JOIN so_order so ON soitem.order_id = so.id
+        LEFT JOIN md_product pro ON soitem.platform_sku_code = pro.product_code AND pro.merchant_id = so.merchant_id AND IFNULL(pro.store_code,(select code from md_warehouse where md_warehouse.id = so.warehouse_id)) = (select code from md_warehouse where md_warehouse.id = so.warehouse_id)
+        LEFT JOIN md_warehouse ware ON ware.id = so.warehouse_id
+        LEFT JOIN md_brand brand ON pro.product_brand_id = brand.id
+        <where>
+            1 = 1
+            <choose>
+                <when test='obj.orderNoDeliverGoods == "selected"'>
+                    and so.order_status in(4,14,15,16,30,20,35)
+                </when>
+                <otherwise>
+                    and so.order_status in(20,35)
+                </otherwise>
+            </choose>
+            <if test="obj!=null">
+                <if test="obj.platformOrderCodeSearchList != null and obj.platformOrderCodeSearchList.size() > 0">
+                    and so.original_code IN
+                    <foreach collection="obj.platformOrderCodeSearchList" item="platformOrderCode" open="(" close=")" separator=",">
+                        #{platformOrderCode}
+                    </foreach>
+                </if>
+                <if test="obj.productCodeSearchList != null and obj.productCodeSearchList.size() > 0">
+                    and pro.product_code IN
+                    <foreach collection="obj.productCodeSearchList" item="productCode" open="(" close=")" separator=",">
+                        #{productCode}
+                    </foreach>
+                </if>
+                <if test="obj.payOrderNoSearchList != null and obj.payOrderNoSearchList.size() > 0">
+                    and so.pay_order_no IN
+                    <foreach collection="obj.payOrderNoSearchList" item="payOrderNo" open="(" close=")" separator=",">
+                        #{payOrderNo}
+                    </foreach>
+                </if>
+                <if test="obj.warehouseId!=null and obj.warehouseId!=''">
+                    and ware.id = #{obj.warehouseId}
+                </if>
+                <if test="obj.shopId!=null and obj.shopId!=''">
+                    and so.shop_id = #{obj.shopId}
+                </if>
+                <if test="obj.merchantId!=null and obj.merchantId!=''">
+                    and so.merchant_id = #{obj.merchantId}
+                </if>
+                <if test="obj.merchantExpressNbr != null and obj.merchantExpressNbr != ''">
+                    and so.merchant_express_nbr LIKE CONCAT('%',#{obj.merchantExpressNbr},'%')
+                </if>
+                <if test="obj.productCname != null and obj.productCname != ''">
+                    and pro.product_cname LIKE CONCAT('%',#{obj.productCname},'%')
+                </if>
+                <if test="obj.timeSearchBegin != null and obj.timeSearchBegin != ''">
+                    <choose>
+                        <when test='obj.timeType == "1"'>
+                            and <![CDATA[so.order_create_time >=  #{obj.timeSearchBegin}]]>
+                        </when>
+                        <when test='obj.timeType == "2"'>
+                            and <![CDATA[so.order_payment_confirm_date >=  #{obj.timeSearchBegin}]]>
+                        </when>
+                        <otherwise>
+                        </otherwise>
+                    </choose>
+                </if>
+                <if test="obj.timeSearchEnd != null and obj.timeSearchEnd != ''">
+                    <choose>
+                        <when test='obj.timeType == "1"'>
+                            and <![CDATA[so.order_create_time <=  #{obj.timeSearchEnd}]]>
+                        </when>
+                        <when test='obj.timeType == "2"'>
+                            and <![CDATA[so.order_payment_confirm_date <=  #{obj.timeSearchEnd}]]>
+                        </when>
+                        <otherwise>
+                        </otherwise>
+                    </choose>
+                </if>
+                <if test='obj.removeHuangdaoOrder != null and obj.removeHuangdaoOrder == "selected"'>
+                    and ware.id NOT IN (11312)
+                </if>
+
+                <if test="obj.platformProvince!=null">
+                    and so.good_receiver_province like CONCAT('%',#{obj.platformProvince},'%')
+                </if>
+                <if test="obj.platformCity!=null">
+                    and so.good_receiver_city like CONCAT('%',#{obj.platformCity},'%')
+                </if>
+                <if test="obj.district!=null">
+                    and so.good_receiver_county like CONCAT('%',#{obj.district},'%')
+                </if>
+            </if>
+        </where>
+         ORDER BY so.order_payment_confirm_date desc
+    </sql>
+    <select id="getSalesAccountList" resultType="map">
+        <include refid="saleaAccount_Base_Column_List"/>
+    </select>
+    <select id="getSalesAccountListByExportCondition"
+            resultType="com.baiyang.oms.modular.business.model.pojo.SalesAccountPojo">
+        <include refid="saleaAccount_Base_Column_List"/>
+    </select>
+    <select id="getSalesAccountTotalCountSum" resultType="com.baiyang.oms.modular.business.model.pojo.SalesAccountTotalCountPojo">
+        SELECT
+        IFNULL(sum(if(so.is_real_warehouse_order = 1, IFNULL(soitem.order_item_amount,0)-IFNULL(soitem.promotion_amount,0), 0)),0) itemAmountTotalRealWareHouse,
+        IFNULL(sum(if(so.is_real_warehouse_order = 0, IFNULL(soitem.order_item_amount,0)+IFNULL(soitem.item_tax_fcy,0)-IFNULL(soitem.promotion_amount,0), 0)),0) itemAmountTotalVirtualWareHouse,
+        IFNULL(sum(soitem.order_item_num),0) itemNumTotal,
+        IFNULL(sum(if(so.is_real_warehouse_order = 1, soitem.item_tax_fcy, 0)),0) taxFcyTotal,
+        count(distinct so.original_code) platformOrderCodeTotal,
+        IFNULL(sum(soitem.promotion_amount),0) preferentialvolumeTotal,
+        IFNULL(sum(so.order_delivery_fee),0) feeTotal,
+        IFNULL(sum(IFNULL(soitem.order_item_amount,0)+IFNULL(soitem.item_tax_fcy,0)-IFNULL(soitem.promotion_amount,0)),0) totalTotal
+        FROM
+        so_item soitem
+        LEFT JOIN so_order so ON soitem.order_id = so.id
+        LEFT JOIN md_product pro ON soitem.platform_sku_code = pro.product_code AND pro.merchant_id = so.merchant_id AND IFNULL(pro.store_code,(select code from md_warehouse where md_warehouse.id = so.warehouse_id)) = (select code from md_warehouse where md_warehouse.id = so.warehouse_id)
+        LEFT JOIN md_warehouse ware ON ware.id = so.warehouse_id
+        LEFT JOIN md_brand brand ON pro.product_brand_id = brand.id
+        <where>
+            1 = 1
+            <choose>
+                <when test='obj.orderNoDeliverGoods == "selected"'>
+                    and so.order_status in(4,14,15,16,30,20,35)
+                </when>
+                <otherwise>
+                    and so.order_status in(20,35)
+                </otherwise>
+            </choose>
+            <if test="obj!=null">
+                <if test="obj.platformOrderCodeSearchList != null and obj.platformOrderCodeSearchList.size() > 0">
+                    and so.original_code IN
+                    <foreach collection="obj.platformOrderCodeSearchList" item="platformOrderCode" open="(" close=")" separator=",">
+                        #{platformOrderCode}
+                    </foreach>
+                </if>
+                <if test="obj.productCodeSearchList != null and obj.productCodeSearchList.size() > 0">
+                    and pro.product_code IN
+                    <foreach collection="obj.productCodeSearchList" item="productCode" open="(" close=")" separator=",">
+                        #{productCode}
+                    </foreach>
+                </if>
+                <if test="obj.payOrderNoSearchList != null and obj.payOrderNoSearchList.size() > 0">
+                    and so.pay_order_no IN
+                    <foreach collection="obj.payOrderNoSearchList" item="payOrderNo" open="(" close=")" separator=",">
+                        #{payOrderNo}
+                    </foreach>
+                </if>
+                <if test="obj.warehouseId!=null and obj.warehouseId!=''">
+                    and ware.id = #{obj.warehouseId}
+                </if>
+                <if test="obj.shopId!=null and obj.shopId!=''">
+                    and so.shop_id = #{obj.shopId}
+                </if>
+                <if test="obj.merchantId!=null and obj.merchantId!=''">
+                    and so.merchant_id = #{obj.merchantId}
+                </if>
+                <if test="obj.merchantExpressNbr != null and obj.merchantExpressNbr != ''">
+                    and so.merchant_express_nbr LIKE CONCAT('%',#{obj.merchantExpressNbr},'%')
+                </if>
+                <if test="obj.productCname != null and obj.productCname != ''">
+                    and pro.product_cname LIKE CONCAT('%',#{obj.productCname},'%')
+                </if>
+                <if test="obj.timeSearchBegin != null and obj.timeSearchBegin != ''">
+                    <choose>
+                        <when test='obj.timeType == "1"'>
+                            and <![CDATA[so.order_create_time >=  #{obj.timeSearchBegin}]]>
+                        </when>
+                        <when test='obj.timeType == "2"'>
+                            and <![CDATA[so.order_payment_confirm_date >=  #{obj.timeSearchBegin}]]>
+                        </when>
+                        <otherwise>
+                        </otherwise>
+                    </choose>
+                </if>
+                <if test="obj.timeSearchEnd != null and obj.timeSearchEnd != ''">
+                    <choose>
+                        <when test='obj.timeType == "1"'>
+                            and <![CDATA[so.order_create_time <=  #{obj.timeSearchEnd}]]>
+                        </when>
+                        <when test='obj.timeType == "2"'>
+                            and <![CDATA[so.order_payment_confirm_date <=  #{obj.timeSearchEnd}]]>
+                        </when>
+                        <otherwise>
+                        </otherwise>
+                    </choose>
+                </if>
+                <if test='obj.removeHuangdaoOrder != null and obj.removeHuangdaoOrder == "selected"'>
+                    and ware.id NOT IN (11312)
+                </if>
+
+                <if test="obj.platformProvince!=null">
+                    and so.platform_province like CONCAT('%',#{obj.platformProvince},'%')
+                </if>
+                <if test="obj.platformCity!=null">
+                    and so.platform_city like CONCAT('%',#{obj.platformCity},'%')
+                </if>
+                <if test="obj.district!=null">
+                    and so.good_receiver_county like CONCAT('%',#{obj.district},'%')
+                </if>
+            </if>
+        </where>
+        ORDER BY so.order_create_time desc
+    </select>
+
+    <!-- 税金明细统计 -->
+    <sql id="taxStatement_Base_Column_List">
+        SELECT
+            so.order_source_name platformName,
+            so.shop_name shopName,
+            mw.warehouse_name warehouseName,
+            '无' distribution,
+            '无' collarxiang,
+            so.original_code platformOrderCode,
+            DATE_FORMAT(
+            so.order_payment_confirm_date,
+            '%Y-%c-%d %H:%i:%s'
+            ) orderPaymentConfirmDate,
+            si.product_code pmInfoId,
+            si.platform_sku_name goodsname,
+            si.order_item_num itemNum,
+            tsi.item_amount itemAmount,
+            si.item_estimate_fcy estimateFcy,
+            tb.tax_fcy actualFcy,
+            (
+            si.item_estimate_fcy - tb.tax_fcy
+            ) taxDifference,
+            tb.rise_time taxCollectionDate,
+            tsi.office_name officeName,
+            tsi.sales_method salesMethod
+        FROM
+          so_item si
+        LEFT JOIN so_order so ON so.original_code = si.platform_order_code
+        LEFT JOIN tax_balance tb ON tb.platform_order_code = so.original_code
+        LEFT JOIN md_warehouse mw ON so.warehouse_id = mw.id
+        left join temp_so_item tsi on tsi.platform_order_code = so.original_code
+        <where>
+            <if test="obj!=null">
+                <if test="obj.orderStatus!=null and obj.orderStatus!=''">
+                    and so.order_status = #{obj.orderStatus}
+                </if>
+
+                <if test="obj.warehouseId!=null and obj.warehouseId!=''">
+                    and so.warehouse_id = #{obj.warehouseId}
+                </if>
+                <if test="obj.originalCode!=null and obj.originalCode!=''">
+                    and so.original_code = #{obj.originalCode}
+                </if>
+                <if test="obj.productCode!=null and obj.productCode!=''">
+                    and si.product_code = #{obj.productCode}
+                </if>
+
+                <if test="obj.payTimeBegin != null and obj.payTimeBegin != ''">
+                    AND so.order_payment_confirm_date <![CDATA[>=]]> #{obj.payTimeBegin}
+                </if>
+                <if test="obj.payTimeEnd != null and obj.payTimeEnd != ''">
+                    AND so.order_payment_confirm_date <![CDATA[<=]]> #{obj.payTimeEnd}
+                </if>
+                <if test="obj.riseTimeBegin != null and obj.riseTimeBegin != ''">
+                    AND tb.rise_time <![CDATA[>=]]> #{obj.riseTimeBegin}
+                </if>
+                <if test="obj.riseTimeEnd != null and obj.riseTimeEnd != ''">
+                    AND tb.rise_time <![CDATA[<=]]> #{obj.riseTimeEnd}
+                </if>
+            </if>
+        </where>
+
+    </sql>
+
+    <select id="getTaxStatementList" resultType="map">
+        <include refid="taxStatement_Base_Column_List"/>
+    </select>
+    <select id="getTaxStatementListByExportCondition"
+            resultType="com.baiyang.oms.modular.business.model.pojo.TaxStatementPojo">
+        <include refid="taxStatement_Base_Column_List"/>
+    </select>
+
+    <!-- 税金对账单报表查询 -->
+    <sql id="taxBalance_Base_Column_List">
+        SELECT
+        ba.logistics_no logisticsNo
+        ,so.platform_order_code platformOrderCode
+        ,so.shop_name shopName
+        ,ord.order_attr afterSaleType
+        ,ware.warehouse_name warehouseName
+        ,'无' btoborbtoc
+        ,'无' mborh
+        ,pro.original_code originalCode
+        ,pro.product_cname goodsname
+        ,soitem.item_num itemNum
+        ,soitem.item_amount itemAmount
+        ,ord.estimate_fcy estimateFcy
+        ,ba.tax_fcy taxFcy
+        ,(ord.estimate_fcy-ba.tax_fcy) notTaxFcy
+        ,'备注' remarks
+        FROM
+        temp_so_item soitem
+        LEFT JOIN temp_so so ON soitem.platform_order_code = so.platform_order_code
+        LEFT JOIN tax_balance ba on so.platform_order_code = ba.platform_order_code
+        LEFT JOIN md_product pro ON soitem.sku_code = pro.product_code and pro.store_code = so.store_code
+        LEFT JOIN so_order ord ON so.platform_order_code = ord.original_code
+        LEFT JOIN md_warehouse ware ON ware. CODE = so.store_code
+        <where>
+            and ba.id is not null
+            <if test="obj!=null">
+                <if test="obj.orderStatus!=null and obj.orderStatus!=''">
+                    and so.order_status = #{obj.orderStatus}
+                </if>
+                <if test="obj.platformOrderCode!=null and obj.platformOrderCode!=''">
+                    and so.platform_order_code like CONCAT(#{obj.platformOrderCode},'%')
+                </if>
+                <if test="obj.logisticsNo!=null and obj.logisticsNo!=''">
+                    and so.logistics_no like CONCAT(#{obj.logisticsNo},'%')
+                </if>
+                <if test="obj.warehouseName!=null and obj.warehouseName!=''">
+                    and ware.warehouse_name = #{obj.warehouseName}
+                </if>
+            </if>
+        </where>
+    </sql>
+
+    <select id="getTaxBalanceList" resultType="map">
+        <include refid="taxBalance_Base_Column_List"/>
+    </select>
+
+    <select id="getTaxBalanceListByExportCondition"
+            resultType="com.baiyang.oms.modular.business.model.pojo.TaxBalancePojo">
+        <include refid="taxBalance_Base_Column_List"/>
+    </select>
+</mapper>

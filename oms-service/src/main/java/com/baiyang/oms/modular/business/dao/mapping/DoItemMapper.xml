@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.DoItemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.DoItem">
+        <id column="id" property="id" />
+        <result column="do_header_id" property="doHeaderId" />
+        <result column="product_id" property="productId" />
+        <result column="product_code" property="productCode" />
+        <result column="order_item_amount" property="orderItemAmount" />
+        <result column="price" property="price" />
+        <result column="product_cname" property="productCname" />
+        <result column="expected_qty" property="expectedQty" />
+        <result column="is_promote" property="isPromote" />
+        <result column="supplier_id" property="supplierId" />
+        <result column="merchant_id" property="merchantId" />
+        <result column="is_do_leaf" property="isDoLeaf" />
+        <result column="parent_id" property="parentId" />
+        <result column="is_extended_service" property="isExtendedService" />
+        <result column="is_valueables" property="isValueables" />
+        <result column="wine_flag" property="wineFlag" />
+        <result column="prescription" property="prescription" />
+        <result column="specification" property="specification" />
+        <result column="lot_number" property="lotNumber" />
+        <result column="expire_time" property="expireTime" />
+        <result column="production_time" property="productionTime" />
+        <result column="create_time" property="createTime" />
+        <result column="remark" property="remark" />
+        <result column="tenant_id" property="tenantId" />
+        <result column="actual_qty" property="actualQty" />
+        <result column="so_item_id" property="soItemId" />
+        <result column="platform_sku_id" property="platformSkuId" />
+        <result column="platform_sku_code" property="platformSkuCode" />
+        <result column="platform_sku_name" property="platformSkuName" />
+        <result column="source_code" property="sourceCode" />
+        <result column="source_item_code" property="sourceItemCode" />
+        <result column="std_pack_qty" property="stdPackQty" />
+        <result column="warehouse_id" property="warehouseId" />
+        <result column="valid_date" property="validDate" />
+        <result column="location" property="location" />
+        <result column="settlement_price" property="settlementPrice" />
+        <result column="batch_price" property="batchPrice" />
+        <result column="sales_method" property="salesMethod" />
+        <result column="stock_type" property="stockType" />
+        <result column="gnum" property="gnum" />
+        <result column="actual_price" property="actualPrice" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, do_header_id AS doHeaderId, product_id AS productId, product_code AS productCode, order_item_amount AS orderItemAmount, price, product_cname AS productCname, expected_qty AS expectedQty, is_promote AS isPromote, supplier_id AS supplierId, merchant_id AS merchantId, is_do_leaf AS isDoLeaf, parent_id AS parentId, is_extended_service AS isExtendedService, is_valueables AS isValueables, wine_flag AS wineFlag, prescription, specification, lot_number AS lotNumber, expire_time AS expireTime, production_time AS productionTime, create_time AS createTime, remark, tenant_id AS tenantId, actual_qty AS actualQty, so_item_id AS soItemId, platform_sku_id AS platformSkuId, platform_sku_code AS platformSkuCode, platform_sku_name AS platformSkuName, source_code AS sourceCode, source_item_code AS sourceItemCode, std_pack_qty AS stdPackQty, warehouse_id AS warehouseId, valid_date AS validDate, location, settlement_price AS settlementPrice, batch_price AS batchPrice, sales_method AS salesMethod, stock_type AS stockType, gnum, actual_price AS actualPrice
+    </sql>
+
+</mapper>

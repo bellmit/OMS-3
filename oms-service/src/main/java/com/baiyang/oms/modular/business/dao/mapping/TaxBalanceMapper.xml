@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.TaxBalanceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.TaxBalance">
+        <id column="id" property="id" />
+        <result column="logistics_no" property="logisticsNo" />
+        <result column="platform_order_code" property="platformOrderCode" />
+        <result column="tax_fcy" property="taxFcy" />
+        <result column="rise_time" property="riseTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, logistics_no AS logisticsNo, platform_order_code AS platformOrderCode, tax_fcy AS taxFcy, rise_time AS riseTime
+    </sql>
+
+</mapper>

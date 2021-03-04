@@ -1,0 +1,84 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>退款单管理</h5>
+                <#FormSlideToggle searchFormId="searchForm"/>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div id="searchForm">
+                        <div class="col-sm-12">
+                               <div class="row">
+                                   <div class="col-sm-3">
+                                       <#NameCon id="code" name="退款单号" />
+                                   </div>
+                                   <div class="col-sm-3">
+                                       <#SelectCon id="platformId" name="渠道" >
+                                           <option value="">请选择</option>
+                                           @for(platform in platformList){
+                                                <option value="${platform.id}">${platform.platformName}</option>
+                                           @}
+                                       </#SelectCon>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <#SelectCon id="merchantId" name="商家" >
+                                            <option value="">请选择</option>
+                                            @for(merchant in merchantList){
+                                                <option value="${merchant.id}">${merchant.merchantName}</option>
+                                            @}
+                                        </#SelectCon>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <#SelectCon id="shopId" name="店铺" >
+                                            <option value="">请选择</option>
+                                            @for(shop in shopMap){
+                                                <option value="${shop.id}">${shop.name}</option>
+                                            @}
+                                        </#SelectCon>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <#NameCon id="grfCode" name="退货单号" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <#NameCon id="refundAmount" name="退款金额" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <#NameCon id="accountBank" name="开户行" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <#NameCon id="refundAccount" name="退款账号" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <#TimeCon id="createTimeBegin" name="退单开始时间" isTime="true" pattern="YYYY-MM-DD hh:mm:ss" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <#TimeCon id="createTimeEnd" name="退单结束时间" isTime="true" pattern="YYYY-MM-DD hh:mm:ss" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <#NameCon id="buyerNick" name="买家账号" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12" style="text-align: center;padding-top: 20px">
+                                    <#button name="搜索" icon="fa-search" clickFun="RefundOrder.search()"/>
+                                    <#button name="重置" icon="fa-repeat" clickFun="RefundOrder.reset()" space="true"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="RefundOrderTableToolbar" role="group">
+                            <!--<button type="button" class="btn btn-primary" onclick="RefundOrder.openExcelIn()">导出-->
+                                <!--<span class="glyphicon glyphicon-export"></span>-->
+                            <!--</button>-->
+                        </div>
+                        <#table id="RefundOrderTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/refundOrder/refundOrder.js"></script>
+@}

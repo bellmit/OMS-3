@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.GrfItemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.GrfItem">
+        <id column="id" property="id" />
+        <result column="grf_id" property="grfId" />
+        <result column="product_id" property="productId" />
+        <result column="merchant_id" property="merchantId" />
+        <result column="order_item_amount" property="orderItemAmount" />
+        <result column="order_item_price" property="orderItemPrice" />
+        <result column="order_item_num" property="orderItemNum" />
+        <result column="settlement_price" property="settlementPrice" />
+        <result column="delivery_fee_amount" property="deliveryFeeAmount" />
+        <result column="product_cname" property="productCname" />
+        <result column="product_ename" property="productEname" />
+        <result column="source_item_id" property="sourceItemId" />
+        <result column="return_item_num" property="returnItemNum" />
+        <result column="supplier_id" property="supplierId" />
+        <result column="source_parent_item_id" property="sourceParentItemId" />
+        <result column="product_type" property="productType" />
+        <result column="change_product_code" property="changeProductCode" />
+        <result column="change_product_num" property="changeProductNum" />
+        <result column="tenant_id" property="tenantId" />
+        <result column="create_time" property="createTime" />
+        <result column="received_quality" property="receivedQuality" />
+        <result column="damage_quality" property="damageQuality" />
+        <result column="normal_quality" property="normalQuality" />
+        <result column="lot_number" property="lotNumber" />
+        <result column="cost" property="cost" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, grf_id AS grfId, product_id AS productId, merchant_id AS merchantId, order_item_amount AS orderItemAmount, order_item_price AS orderItemPrice, order_item_num AS orderItemNum, settlement_price AS settlementPrice, delivery_fee_amount AS deliveryFeeAmount, product_cname AS productCname, product_ename AS productEname, source_item_id AS sourceItemId, return_item_num AS returnItemNum, supplier_id AS supplierId, source_parent_item_id AS sourceParentItemId, product_type AS productType, change_product_code AS changeProductCode, change_product_num AS changeProductNum, tenant_id AS tenantId, create_time AS createTime, received_quality AS receivedQuality, damage_quality AS damageQuality, normal_quality AS normalQuality, lot_number AS lotNumber, cost
+    </sql>
+
+</mapper>

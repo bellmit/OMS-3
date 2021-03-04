@@ -1,0 +1,54 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" underline="true"/>
+                            <#input id="supplierCompanyName" name="供应商公司名" underline="true"/>
+                            <#input id="supplierContactPerson" name="联系人" underline="true"/>
+                            <#input id="supplierContactPhone" name="联系电话" underline="true"/>
+                            <#input id="isDeleted" name="是否删除" underline="true"/>
+                            <#input id="supplierContactEmail" name="联系人email" underline="true"/>
+                            <#input id="supplierContactMobile" name="联系人手机" underline="true"/>
+                            <#input id="supplierBankName" name="开户行(支行)" underline="true"/>
+                            <#input id="supplierBankAccountName" name="账号名" underline="true"/>
+                            <#input id="supplierBankAccountNumber" name="账户" underline="true"/>
+                            <#input id="supplierStatus" name="0：申请中（未处理） 1:已开通 2:待定 3：拒绝" underline="true"/>
+                            <#input id="createTime" name="创立日期" underline="true"/>
+                            <#input id="supplierCode" name="供应商编码" underline="true"/>
+                            <#input id="cooperationStatus" name="供应商合作状态 0：未合作 1：已合作 2：作废 3：清场中4：已清场"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="isSent" name="V3接口是否已同步到WMS:1,已同步，0未同步" underline="true"/>
+                            <#input id="balanceAccountsType" name="结算方式 1:现金;2:月结;3:其他结算方式" underline="true"/>
+                            <#input id="merchantOfficeAddress" name="商务办公地址" underline="true"/>
+                            <#input id="createdBy" name="创建人ID" underline="true"/>
+                            <#input id="updatedBy" name="修改人ID" underline="true"/>
+                            <#input id="updateTime" name="修改时间" underline="true"/>
+                            <#input id="tenantId" name="" underline="true"/>
+                            <#input id="distributionType" name="经销方式" underline="true"/>
+                            <#input id="expand1" name="扩展属性1" underline="true"/>
+                            <#input id="expand2" name="扩展属性2" underline="true"/>
+                            <#input id="expand3" name="扩展属性3" underline="true"/>
+                            <#input id="expand4" name="扩展属性4" underline="true"/>
+                            <#input id="taxRegNo" name="纳税人识别号" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="MdSupplierInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MdSupplierInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/mdSupplier/mdSupplier_info.js"></script>
+@}

@@ -1,0 +1,117 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" underline="true"/>
+                            <#input id="doNo" name="DO号" underline="true"/>
+                            <#input id="soNo" name="SO号" underline="true"/>
+                            <#input id="parentSoNo" name="父SO号" underline="true"/>
+                            <#input id="wvNo" name="波次号" underline="true"/>
+                            <#input id="sortingNo" name="分拣序号" underline="true"/>
+                            <#input id="grfNo" name="取件单号" underline="true"/>
+                            <#input id="doCreateTime" name="DO创建时间" underline="true"/>
+                            <#input id="soCreateTime" name="SO创建时间" underline="true"/>
+                            <#input id="lastOperateTime" name="最后操作时间" underline="true"/>
+                            <#input id="state" name="配送单状态： 100 WMS初始化，110 生成波次，115 拣货完成 ..." underline="true"/>
+                            <#input id="doType" name="订单类型：1 普通DO,  2 换货DO" underline="true"/>
+                            <#input id="deliveryMode" name="用户选择的配送服务类型：10001普通快递，10002 指定收货日期， 10003 一日三送， 10004 半日达" underline="true"/>
+                            <#input id="deliveryMethodType" name="'配送方式类型 10001.普通快递 20001.ems 30001.供应商直送 40001.自提 30002.商城商家直送'" underline="true"/>
+                            <#input id="deliverymanId" name="配送人员id" underline="true"/>
+                            <#input id="orderSource" name="订单来源：来自1号店、1号商城、淘宝、qq" underline="true"/>
+                            <#input id="cartonQuantity" name="箱数" underline="true"/>
+                            <#input id="paymentMode" name="0.账户支付 1: 网上支付 2. 货到付款3 邮局汇款4 银行转账 5:pos机 7:分期付款 8:合同账期 9:货到转账 10:货到付支票" underline="true"/>
+                            <#input id="productAmount" name="" underline="true"/>
+                            <#input id="toCollectAmount" name="应收金额" underline="true"/>
+                            <#input id="whId" name="仓库ID" underline="true"/>
+                            <#input id="productCodes" name="" underline="true"/>
+                            <#input id="carrierId" name="配送商ID" underline="true"/>
+                            <#input id="consignee" name="" underline="true"/>
+                            <#input id="consigneeTelephone" name="收货人电话" underline="true"/>
+                            <#input id="consigneeMobile" name="收货人手机" underline="true"/>
+                            <#input id="provinceId" name="" underline="true"/>
+                            <#input id="province" name="省" underline="true"/>
+                            <#input id="cityId" name="" underline="true"/>
+                            <#input id="city" name="市" underline="true"/>
+                            <#input id="districtId" name="" underline="true"/>
+                            <#input id="district" name="区" underline="true"/>
+                            <#input id="area" name="自定义区域" underline="true"/>
+                            <#input id="areaId" name="四级区域ID" underline="true"/>
+                            <#input id="address" name="详细地址" underline="true"/>
+                            <#input id="isNeedInvoice" name="发票类型  0:不开发票，1：普通发票，2：增值税发票" underline="true"/>
+                            <#input id="leavingWhTime" name="出库时间" underline="true"/>
+                            <#input id="arriveDcTime" name="入分拣中心时间" underline="true"/>
+                            <#input id="leaveDcTime" name="出分拣中心时间" underline="true"/>
+                            <#input id="returnTime" name="回单时间" underline="true"/>
+                            <#input id="createdBy" name="创建人ID" underline="true"/>
+                            <#input id="createTime" name="创建时间" underline="true"/>
+                            <#input id="updatedBy" name="修改人ID" underline="true"/>
+                            <#input id="updateTime" name="最后修改时间" underline="true"/>
+                            <#input id="isLock" name="订单锁定标识：1 锁定 0 释放"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="shippedSkuQty" name="出库SKU总数" underline="true"/>
+                            <#input id="shippedUnitsQty" name="出库UNITS总数" underline="true"/>
+                            <#input id="shipmentNo" name="" underline="true"/>
+                            <#input id="isSynWms" name="是否同步到WMS 0:未同步 1:已同步" underline="true"/>
+                            <#input id="isSynDts" name="是否同步到DTS 0:未同步 1:已同步 2:同步失败" underline="true"/>
+                            <#input id="payTime" name="调WMS接口时间" underline="true"/>
+                            <#input id="syncTime" name="预计出库时间同步wms时间" underline="true"/>
+                            <#input id="remark" name="备注" underline="true"/>
+                            <#input id="soId" name="订单ID" underline="true"/>
+                            <#input id="notice" name="用户名称" underline="true"/>
+                            <#input id="orderSaleMethod" name="订单购买类型:0普通(默认值) 1实体经销商 2网络经销商 " underline="true"/>
+                            <#input id="orderQty" name="应发数量（各个DETAIL 条目的NUM之和）" underline="true"/>
+                            <#input id="packQty" name="实发数量（WMS系统回写）" underline="true"/>
+                            <#input id="isThirdPartyBill" name="是否要代收货款 1：是 0：否" underline="true"/>
+                            <#input id="orderPaymentMethodId" name="付款方式ID" underline="true"/>
+                            <#input id="orderAmount" name="订单总额（PRODUCT_AMOUNT+ORDER_DELIVERY_FEE-商家优惠-平台优惠)" underline="true"/>
+                            <#input id="accountPayable" name="已预付货款" underline="true"/>
+                            <#input id="discountAmount" name="总返利金额" underline="true"/>
+                            <#input id="orderDeliveryFee" name="运费" underline="true"/>
+                            <#input id="invoiceContent" name="发票内容" underline="true"/>
+                            <#input id="invoiceNumber" name="发票号（不用），现表示SO单需要的发票数（一般是商品发票和运费发票）" underline="true"/>
+                            <#input id="invoiceAmount" name="发票金额" underline="true"/>
+                            <#input id="receiveAmount" name="实收金额" underline="true"/>
+                            <#input id="merchantId" name="商家ID" underline="true"/>
+                            <#input id="isDeleted" name="是否失效" underline="true"/>
+                            <#input id="dataExchangeFlag" name="0：不需要等待发货通知 1：换货do等待发货  2：已收到换货通知  " underline="true"/>
+                            <#input id="shopId" name="" underline="true"/>
+                            <#input id="originalSoCode" name="原始订单号" underline="true"/>
+                            <#input id="prescription" name="是否处方药标记 0：否 1：是" underline="true"/>
+                            <#input id="csRemark" name="客服备注(卖家备注)" underline="true"/>
+                            <#input id="customerRemark" name="买家备注" underline="true"/>
+                            <#input id="orderVolume" name="" underline="true"/>
+                            <#input id="orderWeight" name="" underline="true"/>
+                            <#input id="isPrintWaybill" name="是否已经打印电子面单 0:否,1:是" underline="true"/>
+                            <#input id="isPrintDo" name="是否已经打印发货单 0:否,1:是" underline="true"/>
+                            <#input id="tenantId" name="" underline="true"/>
+                            <#input id="parentPlatformOrderCode" name="父平台单号" underline="true"/>
+                            <#input id="crossBorder" name="跨境方式 0 非跨境；1 邮关；2 bc直邮；3 bbc保税；4 个人物品；5 一般贸易" underline="true"/>
+                            <#input id="isDeal" name="销售单确认定时任务处理状态（0：未处理 1：处理成功 2：处理失败）" underline="true"/>
+                            <#input id="outerOrderCode" name="外部发货单号-奇门" underline="true"/>
+                            <#input id="outerOrderType" name="外部订单类型JYCK=一般交易出库单, HHCK=换货出库单, BFCK=补发出库单，QTCK=其他出库单" underline="true"/>
+                            <#input id="teamBuyRuleId" name="团购规则ID" underline="true"/>
+                            <#input id="subType" name="do出库子类型（其他出库）" underline="true"/>
+                            <#input id="shopName" name="" underline="true"/>
+                            <#input id="merchantName" name="" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="DoOrderInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="DoOrderInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/doOrder/doOrder_info.js"></script>
+@}

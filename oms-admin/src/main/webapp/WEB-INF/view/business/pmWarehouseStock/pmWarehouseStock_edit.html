@@ -1,0 +1,46 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="主键" value="${item.id}" underline="true"/>
+                            <#input id="productId" name="产品id" value="${item.productId}" underline="true"/>
+                            <#input id="merchantId" name="商家id" value="${item.merchantId}" underline="true"/>
+                            <#input id="warehouseId" name="仓库id" value="${item.warehouseId}" underline="true"/>
+                            <#input id="pmInfoId" name="商品id" value="${item.pmInfoId}" underline="true"/>
+                            <#input id="categoryId" name="二级类目ID" value="${item.categoryId}" underline="true"/>
+                            <#input id="realStockNum" name="真实库存" value="${item.realStockNum}" underline="true"/>
+                            <#input id="realFrozenStockNum" name="真实冻结库存" value="${item.realFrozenStockNum}" underline="true"/>
+                            <#input id="lockStockNum" name="锁定库存" value="${item.lockStockNum}" underline="true"/>
+                            <#input id="damageStockNum" name="坏品库存" value="${item.damageStockNum}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="wtPutawayQty" name="待上架库存" value="${item.wtPutawayQty}" underline="true"/>
+                            <#input id="frozenDamageStockNum" name="坏品冻结库存" value="${item.frozenDamageStockNum}" underline="true"/>
+                            <#input id="lockDemageStockNum" name="锁定坏品库存" value="${item.lockDemageStockNum}" underline="true"/>
+                            <#input id="frozenUpdateTime" name="冻结库存变更时间" value="${item.frozenUpdateTime}" underline="true"/>
+                            <#input id="lastLeavingWhTime" name="最近销售出库时间" value="${item.lastLeavingWhTime}" underline="true"/>
+                            <#input id="createTime" name="记录创建的时间" value="${item.createTime}" underline="true"/>
+                            <#input id="updateTime" name="记录更新的时间" value="${item.updateTime}" underline="true"/>
+                            <#input id="pri" name="仓库优先级" value="${item.pri}" underline="true"/>
+                            <#input id="tenantId" name="" value="${item.tenantId}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PmWarehouseStockInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PmWarehouseStockInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/pmWarehouseStock/pmWarehouseStock_info.js"></script>
+@}

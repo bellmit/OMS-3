@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiyang.oms.modular.business.dao.TempRefundMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.baiyang.oms.modular.business.model.TempRefund">
+        <id column="id" property="id" />
+        <result column="platform_id" property="platformId" />
+        <result column="platform_apply_id" property="platformApplyId" />
+        <result column="store_id" property="storeId" />
+        <result column="merchant_id" property="merchantId" />
+        <result column="platform_order_code" property="platformOrderCode" />
+        <result column="order_money" property="orderMoney" />
+        <result column="apply_time" property="applyTime" />
+        <result column="platform_update_time" property="platformUpdateTime" />
+        <result column="apply_status" property="applyStatus" />
+        <result column="apply_type" property="applyType" />
+        <result column="delivery_fee" property="deliveryFee" />
+        <result column="return_money" property="returnMoney" />
+        <result column="apply_reson" property="applyReson" />
+        <result column="apply_comment" property="applyComment" />
+        <result column="logistics_name" property="logisticsName" />
+        <result column="logistics_code" property="logisticsCode" />
+        <result column="has_item" property="hasItem" />
+        <result column="update_time" property="updateTime" />
+        <result column="state" property="state" />
+        <result column="remark" property="remark" />
+        <result column="tenant_id" property="tenantId" />
+        <result column="detail" property="detail" />
+        <result column="is_sync" property="isSync" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, platform_id AS platformId, platform_apply_id AS platformApplyId, store_id AS storeId, merchant_id AS merchantId, platform_order_code AS platformOrderCode, order_money AS orderMoney, apply_time AS applyTime, platform_update_time AS platformUpdateTime, apply_status AS applyStatus, apply_type AS applyType, delivery_fee AS deliveryFee, return_money AS returnMoney, apply_reson AS applyReson, apply_comment AS applyComment, logistics_name AS logisticsName, logistics_code AS logisticsCode, has_item AS hasItem, update_time AS updateTime, state, remark, tenant_id AS tenantId, detail, is_sync AS isSync
+    </sql>
+
+</mapper>

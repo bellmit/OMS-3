@@ -1,0 +1,45 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" value="${item.id}" underline="true"/>
+                            <#input id="code" name="代码" value="${item.code}" underline="true"/>
+                            <#input id="name" name="名称" value="${item.name}" underline="true"/>
+                            <#input id="type" name="1:省市自治区;2:城市;3:区县" value="${item.type}" underline="true"/>
+                            <#input id="parentName" name="" value="${item.parentName}" underline="true"/>
+                            <#input id="parentCode" name="" value="${item.parentCode}" underline="true"/>
+                            <#input id="parentId" name="父区域ID" value="${item.parentId}" underline="true"/>
+                            <#input id="fullname" name="" value="${item.fullname}" underline="true"/>
+                            <#input id="createTime" name="" value="${item.createTime}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="updateTime" name="" value="${item.updateTime}" underline="true"/>
+                            <#input id="createdBy" name="" value="${item.createdBy}" underline="true"/>
+                            <#input id="updatedBy" name="" value="${item.updatedBy}" underline="true"/>
+                            <#input id="enabled" name="是否启用 1：是 0" value="${item.enabled}" underline="true"/>
+                            <#input id="isDeleted" name="" value="${item.isDeleted}" underline="true"/>
+                            <#input id="isSent" name="v3接口是否已同步到wms:1,已同步，0未同步" value="${item.isSent}" underline="true"/>
+                            <#input id="dataExchangeFlag" name="是否已同步到wms:1,已同步，0未同步(wmsv2拆库)" value="${item.dataExchangeFlag}" underline="true"/>
+                            <#input id="aliasName" name="别名" value="${item.aliasName}" underline="true"/>
+                            <#input id="tenantId" name="" value="${item.tenantId}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="MdRegionInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MdRegionInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/mdRegion/mdRegion_info.js"></script>
+@}

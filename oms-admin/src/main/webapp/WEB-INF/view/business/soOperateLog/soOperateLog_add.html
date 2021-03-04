@@ -1,0 +1,36 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" underline="true"/>
+                            <#input id="soCode" name="" underline="true"/>
+                            <#input id="operator" name="" underline="true"/>
+                            <#input id="operatorId" name="" underline="true"/>
+                            <#input id="operationTime" name=""/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="operateType" name="" underline="true"/>
+                            <#input id="remark" name="" underline="true"/>
+                            <#input id="tenantId" name="" underline="true"/>
+                            <#input id="platformOrderCode" name="" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="SoOperateLogInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="SoOperateLogInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/soOperateLog/soOperateLog_info.js"></script>
+@}
