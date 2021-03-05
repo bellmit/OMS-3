@@ -88,7 +88,7 @@ spring:
 guns:
   flowable:
     datasource:
-      url: jdbc:mysql://192.168.1.162:3306/local-test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+      url: jdbc:mysql://192.168.1.162:3306/oms?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
       username: root
       password: root
   muti-datasource:

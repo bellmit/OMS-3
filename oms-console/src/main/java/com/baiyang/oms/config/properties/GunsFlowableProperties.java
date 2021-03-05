@@ -19,7 +19,7 @@ public class GunsFlowableProperties {
     /**
      * 默认多数据源的链接
      */
-    private String url = "jdbc:mysql://192.168.1.162:3306/local-test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull";
+    private String url = "jdbc:mysql://192.168.1.162:3306/oms?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull";
 
     /**
      * 默认多数据源的数据库账号
